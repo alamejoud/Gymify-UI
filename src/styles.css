@@ -25,10 +25,14 @@ body {
 .p-tooltip.p-tooltip-top,
 .p-tooltip.p-tooltip-bottom {
   .p-tooltip-text {
-    width: 300px;
+    width: 450px;
     border: #D7FB00 2px solid;
     color: #D7FB00;
-    background-color: transparent;
+    background-color: #151515;
+    backdrop-filter: blur(15px);
+    font-family: Raleway-Light, sans-serif;
+    padding: 1rem 2rem;
+
   }
 }
 
