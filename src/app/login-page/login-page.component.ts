@@ -6,12 +6,6 @@ import { MenuItem } from 'primeng/api';
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
-  routes =[
-    { path: 'first-component', component: FirstComponent },
-    { path: 'second-component', component: SecondComponent },
-    { path: '', redirectTo: '/first-component', pathMatch: 'full' }, // redirect to `first-component`
-    { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
-  ];
 })
 export class LoginPageComponent {
 
