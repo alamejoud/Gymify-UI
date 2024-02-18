@@ -79,6 +79,9 @@ h1 {
     color: white;
   }
 
+  ::ng-deep .p-float-label label {
+    color: white;
+  }
 }
 
 li {
@@ -99,7 +102,6 @@ li {
     0 0 20px #D7FB00,
     0 0 40px #D7FB00;
 }
-
 
 .notMet {
   color: red;
