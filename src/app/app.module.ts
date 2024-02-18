@@ -14,11 +14,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { TooltipModule } from 'primeng/tooltip';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { SignupPopupComponent } from './signup-popup/signup-popup.component';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
+    LoginPopupComponent,
+    SignupPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ReactiveFormsModule,
     InputTextModule,
     PasswordModule,
-    TooltipModule
+    TooltipModule,
+    TabMenuModule
   ],
   providers: [
     provideClientHydration(),

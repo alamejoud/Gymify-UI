@@ -17,6 +17,15 @@
   color: #D7FB00;
 }
 
+.loginForm:hover {
+  box-shadow:
+    0 0 4px #151515,
+    0 0 8px #151515,
+    0 0 12px #151515,
+    0 0 20px #D7FB00,
+    0 0 40px #D7FB00;
+}
+
 h1 {
   font-size: 2.8rem;
 }
@@ -30,83 +39,41 @@ h1 {
 }
 
 :host {
-  ::ng-deep .p-button {
-    color: #D7FB00;
-    border: 2px solid #D7FB00;
-    width: 100%;
-    justify-content: center;
-    border-radius: 0;
-    box-shadow: #D7FB00;
-    font-weight: bolder;
-    background-color: transparent;
-  }
-
-  ::ng-deep .p-button:active {
-    background-color: black;
-  }
-
-  ::ng-deep .p-disabled,
-  .p-button:disabled {
-    background-color: #151515;
-    opacity: 0.2;
-  }
-
-  ::ng-deep .p-inputtext {
-    font-size: 0.5rem;
-    width: 100%;
-    display: block;
+  ::ng-deep .p-tabmenu {
     border: none;
-    border-radius: 0;
-    border-bottom: 1px solid white;
-    background-color: transparent;
-    font-family: Raleway-Light, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    padding: 1rem 2rem;
-    color: #D7FB00;
+    background-color: transparent !important;
   }
 
-  ::ng-deep .p-inputtext:focus {
-    box-shadow: none;
-    border-bottom: 1px solid #D7FB00;
+  ::ng-deep .p-tabmenu-nav-container {
+    border: none;
+    background-color: transparent !important;
   }
 
-  ::ng-deep .p-password {
-    width: 100%;
+  ::ng-deep .p-tabmenu-nav-content {
+    border: none;
+    background-color: transparent !important;
   }
 
-  ::ng-deep .p-icon-wrapper {
-    color: white;
+  ::ng-deep .p-tabmenu-nav {
+    background-color: transparent !important;
   }
 
-  ::ng-deep .p-float-label label {
-    color: white;
+  ::ng-deep .p-menuitem-link {
+    background-color: transparent !important;
+    color: white !important;
   }
-}
 
-li {
-  list-style: none;
-  font-size: 1rem;
-  color: #D7FB00;
-  margin: 0;
-  padding: 0;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-}
+  ::ng-deep .p-menuitem-link:hover {
+    background-color: #15151588 !important;
+  }
 
-.loginForm:hover {
-  box-shadow:
-    0 0 4px #151515,
-    0 0 8px #151515,
-    0 0 12px #151515,
-    0 0 20px #D7FB00,
-    0 0 40px #D7FB00;
-}
+  ::ng-deep .ptabmenuitem {
+    background-color: transparent !important;
+  }
 
-.notMet {
-  color: red;
-}
+  ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    color: rgba(215, 251, 0, 1) !important;
+    border-color: #D7FB00;
+  }
 
-.met {
-  color: green;
 }
