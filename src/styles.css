@@ -11,7 +11,7 @@ body {
   align-items: center;
 }
 
-*:not(i) {
+*:not(i, .p-menuitem-icon) {
   font-family: Raleway-ExtraLight, sans-serif !important;
   letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
