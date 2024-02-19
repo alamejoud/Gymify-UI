@@ -29,7 +29,6 @@ import { TabMenuModule } from 'primeng/tabmenu';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserModule,
     BrowserAnimationsModule,
     ButtonModule,
     TableModule,

@@ -1,0 +1,72 @@
+:host {
+  ::ng-deep .p-button {
+    color: #D7FB00;
+    border: 2px solid #D7FB00;
+    width: 100%;
+    justify-content: center;
+    border-radius: 0;
+    box-shadow: #D7FB00;
+    font-weight: bolder;
+    background-color: transparent;
+  }
+
+  ::ng-deep .p-button:active {
+    background-color: black;
+  }
+
+  ::ng-deep .p-disabled,
+  .p-button:disabled {
+    background-color: #151515;
+    opacity: 0.2;
+  }
+
+  ::ng-deep .p-inputtext {
+    font-size: 0.5rem;
+    width: 100%;
+    display: block;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    font-family: Raleway-Light, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    padding: 1rem 2rem;
+    color: #D7FB00;
+  }
+
+  ::ng-deep .p-inputtext:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #D7FB00;
+  }
+
+  ::ng-deep .p-password {
+    width: 100%;
+  }
+
+  ::ng-deep .p-icon-wrapper {
+    color: white;
+  }
+
+  ::ng-deep .p-float-label label {
+    color: white;
+  }
+}
+
+li {
+  list-style: none;
+  font-size: 1rem;
+  color: #D7FB00;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.notMet {
+  color: red;
+}
+
+.met {
+  color: green;
+}
