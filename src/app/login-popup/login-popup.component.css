@@ -1,4 +1,8 @@
 :host {
+  ::ng-deep {
+    width: 100%;
+  }
+
   ::ng-deep .p-button {
     color: #D7FB00;
     border: 2px solid #D7FB00;

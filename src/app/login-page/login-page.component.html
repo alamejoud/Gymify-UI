@@ -1,8 +1,7 @@
-<div class="loginForm">
+<div class="loginForm" [ngClass]="{signUpForm: isSignup }">
   <section class="formContainer flex jusify-content-start">
     <h1 class="m-auto my-4">Welcome To Gymify</h1>
-    <p-tabMenu [model]="loginSignup" [activeItem]="this.loginSignup[0]"></p-tabMenu>
-    <router-outlet></router-outlet>
-    <app-login-popup class="w-full"></app-login-popup>
+    <p-tabMenu #tabMenu [model]="loginSignup" [activeItem]="this.loginSignup[0]"></p-tabMenu>
+    <router-outlet class="w-full"></router-outlet>
   </section>
 </div>
