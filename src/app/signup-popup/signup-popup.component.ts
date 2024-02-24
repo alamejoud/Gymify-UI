@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { SignUpServiceService } from '../Services/sign-up-service.service';
+import { UserVO } from '../VO/UserVO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-popup',
@@ -11,7 +13,7 @@ import { SignUpServiceService } from '../Services/sign-up-service.service';
 export class SignupPopupComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private messageService: MessageService, private signUpService: SignUpServiceService) { }
+  constructor(private fb: FormBuilder, private messageService: MessageService, private signUpService: SignUpServiceService, private router: Router, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -30,36 +32,42 @@ export class SignupPopupComponent {
       });
     }
     else if (this.loginForm.valid) {
-      this.signUpService.addUser(this.loginForm.value).subscribe(
+      this.signUpService.addUser(this.signUpService.mapUser(this.loginForm.value)).subscribe(
         {
-          next: this.handleUpdateSuccess.bind(this)
-          ,
-          error: this.handleError.bind(this)
+          next: response => this.handleUpdateSuccess(response.message.headerMessage, response.message.bodyMessage),
+          error: error => this.handleError(error.error.message)
+
         }
       )
     }
   }
 
-  checkPasswordSize(): boolean {
+  checkConfirmPassword(): boolean {
     if (this.loginForm.get('password').value?.length > 0) {
-      this.loginForm.get('confirmPassword').enable({ onlySelf: true })
+      this.loginForm.get('confirmPassword').enable({ onlySelf: true });
+      return false;
     } else {
       this.loginForm.get('confirmPassword').disable({ onlySelf: true });
       this.loginForm.get('confirmPassword').reset();
-    };
-    return this.loginForm.get('password').value.length < 8 || this.loginForm.get('password').value.length > 30;
+      return true;
+    }
+  }
+
+  checkPasswordSize(): boolean {
+
+    return this.loginForm.get('password').value?.length < 8 || this.loginForm.get('password').value?.length > 30;
   }
 
   checkExistingNumber(): boolean {
-    return this.loginForm.get('password').value.match(/\d+/g) === null;
+    return this.loginForm.get('password').value?.match(/\d+/g) === null;
   }
 
   checkExistingSpecialCharacter(): boolean {
-    return this.loginForm.get('password').value.match(/[^a-zA-Z0-9]+/g) === null;
+    return this.loginForm.get('password').value?.match(/[^a-zA-Z0-9]+/g) === null;
   }
 
   checkExistingUpperCase(): boolean {
-    return this.loginForm.get('password').value.match(/[A-Z]+/g) === null;
+    return this.loginForm.get('password').value?.match(/[A-Z]+/g) === null;
   }
 
   validatePassword(): boolean {
@@ -74,17 +82,24 @@ export class SignupPopupComponent {
     return this.validatePassword() || this.loginForm.invalid;
   }
 
-  handleUpdateSuccess(): void {
+  handleUpdateSuccess(headerMessage: string, bodyMessage: string): void {
     this.messageService.clear();
     this.messageService.add({
-      severity: 'success', summary: 'Success', detail: 'User added successfully, you can now login with your credentials'
+      severity: 'success', summary: headerMessage, detail: bodyMessage
     });
+    const url = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([`/${url}`])
+    })
   }
 
-  handleError(): void {
+  handleError(message: string): void {
+    console.log(message);
     this.messageService.clear();
     this.messageService.add({
-      severity: 'error', summary: 'Error', detail: 'Error creating the user'
+      severity: 'error', summary: "Error", detail: message
     });
+
   }
+
 }

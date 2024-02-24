@@ -21,13 +21,15 @@
   </div>
   <div class="p-float-label m-auto my-4 w-full">
     <p-password [feedback]="false" [toggleMask]="true" id="password" formControlName="password" class="form-control"
-      [pTooltip]="passwordRequirements" tooltipEvent="focus" />
+      [pTooltip]="passwordRequirements" tooltipEvent="focus" [maxLength]="30" maxlength="30" />
     <label for="password"><i class="pi pi-lock"></i> Password</label>
   </div>
   <div class="p-float-label m-auto my-4 w-full">
     <p-password [feedback]="false" [toggleMask]="true" id="confirmPassword" formControlName="confirmPassword"
-      class="form-control" maxlength="30" />
-    <label for="password"><i class="pi pi-lock"></i> Confirm Password</label>
+      class="form-control" [maxLength]="30" maxlength="30" />
+    <label for="password" [class]="{'disabled' : checkConfirmPassword()}"><i class="pi pi-lock"></i>
+      Confirm
+      Password</label>
   </div>
   <div class="m-auto w-full flex">
     <button pButton pRipple type="submit" class="m-auto" [disabled]='validateSignupForm()'>Sign Up</button>

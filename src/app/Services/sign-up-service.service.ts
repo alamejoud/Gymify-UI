@@ -8,9 +8,22 @@ import { Observable } from 'rxjs';
 })
 export class SignUpServiceService {
 
+
+
   constructor(private http: HttpClient) { }
 
   addUser(user: UserVO): Observable<any> {
     return this.http.post('http://localhost:9090/user/addUser', user);
+  }
+
+  mapUser(loginForm: any): UserVO {
+    let user: UserVO = new UserVO();
+    user.username = loginForm.username;
+    user.password = loginForm.password;
+    user.confirmPassword = loginForm.confirmPassword;
+    user.role = loginForm.role;
+    console.log(user);
+
+    return user;
   }
 }

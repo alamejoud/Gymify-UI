@@ -23,11 +23,12 @@ export class LoginPageComponent {
       { label: 'Sign Up', icon: 'pi pi-fw pi-user-plus', command: () => { this.openSignupPopup() }, routerLink: '/loginPage/signup' }
     ];
     this.route.url.subscribe(url => {
-      // Get the activated route
+      console.log(this.route.snapshot);
+
       const activatedRoute = this.route.snapshot.children[0];
-      // Get the component name from the activated route
+
       if ((activatedRoute.routeConfig?.component?.name || '') == '_SignupPopupComponent') {
-        this.isSignup = true;
+        this.openSignupPopup();
       }
 
     });

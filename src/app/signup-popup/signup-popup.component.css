@@ -25,6 +25,10 @@
     opacity: 0.2;
   }
 
+  ::ng-deep input.p-disabled {
+    color: #151515;
+  }
+
   ::ng-deep .p-inputtext {
     font-size: 0.5rem;
     width: 100%;
@@ -77,6 +81,12 @@
   ::ng-deep .p-radiobutton-icon {
     background-color: #151515 !important;
   }
+
+}
+
+.disabled {
+  color: #151515;
+  opacity: 0.2;
 }
 
 li {
