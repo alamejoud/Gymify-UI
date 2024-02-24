@@ -15,7 +15,7 @@
   }
 
   ::ng-deep .p-button:active {
-    background-color: black;
+    background-color: #151515;
   }
 
   ::ng-deep .p-disabled,

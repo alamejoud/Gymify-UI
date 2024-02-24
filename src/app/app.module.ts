@@ -17,6 +17,11 @@ import { TooltipModule } from 'primeng/tooltip';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { SignupPopupComponent } from './signup-popup/signup-popup.component';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { SignUpServiceService } from './Services/sign-up-service.service';
 
 @NgModule({
   declarations: [
@@ -38,10 +43,15 @@ import { TabMenuModule } from 'primeng/tabmenu';
     InputTextModule,
     PasswordModule,
     TooltipModule,
-    TabMenuModule
+    TabMenuModule,
+    RadioButtonModule,
+    FormsModule,
+    ToastModule
   ],
   providers: [
     provideClientHydration(),
+    MessageService,
+    SignUpServiceService
   ],
   bootstrap: [AppComponent]
 })
