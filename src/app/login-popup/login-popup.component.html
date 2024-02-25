@@ -11,6 +11,6 @@
     <label for="password"><i class="pi pi-lock"></i> Password</label>
   </div>
   <div class="m-auto w-full flex">
-    <button pButton pRipple type="submit" class="m-auto">Login</button>
+    <button pButton pRipple type="submit" class="m-auto" [disabled]="!loginForm.valid">Login</button>
   </div>
 </form>

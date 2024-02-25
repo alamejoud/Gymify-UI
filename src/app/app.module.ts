@@ -21,7 +21,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { SignUpServiceService } from './Services/sign-up-service.service';
+import { UserServiceService } from './Services/user-service.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { SignUpServiceService } from './Services/sign-up-service.service';
     LoginPageComponent,
     LoginPopupComponent,
     SignupPopupComponent,
+    PageNotFoundComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import { SignUpServiceService } from './Services/sign-up-service.service';
   providers: [
     provideClientHydration(),
     MessageService,
-    SignUpServiceService
+    UserServiceService,
   ],
   bootstrap: [AppComponent]
 })

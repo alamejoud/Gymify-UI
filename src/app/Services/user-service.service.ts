@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SignUpServiceService {
+export class UserServiceService {
 
 
 
@@ -14,6 +14,10 @@ export class SignUpServiceService {
 
   addUser(user: UserVO): Observable<any> {
     return this.http.post('http://localhost:9090/user/addUser', user);
+  }
+
+  loginUser(user: UserVO): Observable<any> {
+    return this.http.post('http://localhost:9090/user/login', user);
   }
 
   mapUser(loginForm: any): UserVO {
