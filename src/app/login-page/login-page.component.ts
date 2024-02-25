@@ -19,17 +19,14 @@ export class LoginPageComponent {
 
   ngOnInit() {
     this.loginSignup = [
-      { label: 'Login', icon: 'pi pi-fw pi-user', command: () => { this.openLoginPopup() }, routerLink: '/loginPage/login' },
-      { label: 'Sign Up', icon: 'pi pi-fw pi-user-plus', command: () => { this.openSignupPopup() }, routerLink: '/loginPage/signup' }
+      { label: 'Login', icon: 'pi pi-fw pi-user', command: () => { this.openLoginPopup() }, routerLink: '/userLogin/login' },
+      { label: 'Sign Up', icon: 'pi pi-fw pi-user-plus', command: () => { this.openSignupPopup() }, routerLink: '/userLogin/signup' }
     ];
     this.route.url.subscribe(url => {
-      // Get the activated route
       const activatedRoute = this.route.snapshot.children[0];
-      // Get the component name from the activated route
       if ((activatedRoute.routeConfig?.component?.name || '') == '_SignupPopupComponent') {
-        this.isSignup = true;
+        this.openSignupPopup();
       }
-
     });
   }
 

@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 *:not(i, .p-menuitem-icon) {
@@ -58,6 +59,16 @@ body {
   .p-tooltip-arrow {
     border-bottom-color: #D7FB00;
   }
+}
+
+.p-toast-detail {
+  font-family: Raleway-Bold, sans-serif;
+  font-weight: bolder;
+}
+
+.p-toast-summary {
+  font-family: Raleway-ExtraBold, sans-serif;
+  font-weight: bolder;
 }
 
 @font-face {

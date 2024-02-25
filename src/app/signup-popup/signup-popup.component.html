@@ -1,21 +1,56 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" method="post" action=""
-  class="m-auto my-4 flex flex-column h-20rem w-full pl-8 pr-8 ">
+<form [formGroup]="signUpForm" (ngSubmit)="addUser()" method="post" action=""
+  class="m-auto mb-5 flex flex-column h-20rem w-full pl-8 pr-8 ">
+  <div class="flex flex-wrap gap-3 my-5">
+    <div class="flex align-items-center m-auto">
+      <p-radioButton name="role" value="trainee" formControlName="role" inputId="trainee"></p-radioButton>
+      <label for="trainee" class="ml-2">Trainee</label>
+    </div>
+    <div class="flex align-items-center m-auto">
+      <p-radioButton name="role" value="trainer" formControlName="role" inputId="trainer"></p-radioButton>
+      <label for="trainer" class="ml-2">Trainer</label>
+    </div>
+    <div class="flex align-items-center m-auto">
+      <p-radioButton name="role" value="dietitian" formControlName="role" inputId="dietitian"></p-radioButton>
+      <label for="dietitian" class="ml-2">Dietitian</label>
+    </div>
+  </div>
   <div class="p-float-label m-auto my-4 w-full">
-    <input pInputText type="text" autocomplete="off" id="username" formControlName="username" id="username"
+    <input pInputText type="text" autocomplete="off" id="username" formControlName="username"
       class="form-control w-full" />
     <label for="username"><i class="pi pi-user"></i> Username</label>
   </div>
   <div class="p-float-label m-auto my-4 w-full">
     <p-password [feedback]="false" [toggleMask]="true" id="password" formControlName="password" class="form-control"
-      id="password" />
+      [pTooltip]="passwordRequirements" tooltipEvent="focus" [maxLength]="30" maxlength="30" />
     <label for="password"><i class="pi pi-lock"></i> Password</label>
   </div>
   <div class="p-float-label m-auto my-4 w-full">
-    <p-password [feedback]="false" [toggleMask]="true" id="password" formControlName="password" class="form-control"
-      id="password" />
-    <label for="password"><i class="pi pi-lock"></i> Confirm Password</label>
+    <p-password [feedback]="false" [toggleMask]="true" id="confirmPassword" formControlName="confirmPassword"
+      class="form-control" [maxLength]="30" maxlength="30" />
+    <label for="password" [class]="{'disabled' : checkConfirmPassword()}"><i class="pi pi-lock"></i>
+      Confirm
+      Password</label>
   </div>
   <div class="m-auto w-full flex">
-    <button pButton pRipple type="submit" class="m-auto">Sign Up</button>
+    <button pButton pRipple type="submit" class="m-auto" [disabled]='validateSignupForm()'>Sign Up</button>
   </div>
+  <ng-template #passwordRequirements>
+    <div>
+      <ul>
+        <li [class]="checkPasswordSize() ? 'notMet' : 'met'"><i
+            [class]="checkPasswordSize() ? 'pi pi-times' : 'pi pi-check'"></i> Must be between 8 and 30 characters long
+          characters</li>
+        <li [class]="checkExistingNumber() ? 'notMet' : 'met'"><i
+            [class]="checkExistingNumber() ? 'pi pi-times' : 'pi pi-check'"></i> Must contain at least one number
+        </li>
+        <li [class]="checkExistingSpecialCharacter() ? 'notMet' : 'met'"><i
+            [class]="checkExistingSpecialCharacter() ? 'pi pi-times' : 'pi pi-check'"></i> Must contain at least
+          one special character
+        </li>
+        <li [class]="checkExistingUpperCase() ? 'notMet' : 'met'"><i
+            [class]="checkExistingUpperCase() ? 'pi pi-times' : 'pi pi-check'"></i> Must contain at least one
+          uppercase letter</li>
+      </ul>
+    </div>
+  </ng-template>
 </form>

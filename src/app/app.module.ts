@@ -17,6 +17,13 @@ import { TooltipModule } from 'primeng/tooltip';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { SignupPopupComponent } from './signup-popup/signup-popup.component';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { UserServiceService } from './Services/user-service.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +31,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
     LoginPageComponent,
     LoginPopupComponent,
     SignupPopupComponent,
+    PageNotFoundComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,10 +47,15 @@ import { TabMenuModule } from 'primeng/tabmenu';
     InputTextModule,
     PasswordModule,
     TooltipModule,
-    TabMenuModule
+    TabMenuModule,
+    RadioButtonModule,
+    FormsModule,
+    ToastModule
   ],
   providers: [
     provideClientHydration(),
+    MessageService,
+    UserServiceService,
   ],
   bootstrap: [AppComponent]
 })

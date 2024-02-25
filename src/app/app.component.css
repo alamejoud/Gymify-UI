@@ -1,15 +1,19 @@
 .mainPage {
   width: 100vw;
   height: 100vh;
-  background-image: url("../assets/images/Login-Background-Image.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: #151515;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: auto;
+}
+
+.loginBackground {
+  background-image: url("../assets/images/Login-Background-Image.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }

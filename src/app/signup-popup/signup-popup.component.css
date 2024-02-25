@@ -16,13 +16,17 @@
   }
 
   ::ng-deep .p-button:active {
-    background-color: black;
+    background-color: #151515;
   }
 
   ::ng-deep .p-disabled,
   .p-button:disabled {
     background-color: #151515;
     opacity: 0.2;
+  }
+
+  ::ng-deep input.p-disabled {
+    color: #151515;
   }
 
   ::ng-deep .p-inputtext {
@@ -56,6 +60,33 @@
   ::ng-deep .p-float-label label {
     color: white;
   }
+
+  ::ng-deep .p-label-active {
+    color: #D7FB00;
+    background-color: #D7FB00;
+  }
+
+  ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight,
+  ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:hover {
+
+    background-color: #D7FB00;
+    border-color: #D7FB00;
+    box-shadow: none;
+  }
+
+  ::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled) :not(.p-highlight):hover {
+    border-color: #D7FB00;
+  }
+
+  ::ng-deep .p-radiobutton-icon {
+    background-color: #151515 !important;
+  }
+
+}
+
+.disabled {
+  color: #151515;
+  opacity: 0.2;
 }
 
 li {

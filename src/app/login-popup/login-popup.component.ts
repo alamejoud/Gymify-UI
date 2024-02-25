@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserServiceService } from '../Services/user-service.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-popup',
@@ -9,39 +12,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginPopupComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserServiceService, private messageService: MessageService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required && Validators.minLength(8) && Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])/g)],
+      password: ['', Validators.required],
     });
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log('Form Submitted:', this.loginForm.value);
-      // Add your login logic here
+      this.userService.loginUser(this.userService.mapUser(this.loginForm.value)).subscribe(
+        {
+          next: response => this.handleLoginSuccess(response.message),
+          error: error => this.handleError(error.error.message)
+        }
+      )
     }
   }
 
-  checkPasswordSize(): boolean {
-    return this.loginForm.get('password').value.length < 8;
+  handleLoginSuccess(message: string): void {
+    this.messageService.clear();
+    this.messageService.add({
+      severity: 'success', summary: 'Success', detail: message
+    });
+    sessionStorage.setItem('username', this.loginForm.get('username').value);
+    this.router.navigate(['/home']);
   }
 
-  checkExistingNumber(): boolean {
-    return this.loginForm.get('password').value.match(/\d+/g) === null;
-  }
+  handleError(message: string): void {
+    console.log(message);
+    this.messageService.clear();
+    this.messageService.add({
+      severity: 'error', summary: "Error", detail: message
+    });
 
-  checkExistingSpecialCharacter(): boolean {
-    return this.loginForm.get('password').value.match(/[^a-zA-Z0-9]+/g) === null;
-  }
-
-  checkExistingUpperCase(): boolean {
-    return this.loginForm.get('password').value.match(/[A-Z]+/g) === null;
-  }
-
-  validatePassword(): boolean {
-    return this.checkPasswordSize() || this.checkExistingNumber() || this.checkExistingSpecialCharacter() || this.checkExistingUpperCase();
   }
 }

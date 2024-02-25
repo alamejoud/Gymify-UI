@@ -42,6 +42,13 @@ h1 {
   margin: 0;
 }
 
+.loginHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 :host {
   ::ng-deep .p-tabmenu {
     border: none;
@@ -78,6 +85,11 @@ h1 {
   ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
     color: rgba(215, 251, 0, 1) !important;
     border-color: #D7FB00;
+  }
+
+  ::ng-deep .p-password {
+    color: red;
+    user-select: none;
   }
 
 }
