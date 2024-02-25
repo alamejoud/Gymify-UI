@@ -1,4 +1,10 @@
 <div class="mainPage" [ngClass]="{'loginBackground': checkLogin()}">
   <router-outlet></router-outlet>
   <p-toast></p-toast>
+  <p-dialog [header]="getIdleService().title" [(visible)]="getIdleService().visible" [modal]="true"
+    [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p class="m-0">
+      {{getIdleService().idleState}}
+    </p>
+  </p-dialog>
 </div>

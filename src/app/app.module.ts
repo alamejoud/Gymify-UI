@@ -24,6 +24,9 @@ import { MessageService } from 'primeng/api';
 import { UserServiceService } from './Services/user-service.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { DialogModule } from 'primeng/dialog';
+import { IdleServiceService } from './Services/idle-service.service';
 
 @NgModule({
   declarations: [
@@ -50,12 +53,15 @@ import { HomePageComponent } from './home-page/home-page.component';
     TabMenuModule,
     RadioButtonModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    NgIdleKeepaliveModule.forRoot(),
+    DialogModule
   ],
   providers: [
     provideClientHydration(),
     MessageService,
     UserServiceService,
+    IdleServiceService
   ],
   bootstrap: [AppComponent]
 })

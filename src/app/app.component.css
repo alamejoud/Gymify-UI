@@ -17,3 +17,13 @@
   background-size: cover;
   background-attachment: fixed;
 }
+
+:host {
+
+  ::ng-deep .p-dialog-header,
+  ::ng-deep .p-dialog-content,
+  ::ng-deep p-dialog-footer {
+    background-color: #151515;
+    color: #D7FB00;
+  }
+}
