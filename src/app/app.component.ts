@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
-import { Keepalive } from '@ng-idle/keepalive';
 import { IdleServiceService } from './Services/idle-service.service';
 
 @Component({

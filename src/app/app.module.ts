@@ -27,6 +27,13 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { DialogModule } from 'primeng/dialog';
 import { IdleServiceService } from './Services/idle-service.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AutoFocusModule } from 'primeng/autofocus';
+import { ImageModule } from 'primeng/image';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -36,6 +43,7 @@ import { IdleServiceService } from './Services/idle-service.service';
     SignupPopupComponent,
     PageNotFoundComponent,
     HomePageComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,13 @@ import { IdleServiceService } from './Services/idle-service.service';
     FormsModule,
     ToastModule,
     NgIdleKeepaliveModule.forRoot(),
-    DialogModule
+    DialogModule,
+    AutoFocusModule,
+    ImageModule,
+    AvatarModule,
+    AvatarGroupModule,
+    MenubarModule,
+    MenuModule
   ],
   providers: [
     provideClientHydration(),

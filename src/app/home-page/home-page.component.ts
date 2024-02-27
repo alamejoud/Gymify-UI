@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IdleServiceService } from '../Services/idle-service.service';
+import { UserServiceService } from '../Services/user-service.service';
 
 @Component({
   selector: 'app-home-page',
@@ -13,8 +14,7 @@ export class HomePageComponent {
   ngOnInit(): void {
 
 
-    if (sessionStorage.getItem('username') != null) {
-      console.log(1);
+    if (sessionStorage?.getItem('username') != null) {
       this.idleServiceService.startIdleTimer();
     }
   }

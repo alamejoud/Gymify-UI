@@ -38,7 +38,7 @@ export class LoginPopupComponent {
     this.messageService.add({
       severity: 'success', summary: 'Success', detail: message
     });
-    sessionStorage.setItem('username', this.loginForm.get('username').value);
+    sessionStorage?.setItem('username', this.loginForm.get('username').value);
     this.router.navigate(['/home']);
   }
 

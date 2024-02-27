@@ -1,0 +1,16 @@
+<div class="navBar w-full">
+  <div class="logoNavigation">
+    <img src="../../assets/images/Gymify.png" alt="Gymify">
+  </div>
+  <div class="pageNavigation">
+    .
+  </div>
+  <div class="profileNavigation">
+    <button pButton (click)="menu.toggle($event)">
+      <p-avatar label="P" shape="circle" [style]="{ 'background-color': '#151515', color: '#ffffff' }"></p-avatar>
+      <span>User</span>
+    </button>
+  </div>
+  <p-menu #menu [model]="items" [popup]="true">
+  </p-menu>
+</div>

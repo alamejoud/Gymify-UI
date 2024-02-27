@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
+import { UserServiceService } from './user-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,27 +23,23 @@ export class IdleServiceService {
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     this.idle.onIdleEnd.subscribe(() => {
-      console.log(this.idleState);
       this.reset();
     });
 
     this.idle.onTimeout.subscribe(() => {
       this.idleState = 'Timed out!';
       this.timedOut = true;
-      console.log(this.idleState);
-      sessionStorage.clear();
+      sessionStorage?.clear();
       this.visible = false;
       this.router.navigate(['/userLogin/login']);
     });
 
     this.idle.onIdleStart.subscribe(() => {
-      console.log(this.idleState);
       this.visible = true;
     });
 
     this.idle.onTimeoutWarning.subscribe((countdown) => {
       this.idleState = 'You will time out in ' + countdown + ' seconds!'
-      console.log(this.idleState);
     });
 
     this.keepalive.interval(15);
