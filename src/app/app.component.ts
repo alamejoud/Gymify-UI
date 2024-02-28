@@ -9,7 +9,8 @@ import { IdleServiceService } from './Services/idle-service.service';
 })
 export class AppComponent {
 
-  constructor(private route: ActivatedRoute, private idleServiceService: IdleServiceService) { }
+  constructor(private route: ActivatedRoute, private idleServiceService: IdleServiceService) {
+  }
 
   checkLogin(): boolean {
     let isLoggedIn = false;

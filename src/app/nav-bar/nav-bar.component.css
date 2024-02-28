@@ -5,27 +5,80 @@
   }
 
   ::ng-deep .profileNavigation .p-button {
-    width: 70%;
-    height: 50%;
-    border-radius: 50px;
-    margin: auto;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #D7FB00;
     border-color: #D7FB00;
-    padding: 0;
+    transition: all .3s ease;
+    color: #D7FB00;
+    border: 3px solid #D7FB00;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    background-color: transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 4px;
+  }
+
+  ::ng-deep .profileNavigation .p-button:hover,
+  ::ng-deep .profileNavigation .p-button:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+    transform: translateY(-0.25em);
   }
 
   ::ng-deep .p-avatar {
     margin-right: 10px;
+    color: black;
+    background-color: #D7FB00;
   }
 
-}
+  ::ng-deep .p-tabmenu {
+    border: none;
+    background-color: transparent !important;
+  }
 
-span {
-  font-family: 'Raleway-ExtraBold', monospace;
-  color: black;
+  ::ng-deep .p-tabmenu-nav-container {
+    border: none;
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu-nav-content {
+    border: none;
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu-nav {
+    background-color: transparent !important;
+    border-bottom: 2px solid transparent;
+  }
+
+  ::ng-deep .p-menuitem-link {
+    background-color: transparent !important;
+    color: white !important;
+    border-bottom: 2px solid transparent;
+    margin: 0 30px;
+    transition: all .3s ease;
+
+  }
+
+  ::ng-deep .p-menuitem-link:hover {
+    border-color: #fff;
+    transform: translateY(-0.25em);
+  }
+
+  ::ng-deep .ptabmenuitem {
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    color: rgba(215, 251, 0, 1) !important;
+    border-color: #D7FB00;
+  }
+
 }
 
 .navBar {
@@ -48,17 +101,20 @@ span {
 .logoNavigation img {
   width: auto;
   height: 100%;
-  object-fit: contain;
 }
 
 .pageNavigation {
   width: 100%;
   height: 100%;
   margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .profileNavigation {
-  width: 15%;
+  width: 250px;
   height: 100%;
   margin: auto;
   display: grid;

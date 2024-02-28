@@ -3,11 +3,13 @@
     <img src="../../assets/images/Gymify.png" alt="Gymify">
   </div>
   <div class="pageNavigation">
-    .
+    <p-tabMenu [model]="menuTab" [activeItem]="menuTab[0]"></p-tabMenu>
   </div>
   <div class="profileNavigation">
     <button pButton (click)="menu.toggle($event)">
-      <p-avatar label="P" shape="circle" [style]="{ 'background-color': '#151515', color: '#ffffff' }"></p-avatar>
+      <p-avatar shape="circle" [style]="{ 'background-color': '#151515', color: '#ffffff' }">
+        <i class="pi pi-user"></i>
+      </p-avatar>
       <span>User</span>
     </button>
   </div>

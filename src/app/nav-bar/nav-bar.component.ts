@@ -10,6 +10,8 @@ export class NavBarComponent {
 
   items: MenuItem[] | undefined;
 
+  menuTab: MenuItem[] | undefined;
+
   ngOnInit() {
     this.items = [
       {
@@ -30,6 +32,17 @@ export class NavBarComponent {
             ]
           }
         ]
+      }
+    ]
+    this.menuTab = [
+      {
+        label: 'Home'
+      },
+      {
+        label: 'About'
+      },
+      {
+        label: 'Contact'
       }
     ]
   }
