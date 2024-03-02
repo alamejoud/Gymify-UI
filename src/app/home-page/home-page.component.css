@@ -4,13 +4,6 @@
     height: 100%;
   }
 
-  ::ng-deep .p-dialog-header,
-  ::ng-deep .p-dialog-content,
-  ::ng-deep p-dialog-footer {
-    background-color: #93A8AC;
-    color: #D7FB00;
-  }
-
   .pageNavigation {
 
     ::ng-deep .p-panelmenu-header-content {

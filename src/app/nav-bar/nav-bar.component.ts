@@ -8,31 +8,15 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavBarComponent {
 
-  @Output() profileDialogVisible = new EventEmitter<any>();
+  profileDialogVisible: any = false;
 
-  items: MenuItem[] | undefined;
   showLogoutConfirmationPopup: boolean = false;
 
   ngOnInit() {
-    this.items = [
-      {
-        label: 'My Profile',
-        command: () => this.showProfileDialog(true)
-      },
-      {
-        label: 'My Chats'
-      },
-      {
-        label: 'My Schedule'
-      }
-
-
-
-    ]
   }
 
-  showProfileDialog(value: boolean) {
-    this.profileDialogVisible.emit(value);
+  showProfileDialog() {
+    this.profileDialogVisible = true;
   }
   showLogoutConfirmation() {
     this.showLogoutConfirmationPopup = true;

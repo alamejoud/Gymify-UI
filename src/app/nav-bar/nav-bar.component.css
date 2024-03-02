@@ -24,6 +24,7 @@
     transition: all .3s ease;
     cursor: pointer;
     margin: auto;
+    border: 3px solid #D7FB00;
   }
 
   ::ng-deep .profileNavigation .p-avatar:hover,
@@ -98,25 +99,36 @@
 
 .logoutPopup {
   border-radius: 20px;
-  width: 750px;
-  height: 500px;
+  width: 650px;
+  height: 400px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   background-color: #020D19;
   color: #D7FB00;
-  padding: 20%;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .logoutPopup * {
   margin: auto;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoutPopup h2 {
+  align-items: flex-start;
 }
 
 .logoutButtons {
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .logoutButtons * {

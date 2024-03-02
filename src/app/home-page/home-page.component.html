@@ -1,13 +1,10 @@
 <div class="homePage w-full h-full">
-  <app-nav-bar (profileDialogVisible)="showProfileDialog($event)"></app-nav-bar>
+  <app-nav-bar></app-nav-bar>
   <div class="homeBody">
     <div class="pageNavigation">
       <p-panelMenu [model]="menuTab"></p-panelMenu>
     </div>
     <div class="bodyContent">
-
     </div>
   </div>
-  <p-dialog header="My Profile" [(visible)]="profileDialogVisible"
-    [style]="{ width: '50vw', height: '300px' }"></p-dialog>
 </div>

@@ -3,7 +3,8 @@
     <img src="../../assets/images/Gymify.png" alt="Gymify">
   </div>
   <div class="profileNavigation">
-    <p-avatar image="assets/images/DefaultUserAvatar.png" pBadge severity="success" shape="circle"
+    <span class="material-icons">&#xE87C;</span>
+    <p-avatar (click)="showProfileDialog()" image="assets/images/DefaultUserAvatar.png" shape="circle"
       size="large"></p-avatar>
     <button (click)="showLogoutConfirmation()" class="Btn">
       <div class="sign"><svg viewBox="0 0 512 512">
@@ -21,12 +22,11 @@
         <p-image src="../../assets/images/UserLogoutIcon.png" width="100px"></p-image>
         <h2>Are you sure you want to logout?</h2>
         <div class="logoutButtons">
-          <p-button label="Logout" (click)="logout()" [text]="true"
-            styleClass="w-full border-1  hover:bg-white-alpha-10" class="w-full"></p-button>
-          <p-button label="Cancel" (click)="cancelLogout()" [text]="true"
-            styleClass="w-full border-1 hover:bg-white-alpha-10" class="w-full"></p-button>
+          <p-button label="Logout" (click)="logout()" [text]="true" class="w-full"></p-button>
+          <p-button label="Cancel" (click)="cancelLogout()" [text]="true" class="w-full"></p-button>
         </div>
       </div>
     </ng-template>
   </p-dialog>
+  <p-dialog header="My Profile" [(visible)]="profileDialogVisible"></p-dialog>
 </div>
