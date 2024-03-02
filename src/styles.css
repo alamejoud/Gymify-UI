@@ -13,12 +13,8 @@ body {
 }
 
 *:not(i, .p-menuitem-icon) {
-  font-family: Raleway-ExtraLight, sans-serif !important;
+  font-family: DM-Sans, sans-serif !important;
   letter-spacing: 2px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .p-tooltip.p-tooltip-right,
@@ -30,8 +26,7 @@ body {
     border: #D7FB00 2px solid;
     color: #D7FB00;
     background-color: #151515;
-    backdrop-filter: blur(15px);
-    font-family: Raleway-Light, sans-serif;
+    font-family: DM-Sans, sans-serif;
     padding: 1rem 2rem;
 
   }
@@ -62,51 +57,21 @@ body {
 }
 
 .p-toast-detail {
-  font-family: Raleway-Bold, sans-serif;
-  font-weight: bolder;
+  font-family: DM-Sans, sans-serif;
+  font-weight: normal;
 }
 
 .p-toast-summary {
-  font-family: Raleway-ExtraBold, sans-serif;
+  font-family: DM-Sans, sans-serif;
   font-weight: bolder;
 }
 
 @font-face {
-  font-family: Raleway-Light;
-  src: url("assets/fonts/raleway/Raleway-Light.ttf") format("truetype");
+  font-family: DM-Sans;
+  src: url(assets/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf);
 }
 
 @font-face {
-  font-family: Raleway-Bold;
-  src: url("assets/fonts/raleway/Raleway-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: Raleway-Regular;
-  src: url("assets/fonts/raleway/Raleway-Regular.ttf");
-}
-
-@font-face {
-  font-family: Raleway-ExtraBold;
-  src: url("assets/fonts/raleway/Raleway-ExtraBold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: Raleway-SemiBold;
-  src: url("assets/fonts/raleway/Raleway-SemiBold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: Raleway-Medium;
-  src: url("assets/fonts/raleway/Raleway-Medium.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: Raleway-ExtraLight;
-  src: url("assets/fonts/raleway/Raleway-ExtraLight.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: Raleway-Thin;
-  src: url("assets/fonts/raleway/Raleway-Thin.ttf") format("truetype");
+  font-family: DM-Sans-Italic;
+  src: url(assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz\,wght.ttf);
 }

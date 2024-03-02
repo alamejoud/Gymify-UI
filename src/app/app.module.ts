@@ -34,6 +34,8 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { MenuModule } from 'primeng/menu';
     AvatarModule,
     AvatarGroupModule,
     MenubarModule,
-    MenuModule
+    MenuModule,
+    PanelMenuModule,
+    BadgeModule
   ],
   providers: [
     provideClientHydration(),

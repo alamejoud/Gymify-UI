@@ -3,6 +3,113 @@
     width: 100%;
     height: 100%;
   }
+
+  ::ng-deep .p-dialog-header,
+  ::ng-deep .p-dialog-content,
+  ::ng-deep p-dialog-footer {
+    background-color: #93A8AC;
+    color: #D7FB00;
+  }
+
+  .pageNavigation {
+
+    ::ng-deep .p-panelmenu-header-content {
+      background-color: transparent;
+      border: none;
+    }
+
+    ::ng-deep .p-panelmenu-header-content .p-menuitem-text {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #D7FB00;
+    }
+
+    ::ng-deep .p-panelmenu-header-action {
+      color: #D7FB00;
+    }
+
+    ::ng-deep .p-panelmenu-panel {
+      border-top: 1px solid #93A8AC;
+    }
+
+    ::ng-deep .p-icon-wrapper {
+      order: 1;
+      color: #D7FB00;
+    }
+
+    ::ng-deep .p-menuitem-text {
+      flex-grow: 1;
+      font-size: 0.75rem;
+      color: #D7FB00;
+    }
+
+    ::ng-deep .p-menuitem-icon {
+      color: #D7FB00;
+    }
+
+    ::ng-deep .p-menuitem-link {
+      color: #D7FB00 !important;
+    }
+
+    ::ng-deep .p-menuitem {
+      background-color: transparent;
+    }
+
+    ::ng-deep .p-panelmenu-content {
+      background-color: transparent;
+      color: #D7FB00;
+      border: none;
+    }
+
+    ::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled)>.p-menuitem-content:hover {
+      background: #020D19;
+    }
+
+    :ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus>.p-menuitem-content {
+      background-color: transparent;
+    }
+
+    ::ng-deep .p-menuitem-content {
+      background-color: transparent;
+    }
+
+    ::ng-deep .p-submenu-icon {
+      color: #D7FB00;
+    }
+  }
+
 }
 
-.homePage {}
+.homePage {
+  padding: 0 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.homeBody {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 275px auto;
+
+}
+
+.bodyContent {
+  height: 100%;
+  width: 100%;
+}
+
+.pageNavigation {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  color: #D7FB00;
+}
+
+.pageNavigation i {
+  margin: 0 10px;
+  color: #D7FB00;
+  font-size: 1.5rem;
+}

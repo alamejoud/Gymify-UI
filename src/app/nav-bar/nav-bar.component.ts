@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -8,42 +8,43 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavBarComponent {
 
-  items: MenuItem[] | undefined;
+  @Output() profileDialogVisible = new EventEmitter<any>();
 
-  menuTab: MenuItem[] | undefined;
+  items: MenuItem[] | undefined;
+  showLogoutConfirmationPopup: boolean = false;
 
   ngOnInit() {
     this.items = [
       {
-        label: 'User',
-        items: [
-          {
-            label: 'New',
-            icon: 'pi pi-fw pi-plus',
-            items: [
-              {
-                label: 'Bookmark',
-                icon: 'pi pi-fw pi-bookmark'
-              },
-              {
-                label: 'Video',
-                icon: 'pi pi-fw pi-video'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-    this.menuTab = [
-      {
-        label: 'Home'
+        label: 'My Profile',
+        command: () => this.showProfileDialog(true)
       },
       {
-        label: 'About'
+        label: 'My Chats'
       },
       {
-        label: 'Contact'
+        label: 'My Schedule'
       }
+
+
+
     ]
   }
+
+  showProfileDialog(value: boolean) {
+    this.profileDialogVisible.emit(value);
+  }
+  showLogoutConfirmation() {
+    this.showLogoutConfirmationPopup = true;
+  }
+  cancelLogout() {
+    this.showLogoutConfirmationPopup = false;
+  }
+
+  logout() {
+    sessionStorage.clear();
+    this.showLogoutConfirmationPopup = false;
+    window.location.href = '/userLogin/login';
+  }
+
 }
