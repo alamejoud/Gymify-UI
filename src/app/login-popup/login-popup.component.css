@@ -30,7 +30,7 @@
     display: block;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #f8f8ff;
     background-color: transparent;
     font-family: DM-Sans, sans-serif;
     font-weight: lighter;
@@ -50,11 +50,11 @@
   }
 
   ::ng-deep .p-icon-wrapper {
-    color: white;
+    color: #f8f8ff;
   }
 
   ::ng-deep .p-float-label label {
-    color: white;
+    color: #f8f8ff;
   }
 }
 

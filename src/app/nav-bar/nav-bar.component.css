@@ -4,23 +4,12 @@
     height: 11vh;
   }
 
-  ::ng-deep .p-button {
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .3s ease;
-    color: #D7FB00;
-    border: 3px solid #D7FB00;
-    text-align: center;
-    font-size: 17px;
-    background-color: transparent;
-    padding: 10px;
-    outline: none;
-    border-radius: 4px;
+  ::ng-deep .profileNavigation .p-button:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+    transform: translateY(-0.25em);
   }
 
-  ::ng-deep .p-avatar {
+  ::ng-deep .profileNavigation .p-avatar {
     transition: all .3s ease;
     cursor: pointer;
     margin: auto;
@@ -53,6 +42,41 @@
     }
   }
 
+  ::ng-deep .p-confirm-dialog-accept {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #151515;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+  }
+
+  ::ng-deep .p-confirm-dialog-reject {
+    font-weight: bold;
+    color: #151515;
+  }
+
+}
+
+.chatBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease;
+  color: #D7FB00;
+  border: 1px solid #D7FB00;
+  text-align: center;
+  font-size: 17px;
+  background-color: transparent;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.chatBtn:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+  transform: translateY(-0.25em);
 }
 
 .navBar {
@@ -89,14 +113,6 @@
   margin: auto 10px;
 }
 
-::ng-deep .p-dialog-header,
-::ng-deep .p-dialog-content,
-::ng-deep p-dialog-footer {
-
-  background-color: #93A8AC;
-  color: #D7FB00;
-}
-
 .logoutPopup {
   border-radius: 20px;
   width: 650px;
@@ -110,6 +126,7 @@
   justify-content: center;
   padding-top: 50px;
   padding-bottom: 50px;
+  border: 1px solid #f8f8ff;
 }
 
 .logoutPopup * {
@@ -166,7 +183,7 @@
 }
 
 .sign svg path {
-  fill: white;
+  fill: #f8f8ff;
 }
 
 /* text */
@@ -175,7 +192,7 @@
   right: 0%;
   width: 0%;
   opacity: 0;
-  color: white;
+  color: #f8f8ff;
   font-size: 1.2em;
   font-weight: 600;
   transition-duration: .3s;

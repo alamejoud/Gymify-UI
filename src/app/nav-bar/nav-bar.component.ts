@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +10,7 @@ export class NavBarComponent {
 
   profileDialogVisible: any = false;
 
-  showLogoutConfirmationPopup: boolean = false;
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -18,17 +18,25 @@ export class NavBarComponent {
   showProfileDialog() {
     this.profileDialogVisible = true;
   }
-  showLogoutConfirmation() {
-    this.showLogoutConfirmationPopup = true;
-  }
-  cancelLogout() {
-    this.showLogoutConfirmationPopup = false;
-  }
 
   logout() {
     sessionStorage.clear();
-    this.showLogoutConfirmationPopup = false;
     window.location.href = '/userLogin/login';
+  }
+
+  confirmLogout(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        this.logout();
+      }
+    });
   }
 
 }

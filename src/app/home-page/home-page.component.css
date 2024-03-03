@@ -14,34 +14,34 @@
     ::ng-deep .p-panelmenu-header-content .p-menuitem-text {
       flex-grow: 1;
       font-size: 1rem;
-      color: #D7FB00;
+      color: #f8f8ff;
     }
 
     ::ng-deep .p-panelmenu-header-action {
-      color: #D7FB00;
+      color: #f8f8ff;
     }
 
     ::ng-deep .p-panelmenu-panel {
-      border-top: 1px solid #93A8AC;
+      border-bottom: 2px solid #222222;
     }
 
     ::ng-deep .p-icon-wrapper {
       order: 1;
-      color: #D7FB00;
+      color: #f8f8ff;
     }
 
     ::ng-deep .p-menuitem-text {
       flex-grow: 1;
       font-size: 0.75rem;
-      color: #D7FB00;
+      color: #f8f8ff;
     }
 
     ::ng-deep .p-menuitem-icon {
-      color: #D7FB00;
+      color: #f8f8ff;
     }
 
     ::ng-deep .p-menuitem-link {
-      color: #D7FB00 !important;
+      color: #f8f8ff !important;
     }
 
     ::ng-deep .p-menuitem {
@@ -50,7 +50,7 @@
 
     ::ng-deep .p-panelmenu-content {
       background-color: transparent;
-      color: #D7FB00;
+      color: #f8f8ff;
       border: none;
     }
 
@@ -105,4 +105,10 @@
   margin: 0 10px;
   color: #D7FB00;
   font-size: 1.5rem;
+}
+
+hr {
+  border: 1px solid #222222;
+  width: 100%;
+  margin: 0;
 }

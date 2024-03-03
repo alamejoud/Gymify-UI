@@ -10,8 +10,6 @@ import { MenuItem } from 'primeng/api';
 })
 export class HomePageComponent {
 
-  profileDialogVisible: any = false;
-
   menuTab: MenuItem[];
 
   constructor(private idleServiceService: IdleServiceService) { }
@@ -63,10 +61,6 @@ export class HomePageComponent {
       }
     ]
 
-  }
-
-  showProfileDialog(value: any) {
-    this.profileDialogVisible = value;
   }
 
 }

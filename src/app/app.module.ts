@@ -36,6 +36,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BadgeModule } from 'primeng/badge';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -73,13 +75,15 @@ import { BadgeModule } from 'primeng/badge';
     MenubarModule,
     MenuModule,
     PanelMenuModule,
-    BadgeModule
+    BadgeModule,
+    ConfirmDialogModule
   ],
   providers: [
     provideClientHydration(),
     MessageService,
     UserServiceService,
-    IdleServiceService
+    IdleServiceService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
