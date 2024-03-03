@@ -27,7 +27,7 @@
 
     ::ng-deep .p-icon-wrapper {
       order: 1;
-      color: #f8f8ff;
+      color: #D7FB00;
     }
 
     ::ng-deep .p-menuitem-text {
@@ -37,7 +37,7 @@
     }
 
     ::ng-deep .p-menuitem-icon {
-      color: #f8f8ff;
+      color: #D7FB00;
     }
 
     ::ng-deep .p-menuitem-link {

@@ -45,33 +45,44 @@
   ::ng-deep .p-confirm-dialog-accept {
     background-color: #D7FB00;
     font-weight: bold;
-    color: #151515;
+    color: #1c1c1c;
     border-color: #bdce5c;
     box-shadow: 0 0.5em 0.5em -0.4em #151515;
   }
 
   ::ng-deep .p-confirm-dialog-reject {
     font-weight: bold;
-    color: #151515;
+    color: #D7FB00;
   }
 
+  ::ng-deep .p-dialog-header,
+  ::ng-deep .p-dialog-content,
+  ::ng-deep .p-dialog-footer {
+    background-color: #1c1c1c;
+    color: #f8f8ff;
+  }
+
+  .profilePopup ::ng-deep .p-dialog {
+    width: 650px;
+    height: 1000px;
+    background-color: #1c1c1c;
+    color: #f8f8ff;
+    padding: 20px;
+  }
 }
 
 .chatBtn {
   display: flex;
-  align-items: center;
-  justify-content: center;
   transition: all .3s ease;
-  color: #D7FB00;
-  border: 1px solid #D7FB00;
-  text-align: center;
-  font-size: 17px;
-  background-color: transparent;
-  padding: 10px;
+  color: #f8f8ff;
+  font-size: 20px;
+  background-color: #2E2E2E;
+  padding: 13px;
   outline: none;
-  border-radius: 10px;
+  border-radius: 50%;
   transition: all .3s ease;
   cursor: pointer;
+  border: 1px solid #f8f8ff;
 }
 
 .chatBtn:hover {
