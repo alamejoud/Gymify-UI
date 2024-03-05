@@ -24,6 +24,20 @@ import { MessageService } from 'primeng/api';
 import { UserServiceService } from './Services/user-service.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { DialogModule } from 'primeng/dialog';
+import { IdleServiceService } from './Services/idle-service.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AutoFocusModule } from 'primeng/autofocus';
+import { ImageModule } from 'primeng/image';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { BadgeModule } from 'primeng/badge';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -33,6 +47,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     SignupPopupComponent,
     PageNotFoundComponent,
     HomePageComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,12 +65,25 @@ import { HomePageComponent } from './home-page/home-page.component';
     TabMenuModule,
     RadioButtonModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    NgIdleKeepaliveModule.forRoot(),
+    DialogModule,
+    AutoFocusModule,
+    ImageModule,
+    AvatarModule,
+    AvatarGroupModule,
+    MenubarModule,
+    MenuModule,
+    PanelMenuModule,
+    BadgeModule,
+    ConfirmDialogModule
   ],
   providers: [
     provideClientHydration(),
     MessageService,
     UserServiceService,
+    IdleServiceService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

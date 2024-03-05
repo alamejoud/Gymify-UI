@@ -1,0 +1,236 @@
+:host {
+  ::ng-deep {
+    width: 100%;
+    height: 11vh;
+  }
+
+  ::ng-deep .profileNavigation .p-button:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+    transform: translateY(-0.25em);
+  }
+
+  ::ng-deep .profileNavigation .p-avatar {
+    transition: all .3s ease;
+    cursor: pointer;
+    margin: auto;
+    border: 3px solid #D7FB00;
+  }
+
+  ::ng-deep .profileNavigation .p-avatar:hover,
+  ::ng-deep .profileNavigation .p-avatar:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+    transform: translateY(-0.25em);
+  }
+
+  .profileNavigation {
+    ::ng-deep .p-menu {
+      background-color: #93A8AC;
+      width: 164px;
+      margin-top: 10px;
+      color: #020D19;
+      font-weight: 1000;
+    }
+
+    ::ng-deep .p-menu-list {
+      background-color: #93A8AC;
+      margin-top: 10px;
+    }
+
+    ::ng-deep .p-menuitem {
+      background-color: #93A8AC;
+      margin-top: 10px;
+    }
+  }
+
+  ::ng-deep .p-confirm-dialog-accept {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+  }
+
+  ::ng-deep .p-confirm-dialog-reject {
+    font-weight: bold;
+    color: #D7FB00;
+  }
+
+  ::ng-deep .p-dialog-header,
+  ::ng-deep .p-dialog-content,
+  ::ng-deep .p-dialog-footer {
+    background-color: #1c1c1c;
+    color: #f8f8ff;
+  }
+
+  .profilePopup ::ng-deep .p-dialog {
+    width: 650px;
+    height: 1000px;
+    background-color: #1c1c1c;
+    color: #f8f8ff;
+    padding: 20px;
+  }
+}
+
+.chatBtn {
+  display: flex;
+  transition: all .3s ease;
+  color: #f8f8ff;
+  font-size: 20px;
+  background-color: #2E2E2E;
+  padding: 13px;
+  outline: none;
+  border-radius: 50%;
+  transition: all .3s ease;
+  cursor: pointer;
+  border: 1px solid #f8f8ff;
+}
+
+.chatBtn:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+  transform: translateY(-0.25em);
+}
+
+.navBar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logoNavigation {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  object-fit: contain;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logoNavigation img {
+  height: 100%;
+}
+
+.profileNavigation {
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.profileNavigation>* {
+  margin: auto 10px;
+}
+
+.logoutPopup {
+  border-radius: 20px;
+  width: 650px;
+  height: 400px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: #020D19;
+  color: #D7FB00;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border: 1px solid #f8f8ff;
+}
+
+.logoutPopup * {
+  margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoutPopup h2 {
+  align-items: flex-start;
+}
+
+.logoutButtons {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.logoutButtons * {
+  margin: auto 10px;
+}
+
+.Btn {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: #f8f8ff;
+}
+
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: #f8f8ff;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px, 2px);
+}

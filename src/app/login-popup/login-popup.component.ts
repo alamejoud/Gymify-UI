@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../Services/user-service.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { IdleServiceService } from '../Services/idle-service.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginPopupComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService, private messageService: MessageService, private router: Router) { }
+  constructor(private fb: FormBuilder, private userService: UserServiceService, private messageService: MessageService, private router: Router, private idleService: IdleServiceService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,11 +34,7 @@ export class LoginPopupComponent {
   }
 
   handleLoginSuccess(message: string): void {
-    this.messageService.clear();
-    this.messageService.add({
-      severity: 'success', summary: 'Success', detail: message
-    });
-    sessionStorage.setItem('username', this.loginForm.get('username').value);
+    sessionStorage?.setItem('username', this.loginForm.get('username').value);
     this.router.navigate(['/home']);
   }
 

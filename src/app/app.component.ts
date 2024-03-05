@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IdleServiceService } from './Services/idle-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private idleServiceService: IdleServiceService) {
+  }
 
   checkLogin(): boolean {
     let isLoggedIn = false;
@@ -22,6 +24,10 @@ export class AppComponent {
     });
 
     return isLoggedIn;
+  }
+
+  getIdleService(): IdleServiceService {
+    return this.idleServiceService;
   }
 
 }
