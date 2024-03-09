@@ -17,6 +17,13 @@ body {
   letter-spacing: 2px;
 }
 
+.p-dialog-header,
+.p-dialog-content,
+.p-dialog-footer {
+  background-color: #1c1c1c;
+  color: #f8f8ff;
+}
+
 .p-tooltip.p-tooltip-right,
 .p-tooltip.p-tooltip-left,
 .p-tooltip.p-tooltip-top,

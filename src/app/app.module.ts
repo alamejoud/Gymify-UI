@@ -38,6 +38,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { BadgeModule } from 'primeng/badge';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { NbMenuModule } from '@nebular/theme';
+import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ConfirmationService } from 'primeng/api';
     PageNotFoundComponent,
     HomePageComponent,
     NavBarComponent,
+    ProfilePopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import { ConfirmationService } from 'primeng/api';
     MenuModule,
     PanelMenuModule,
     BadgeModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    NbMenuModule.forRoot()
   ],
   providers: [
     provideClientHydration(),

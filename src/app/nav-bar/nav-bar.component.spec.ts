@@ -10,8 +10,8 @@ describe('NavBarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [NavBarComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

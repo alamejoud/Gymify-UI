@@ -1,0 +1,96 @@
+:host {
+
+  ::ng-deep .p-dialog-header,
+  ::ng-deep .p-dialog-content,
+  ::ng-deep .p-dialog-footer {
+    background-color: #1c1c1c;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dialog-header {
+    border-bottom: 1px solid #f8f8ff;
+  }
+
+  .profilePopup ::ng-deep .p-dialog {
+    width: 35vw;
+    height: 85vh;
+    background-color: #1c1c1c;
+    color: #f8f8ff;
+    padding: 20px;
+  }
+
+  ::ng-deep .p-dialog-content {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 0px 0px;
+  }
+
+  ::ng-deep .p-image-preview-container:hover>.p-image-preview-indicator {
+    border-radius: 50%;
+  }
+
+  ::ng-deep .p-image-toolbar button {
+    color: #D7FB00;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.profilePictureSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.profileInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+p {
+  height: fit-content;
+  background-color: yellow;
+}
+
+p:first-line {
+  line-height: 1.5em;
+}
+
+.usernameText {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+span {
+  font-size: 1em;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.title {
+  font-weight: normal;
+}

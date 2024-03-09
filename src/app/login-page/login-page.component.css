@@ -71,7 +71,7 @@ h1 {
 
   ::ng-deep .p-menuitem-link {
     background-color: transparent !important;
-    color: white !important;
+    color: #f8f8ff !important;
   }
 
   ::ng-deep .p-menuitem-link:hover {

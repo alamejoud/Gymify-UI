@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class UserServiceService {
 
+  profileDialogVisible: boolean = false;
+
   constructor(private http: HttpClient) { }
 
   addUser(user: UserVO): Observable<any> {

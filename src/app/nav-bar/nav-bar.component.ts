@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { UserServiceService } from '../Services/user-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,15 +9,13 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 })
 export class NavBarComponent {
 
-  profileDialogVisible: any = false;
-
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService) { }
 
   ngOnInit() {
   }
 
   showProfileDialog() {
-    this.profileDialogVisible = true;
+    this.userServiceService.profileDialogVisible = true;
   }
 
   logout() {
