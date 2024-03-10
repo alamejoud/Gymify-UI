@@ -42,7 +42,7 @@
     font-size: 1rem;
     letter-spacing: 3px;
     padding: 1rem 2rem;
-    color: #D7FB00;
+    color: #f8f8ff;
   }
 
   ::ng-deep .p-inputtext:focus {
@@ -88,6 +88,10 @@
 .disabled {
   color: #151515;
   opacity: 0.2;
+}
+
+ul {
+  width: 450px;
 }
 
 li {

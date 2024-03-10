@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SignupPopupComponent {
   signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private messageService: MessageService, private userService: UserServiceService, private router: Router) { }
+  constructor(private fb: FormBuilder, private messageService: MessageService, private userServiceService: UserServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -31,7 +31,7 @@ export class SignupPopupComponent {
       });
     }
     else if (this.signUpForm.valid) {
-      this.userService.addUser(this.userService.mapUser(this.signUpForm.value)).subscribe(
+      this.userServiceService.addUser(this.userServiceService.mapUser(this.signUpForm.value)).subscribe(
         {
           next: response => this.handleSignupSuccess(response.message.headerMessage, response.message.bodyMessage),
           error: error => this.handleError(error.error.message)
@@ -93,7 +93,6 @@ export class SignupPopupComponent {
   }
 
   handleError(message: string): void {
-    console.log(message);
     this.messageService.clear();
     this.messageService.add({
       severity: 'error', summary: "Error", detail: message

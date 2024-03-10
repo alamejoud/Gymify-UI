@@ -29,12 +29,12 @@ body {
 .p-tooltip.p-tooltip-top,
 .p-tooltip.p-tooltip-bottom {
   .p-tooltip-text {
-    width: 450px;
+    width: fit-content;
+    height: fit-content;
     border: #D7FB00 2px solid;
-    color: #D7FB00;
+    color: #f8f8ff;
     background-color: #151515;
     font-family: DM-Sans, sans-serif;
-    padding: 1rem 2rem;
 
   }
 }

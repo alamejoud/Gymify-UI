@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 export class UserServiceService {
 
   profileDialogVisible: boolean = false;
+  isEditingProfile: boolean = false;
+
+  displayedUser: UserVO = new UserVO();
+  editedUser: UserVO = new UserVO();
 
   constructor(private http: HttpClient) { }
 
@@ -26,8 +30,15 @@ export class UserServiceService {
     user.password = loginForm.password;
     user.confirmPassword = loginForm.confirmPassword;
     user.role = loginForm.role;
-    console.log(user);
 
     return user;
+  }
+
+  getUser(username: String): Observable<any> {
+    return this.http.get('http://localhost:9090/user/getUser?token=' + sessionStorage.getItem('token'));
+  }
+
+  updateUser(user: UserVO): Observable<any> {
+    return this.http.put('http://localhost:9090/user/updateUser', user);
   }
 }

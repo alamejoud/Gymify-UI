@@ -15,7 +15,20 @@ export class NavBarComponent {
   }
 
   showProfileDialog() {
-    this.userServiceService.profileDialogVisible = true;
+    this.userServiceService.getUser(sessionStorage?.getItem('username')).subscribe({
+      next: response => {
+        this.userServiceService.displayedUser = response.user,
+          this.userServiceService.profileDialogVisible = true;
+        this.userServiceService.isEditingProfile = false;
+      },
+      error: error => {
+        this.messageService.clear();
+        this.messageService.add({
+          severity: 'error', summary: "Error", detail: error.error.message
+        });
+      }
+    });
+
   }
 
   logout() {

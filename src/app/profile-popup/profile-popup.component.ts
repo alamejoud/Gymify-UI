@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserServiceService } from '../Services/user-service.service';
+import { FileUploadEvent } from 'primeng/fileupload';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-profile-popup',
@@ -8,13 +10,78 @@ import { UserServiceService } from '../Services/user-service.service';
 })
 export class ProfilePopupComponent {
 
-  constructor(private userServiceService: UserServiceService) { }
+  uploadToolbar: boolean = false;
+  imageUrl: string = '../../assets/images/DefaultUserAvatar.png';
+
+  constructor(private userServiceService: UserServiceService, private messageService: MessageService) { }
 
   getUserService() {
     return this.userServiceService;
   }
 
-  editProfile() {
+  getSessionStorage() {
+    return sessionStorage;
+  }
 
+  editProfile() {
+    this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
+    this.userServiceService.isEditingProfile = !this.userServiceService.isEditingProfile;
+  }
+
+  uploadProfilePicture($event: FileUploadEvent) {
+    this.userServiceService.getUser(sessionStorage?.getItem('token')).subscribe({
+      next: response => {
+        this.userServiceService.displayedUser = response.user;
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
+    this.updateProfilePicture();
+    console.log(this.userServiceService.displayedUser);
+    this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
+    this.messageService.clear();
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile Picture uploaded successfully' });
+  }
+
+  showUploadToolbar() {
+    this.uploadToolbar = !this.uploadToolbar;
+  }
+
+  saveProfile() {
+    this.userServiceService.updateUser(this.userServiceService.editedUser).subscribe({
+      next: response => {
+        this.userServiceService.getUser(sessionStorage?.getItem('token')).subscribe({
+          next: response => {
+            this.userServiceService.displayedUser = response.user;
+          },
+          error: error => {
+            console.log(error);
+          }
+        });
+        this.updateProfilePicture();
+        this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
+        this.messageService.clear();
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
+  }
+
+  cancelProfile() {
+    this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
+    this.userServiceService.isEditingProfile = !this.userServiceService.isEditingProfile;
+  }
+  updateProfilePicture() {
+    debugger;
+    this.imageBytes = new Uint8Array(this.userServiceService.displayedUser.profilePicture);
+
+    // Convert the byte array to a base64 string
+    const binaryString = this.imageBytes.reduce((data, byte) => {
+      return data + String.fromCharCode(byte);
+    }, '');
+    this.imageUrl = 'data:image/jpeg;base64,' + btoa(binaryString);
   }
 }

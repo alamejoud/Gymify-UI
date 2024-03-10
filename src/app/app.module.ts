@@ -3,7 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, withFetch } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -40,6 +40,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { NbMenuModule } from '@nebular/theme';
 import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
+import { tokenInterceptor } from './token.interceptor';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -80,14 +82,16 @@ import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
     PanelMenuModule,
     BadgeModule,
     ConfirmDialogModule,
-    NbMenuModule.forRoot()
+    NbMenuModule.forRoot(),
+    FileUploadModule
   ],
   providers: [
     provideClientHydration(),
     MessageService,
     UserServiceService,
     IdleServiceService,
-    ConfirmationService
+    ConfirmationService,
+    provideHttpClient(withInterceptors([tokenInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

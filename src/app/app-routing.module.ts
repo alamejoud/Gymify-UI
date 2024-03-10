@@ -6,6 +6,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { authGuardGuard } from './auth-guard.guard';
+import { tokenInterceptor } from './token.interceptor';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
-    canActivate: [authGuardGuard]
+    canActivate: [authGuardGuard],
   },
   {
     path: '',

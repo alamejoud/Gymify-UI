@@ -16,7 +16,7 @@ export class HomePageComponent {
 
   ngOnInit(): void {
 
-    if (sessionStorage?.getItem('username') != null) {
+    if (typeof window !== 'undefined' && sessionStorage?.getItem('username') != null) {
       this.idleServiceService.startIdleTimer();
     }
 
