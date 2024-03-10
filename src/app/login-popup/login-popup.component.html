@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" method="post" action=""
+<form pFocusTrap [formGroup]="loginForm" (ngSubmit)="onSubmit()" method="post" action=""
   class="m-auto my-4 flex flex-column h-20rem w-full pl-8 pr-8 ">
   <div class="p-float-label m-auto my-4 w-full">
     <input pInputText type="text" autocomplete="off" id="username" formControlName="username" id="username"
@@ -10,7 +10,7 @@
       id="password" />
     <label for="password"><i class="pi pi-lock"></i> Password</label>
   </div>
-  <div class="m-auto w-full flex">
+  <div class="m-auto w-full flex" pFocusTrapDisabled>
     <button pButton pRipple type="submit" class="m-auto" [disabled]="!loginForm.valid">Login</button>
   </div>
 </form>

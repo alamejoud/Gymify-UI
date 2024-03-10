@@ -76,12 +76,12 @@ export class ProfilePopupComponent {
   }
   updateProfilePicture() {
     debugger;
-    this.imageBytes = new Uint8Array(this.userServiceService.displayedUser.profilePicture);
+    const bytes = new Uint8Array(this.userServiceService.displayedUser.profilePicture);
+    let binaryText = '';
+    bytes.forEach(byte => binaryText += String.fromCharCode(byte));
+    const base64Image = btoa(binaryText);
 
-    // Convert the byte array to a base64 string
-    const binaryString = this.imageBytes.reduce((data, byte) => {
-      return data + String.fromCharCode(byte);
-    }, '');
-    this.imageUrl = 'data:image/jpeg;base64,' + btoa(binaryString);
+    this.imageUrl = 'data:image/png;base64,' + base64Image;
+
   }
 }

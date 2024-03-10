@@ -14,5 +14,5 @@ export class UserVO {
   status: string;
   statusName: string;
   title: string;
-  profilePicture: Blob;
+  profilePicture: ArrayBuffer;
 }

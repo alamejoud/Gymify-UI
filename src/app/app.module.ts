@@ -42,6 +42,7 @@ import { NbMenuModule } from '@nebular/theme';
 import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
 import { tokenInterceptor } from './token.interceptor';
 import { FileUploadModule } from 'primeng/fileupload';
+import { FocusTrapModule } from 'primeng/focustrap';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     BadgeModule,
     ConfirmDialogModule,
     NbMenuModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    FocusTrapModule
   ],
   providers: [
     provideClientHydration(),

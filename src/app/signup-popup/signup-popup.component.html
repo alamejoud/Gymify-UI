@@ -1,4 +1,4 @@
-<form [formGroup]="signUpForm" (ngSubmit)="addUser()" method="post" action=""
+<form [formGroup]="signUpForm" (ngSubmit)="addUser()" method="post" action="" pFocusTrap
   class="m-auto mb-5 flex flex-column h-20rem w-full pl-8 pr-8 ">
   <div class="flex flex-wrap gap-3 my-5">
     <div class="flex align-items-center m-auto">
@@ -24,7 +24,7 @@
       [pTooltip]="passwordRequirements" tooltipEvent="focus" [maxLength]="30" maxlength="30" />
     <label for="password"><i class="pi pi-lock"></i> Password</label>
   </div>
-  <div class="p-float-label m-auto my-4 w-full">
+  <div class="p-float-label m-auto my-4 w-full" >
     <p-password [feedback]="false" [toggleMask]="true" id="confirmPassword" formControlName="confirmPassword"
       class="form-control" [maxLength]="30" maxlength="30" />
     <label for="password" [class]="{'disabled' : checkConfirmPassword()}"><i class="pi pi-lock"></i>
