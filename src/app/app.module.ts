@@ -43,6 +43,10 @@ import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
 import { tokenInterceptor } from './token.interceptor';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FocusTrapModule } from 'primeng/focustrap';
+import { HomeComponent } from './home/home.component';
+import { WorkoutComponent } from './workout/workout.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { FocusTrapModule } from 'primeng/focustrap';
     HomePageComponent,
     NavBarComponent,
     ProfilePopupComponent,
+    HomeComponent,
+    WorkoutComponent,
+    ExerciseComponent,
+    ExerciseListComponent,
   ],
   imports: [
     BrowserModule,

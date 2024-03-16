@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { UserVO } from '../VO/UserVO';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
 
+  imageUrl: any = '../../assets/images/Default-Profile-Picture.png';
   profileDialogVisible: boolean = false;
   isEditingProfile: boolean = false;
 
@@ -17,6 +19,7 @@ export class UserServiceService {
   constructor(private http: HttpClient) { }
 
   addUser(user: UserVO): Observable<any> {
+    user.status = 'active';
     return this.http.post('http://localhost:9090/user/addUser', user);
   }
 
@@ -34,11 +37,16 @@ export class UserServiceService {
     return user;
   }
 
-  getUser(username: String): Observable<any> {
-    return this.http.get('http://localhost:9090/user/getUser?token=' + sessionStorage.getItem('token'));
+  getLoggedInUser(): Observable<any> {
+    return this.http.get('http://localhost:9090/user/getLoggedInUser?token=' + localStorage?.getItem('token'));
   }
 
   updateUser(user: UserVO): Observable<any> {
     return this.http.put('http://localhost:9090/user/updateUser', user);
   }
+
+  getLoggedInProfilePicture(): Observable<any> {
+    return this.http.get<Blob>('http://localhost:9090/user/getLoggedInProfilePicture?token=' + localStorage?.getItem('token'));
+  }
+
 }

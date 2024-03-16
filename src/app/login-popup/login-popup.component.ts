@@ -4,6 +4,7 @@ import { UserServiceService } from '../Services/user-service.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { IdleServiceService } from '../Services/idle-service.service';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -13,7 +14,7 @@ import { IdleServiceService } from '../Services/idle-service.service';
 export class LoginPopupComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userServiceService: UserServiceService, private messageService: MessageService, private router: Router, private idleService: IdleServiceService) { }
+  constructor(private fb: FormBuilder, private userServiceService: UserServiceService, private messageService: MessageService, private router: Router, private idleService: IdleServiceService, private commonServiceService: CommonServiceService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -27,17 +28,19 @@ export class LoginPopupComponent {
     if (this.loginForm.valid) {
       this.userServiceService.loginUser(this.userServiceService.mapUser(this.loginForm.value)).subscribe(
         {
-          next: response => this.handleLoginSuccess(response.token),
+          next: response => this.handleLoginSuccess(response),
           error: error => this.handleError(error.error.message)
         }
       )
     }
   }
 
-  handleLoginSuccess(token: string): void {
-    sessionStorage?.setItem('username', this.loginForm.get('username').value);
-    sessionStorage?.setItem('token', token);
-    this.router.navigate(['/home']);
+  handleLoginSuccess(response: any): void {
+    localStorage?.setItem('token', response.token);
+    this.userServiceService.displayedUser = response.user;
+    this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
+    this.router.navigate(['/homePage']);
+
   }
 
   handleError(message: string): void {

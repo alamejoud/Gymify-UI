@@ -5,10 +5,10 @@
   </ng-template>
   <div class="viewProfile" [ngClass]="{hide: getUserService().isEditingProfile, show: !getUserService().isEditingProfile}">
     <div class="profilePictureSection">
-      <p-image [src]="imageUrl"
+      <p-image [src]="getUserService().imageUrl"
         [imageStyle]="{'width': '170px', 'height': '170px', 'border-radius': '50%', 'border': '4px solid #D7FB00',  'object-fit': 'cover', 'padding': '3px'}"
         [preview]="true"></p-image>
-      <span><i class="fa-solid fa-location-dot"></i> {{getUserService().displayedUser.city ? getUserService().displayedUser.city : '' + getUserService().displayedUser.city && getUserService().displayedUser.address ? ', ' : '' + getUserService().displayedUser.address ? getUserService().displayedUser.address : ''}}</span>
+      <span><i class="fa-solid fa-location-dot" *ngIf="getUserService().displayedUser.city != null || getUserService().displayedUser.address != null"></i> {{getUserService().displayedUser.city ? getUserService().displayedUser.city : '' + getUserService().displayedUser.city && getUserService().displayedUser.address ? ', ' : '' + getUserService().displayedUser.address ? getUserService().displayedUser.address : ''}}</span>
     </div>
     <div class="profileInfoSection">
       <div class="titleSection">
@@ -52,11 +52,12 @@
     </div>
   </div>
   <div class="editProfile" [ngClass]="{show: getUserService().isEditingProfile, hide: !getUserService().isEditingProfile}">
-    <p-image src="../../assets/images/DefaultUserAvatar.png"
+    <p-image [src]="getUserService().imageUrl"
     [imageStyle]="{'width': '170px', 'height': '170px', 'border-radius': '50%', 'border': '4px solid #D7FB00',  'object-fit': 'cover', 'padding': '3px'}"
     [preview]="true"></p-image>
     <p-button (click)="showUploadToolbar()"><i class="pi pi-upload"></i></p-button>
-    <p-fileUpload *ngIf="uploadToolbar" url="http://localhost:9090/user/uploadProfilePicture" [style]="{'width': '200%'}" name="file" accept="image/*" [maxFileSize]="5000000" (onUpload)="uploadProfilePicture($event)">
+    <p-fileUpload *ngIf="uploadToolbar" [url]="'http://localhost:9090/user/uploadProfilePicture?token=' + getLocalStorage().getItem('token')"
+    [style]="{'width': '200%'}" name="file" accept="image/*" [maxFileSize]="5000000" (onUpload)="uploadProfilePicture($event)">
     </p-fileUpload>
     <div *ngIf="uploadToolbar"></div>
     <div *ngIf="!uploadToolbar"></div>
@@ -99,7 +100,8 @@
   </div>
   <ng-template pTemplate="footer">
     <p-button *ngIf="!getUserService().isEditingProfile" (click)="editProfile()"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit Profile</p-button>
-    <p-button class="cancelBtn" *ngIf="getUserService().isEditingProfile" (click)="cancelProfile()"><i class="fa-solid fa-turn-down" style="transform: rotate(90deg) translate(3px, 3px);"></i>&nbsp;Back</p-button>
+    <p-button class="cancelBtn" *ngIf="getUserService().isEditingProfile" (click)="cancelProfile()"><i class="fa-solid fa-turn-down"
+      style="transform: rotate(90deg) translate(3px, 3px);"></i>&nbsp;Back</p-button>
     <p-button *ngIf="getUserService().isEditingProfile" (click)="saveProfile()"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Save</p-button>
   </ng-template>
 </p-dialog>

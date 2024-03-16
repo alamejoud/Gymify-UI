@@ -5,7 +5,7 @@ import { UserServiceService } from './Services/user-service.service';
 export const authGuardGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   if (typeof window !== 'undefined') {
-    if (sessionStorage.getItem('username') !== null) {
+    if (localStorage.getItem('token') !== null) {
       return true;
     } else {
       router.navigate(['/userLogin']);

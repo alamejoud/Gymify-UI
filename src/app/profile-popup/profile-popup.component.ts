@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SecurityContext } from '@angular/core';
 import { UserServiceService } from '../Services/user-service.service';
 import { FileUploadEvent } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-profile-popup',
@@ -11,16 +13,15 @@ import { MessageService } from 'primeng/api';
 export class ProfilePopupComponent {
 
   uploadToolbar: boolean = false;
-  imageUrl: string = '../../assets/images/DefaultUserAvatar.png';
 
-  constructor(private userServiceService: UserServiceService, private messageService: MessageService) { }
+  constructor(private userServiceService: UserServiceService, private messageService: MessageService, private commonServiceService: CommonServiceService) { }
 
   getUserService() {
     return this.userServiceService;
   }
 
-  getSessionStorage() {
-    return sessionStorage;
+  getLocalStorage() {
+    return localStorage;
   }
 
   editProfile() {
@@ -29,17 +30,7 @@ export class ProfilePopupComponent {
   }
 
   uploadProfilePicture($event: FileUploadEvent) {
-    this.userServiceService.getUser(sessionStorage?.getItem('token')).subscribe({
-      next: response => {
-        this.userServiceService.displayedUser = response.user;
-      },
-      error: error => {
-        console.log(error);
-      }
-    });
-    this.updateProfilePicture();
-    console.log(this.userServiceService.displayedUser);
-    this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
+    this.userServiceService.imageUrl = this.commonServiceService.transformImageFromFile($event.files[0]);
     this.messageService.clear();
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile Picture uploaded successfully' });
   }
@@ -51,16 +42,7 @@ export class ProfilePopupComponent {
   saveProfile() {
     this.userServiceService.updateUser(this.userServiceService.editedUser).subscribe({
       next: response => {
-        this.userServiceService.getUser(sessionStorage?.getItem('token')).subscribe({
-          next: response => {
-            this.userServiceService.displayedUser = response.user;
-          },
-          error: error => {
-            console.log(error);
-          }
-        });
-        this.updateProfilePicture();
-        this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
+        this.userServiceService.displayedUser = JSON.parse(JSON.stringify(this.userServiceService.editedUser));
         this.messageService.clear();
         this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
       },
@@ -73,15 +55,5 @@ export class ProfilePopupComponent {
   cancelProfile() {
     this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
     this.userServiceService.isEditingProfile = !this.userServiceService.isEditingProfile;
-  }
-  updateProfilePicture() {
-    debugger;
-    const bytes = new Uint8Array(this.userServiceService.displayedUser.profilePicture);
-    let binaryText = '';
-    bytes.forEach(byte => binaryText += String.fromCharCode(byte));
-    const base64Image = btoa(binaryText);
-
-    this.imageUrl = 'data:image/png;base64,' + base64Image;
-
   }
 }

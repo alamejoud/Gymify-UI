@@ -22,6 +22,10 @@
     transform: translateY(-0.25em);
   }
 
+  ::ng-deep .profileNavigation .p-avatar img {
+    height: auto;
+  }
+
   .profileNavigation {
     ::ng-deep .p-menu {
       background-color: #93A8AC;

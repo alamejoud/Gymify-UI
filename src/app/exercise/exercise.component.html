@@ -1,0 +1,9 @@
+<p-card>
+  <div class="card" *ngFor="let muscle of exerciseMuscles" [routerLink]="'/homePage/exercises/'+muscle.muscleId">
+    <img [src]="getImage(muscle.musclePicture)"/>
+    <div class="card__content">
+      <p class="card__title">{{muscle.muscleName}}</p>
+    </div>
+  </div>
+</p-card>
+

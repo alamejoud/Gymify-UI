@@ -7,6 +7,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomePageComponent } from './home-page/home-page.component';
 import { authGuardGuard } from './auth-guard.guard';
 import { tokenInterceptor } from './token.interceptor';
+import { HomeComponent } from './home/home.component';
+import { WorkoutComponent } from './workout/workout.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 
 const routes: Routes = [
   {
@@ -29,13 +33,36 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'home',
+    path: 'homePage',
     component: HomePageComponent,
     canActivate: [authGuardGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'workout',
+        component: WorkoutComponent
+      },
+      {
+        path: 'exercises',
+        component: ExerciseComponent,
+      },
+      {
+        path: 'exercises/:muscleId',
+        component: ExerciseListComponent
+      }
+    ]
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/homePage',
     pathMatch: 'full'
   },
   {

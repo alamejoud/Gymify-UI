@@ -6,7 +6,7 @@
     <button class="chatBtn">
       <i class="fa-regular fa-message"></i>
     </button>
-    <p-avatar (click)="showProfileDialog()" image="assets/images/DefaultUserAvatar.png" shape="circle"
+    <p-avatar (click)="showProfileDialog()" [image]="getUserService().imageUrl" shape="circle"
       size="large"></p-avatar>
     <button (click)="confirmLogout($event)" class="Btn">
       <div class="sign"><svg viewBox="0 0 512 512">

@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { UserServiceService } from '../Services/user-service.service';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,17 +10,19 @@ import { UserServiceService } from '../Services/user-service.service';
 })
 export class NavBarComponent {
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService) { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService) { }
 
-  ngOnInit() {
+  getUserService() {
+    return this.userServiceService;
   }
 
   showProfileDialog() {
-    this.userServiceService.getUser(sessionStorage?.getItem('username')).subscribe({
+    this.userServiceService.getLoggedInUser().subscribe({
       next: response => {
-        this.userServiceService.displayedUser = response.user,
-          this.userServiceService.profileDialogVisible = true;
+        this.userServiceService.displayedUser = response.user;
+        this.userServiceService.profileDialogVisible = true;
         this.userServiceService.isEditingProfile = false;
+        this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
       },
       error: error => {
         this.messageService.clear();
@@ -32,7 +35,7 @@ export class NavBarComponent {
   }
 
   logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     window.location.href = '/userLogin/login';
   }
 

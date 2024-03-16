@@ -16,32 +16,25 @@ export class HomePageComponent {
 
   ngOnInit(): void {
 
-    if (typeof window !== 'undefined' && sessionStorage?.getItem('username') != null) {
+    if (typeof window !== 'undefined' && localStorage?.getItem('token') != null) {
       this.idleServiceService.startIdleTimer();
     }
 
     this.menuTab = [
       {
         label: 'Home',
-        icon: 'pi pi-home'
+        icon: 'pi pi-home',
+        routerLink: '/homePage/home'
       },
       {
         label: 'Workout',
         icon: 'pi pi-heart',
-        items: [
-          {
-            label: 'My Workouts',
-            icon: 'pi pi-book'
-          },
-          {
-            label: 'Create Workout',
-            icon: 'pi pi-plus'
-          },
-          {
-            label: 'Workout Plans',
-            icon: 'pi pi-list'
-          }
-        ]
+        routerLink: '/homePage/workout'
+      },
+      {
+        label: 'Exercises',
+        icon: 'pi pi-list',
+        routerLink: '/homePage/exercises'
       },
       {
         label: 'Nutrition',

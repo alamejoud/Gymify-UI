@@ -28,7 +28,7 @@ export class IdleServiceService {
     this.idle.onTimeout.subscribe(() => {
       this.idleState = 'Timed out!';
       this.timedOut = true;
-      sessionStorage?.clear();
+      localStorage?.clear();
       this.visible = false;
       this.router.navigate(['/userLogin/login']);
     });
