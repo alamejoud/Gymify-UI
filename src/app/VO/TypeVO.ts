@@ -1,7 +1,7 @@
 import { ExerciseVO } from "./ExerciseVO";
 
-export class ExerciseTypeVO {
+export class TypeVO {
   typeId: number;
   type: string;
-  exercise: ExerciseVO;
+  typePicture: ArrayBuffer;
 }

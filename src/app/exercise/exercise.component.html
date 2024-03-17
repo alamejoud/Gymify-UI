@@ -1,9 +1,26 @@
-<p-card>
-  <div class="card" *ngFor="let muscle of exerciseMuscles" [routerLink]="'/homePage/exercises/'+muscle.muscleId">
-    <img [src]="getImage(muscle.musclePicture)"/>
-    <div class="card__content">
-      <p class="card__title">{{muscle.muscleName}}</p>
-    </div>
+
+<div class="exerciseContainer">
+  <div class="exerciseHeader">
+
+        <p-dropdown [options]="exerciseGroups" [(ngModel)]="selectedGroup" optionLabel="lookupName" placeholder="Group By" (onChange)="getExerciseCategories(selectedGroup.lookupCode)"></p-dropdown>
+      <p-autoComplete [(ngModel)]="selectedExercise" [suggestions]="filteredCountries"
+        (completeMethod)="filterExercises($event)" field="name">
+        <ng-template let-exercise pTemplate="item">
+            <div class="flex align-items-center gap-2">
+                <div>{{ exercise.exerciseName }}</div>
+            </div>
+        </ng-template>
+      </p-autoComplete>
+      <button type="button" pButton label="Search"></button>
   </div>
-</p-card>
+  <p-card>
+    <div class="card" *ngFor="let category of exerciseCategories" [routerLink]="'/homePage/exercises/' + getObject().entries(category)[0][1]">
+      <img [src]="getImage(getObject().entries(category)[2][1])"/>
+      <div class="card__content">
+        <p class="card__title">{{getObject().entries(category)[1][1]}}</p>
+      </div>
+    </div>
+  </p-card>
+</div>
+
 

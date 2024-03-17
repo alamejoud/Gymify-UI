@@ -25,10 +25,7 @@ export class NavBarComponent {
         this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
       },
       error: error => {
-        this.messageService.clear();
-        this.messageService.add({
-          severity: 'error', summary: "Error", detail: error.error.message
-        });
+        this.commonServiceService.handleError(error);
       }
     });
 

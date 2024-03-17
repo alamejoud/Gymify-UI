@@ -73,6 +73,26 @@ body {
   font-weight: bolder;
 }
 
+.p-card-body {
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  display: none;
+}
+
 @font-face {
   font-family: DM-Sans;
   src: url(assets/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf);

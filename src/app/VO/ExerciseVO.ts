@@ -1,5 +1,5 @@
-import { ExerciseEquipmentVO } from "./ExerciseEquipmentVO";
-import { ExerciseTypeVO } from "./ExerciseTypeVO";
+import { EquipmentVO } from "./EquipmentVO";
+import { TypeVO } from "./TypeVO";
 import { MuscleVO } from "./MuscleVO";
 
 export class ExerciseVO {
@@ -8,7 +8,7 @@ export class ExerciseVO {
   majorMuscle: MuscleVO;
   notes: string;
   modifications: string;
-  equipments: ExerciseEquipmentVO[];
+  equipments: EquipmentVO[];
   minorMuscles: MuscleVO[];
-  types: ExerciseTypeVO[];
+  types: TypeVO[];
 }

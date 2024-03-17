@@ -47,7 +47,7 @@ export class ProfilePopupComponent {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
       },
       error: error => {
-        console.log(error);
+        this.commonServiceService.handleError(error);
       }
     });
   }

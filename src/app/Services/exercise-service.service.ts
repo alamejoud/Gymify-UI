@@ -9,10 +9,16 @@ export class ExerciseServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getExerciseMuscles(): Observable<any> {
-    return this.http.get('http://localhost:9090/exercise/getExerciseMuscles?token=' + localStorage.getItem('token'));
+  getExerciseCategories(group: String): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/getExerciseCategories?group=' + group);
   }
   getExerciseList(muscleId: string): Observable<any> {
-    return this.http.get('http://localhost:9090/exercise/getExerciseList?muscleId=' + muscleId + '&token=' + localStorage.getItem('token'));
+    return this.http.get('http://localhost:9090/exercise/getExerciseList?muscleId=' + muscleId);
+  }
+  getExerciseGroups(): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/getExerciseGroups');
+  }
+  filterExercises(exerciseName: String): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/filterExercises?exerciseName=' + exerciseName);
   }
 }

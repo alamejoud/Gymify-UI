@@ -2,16 +2,103 @@
   ::ng-deep .p-card {
     background-color: transparent;
     overflow-y: scroll;
-    width: 100%;
     height: 100%;
+    padding-inline: 50px;
+    border-radius: 20px;
+  }
+
+  :ng-deep .p-card>*{
+    background-color: red;
   }
 
   ::ng-deep .p-card-content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 50px;
-    padding-inline: 50px;
   }
+
+  ::ng-deep .p-dropdown {
+    background-color: transparent;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-dropdown>*{
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dropdown-items-wrapper {
+    background-color: #222222;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-dropdown-items-wrapper * {
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    background-color: #D7FB00;
+  }
+
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover span {
+    color: #222222;
+    font-weight: bold;
+  }
+
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+    background-color: #151515;
+  }
+
+  .exerciseHeader>*:nth-child(2) {
+    width: 50%;
+  }
+
+  ::ng-deep .p-autocomplete {
+    width: 100%;
+  }
+
+  ::ng-deep .p-autocomplete-input {
+    width: 100%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.exerciseContainer {
+  background-color: #1b1b1b;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  border-radius: 20px;
+}
+
+.exerciseContainer>* {
+  height: 100%;
+}
+
+.exerciseHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 50px;
 }
 
 .card {
@@ -70,5 +157,21 @@
 
 .card:hover img {
   scale: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  :host {
+    ::ng-deep .p-card-content {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  :host {
+    ::ng-deep .p-card-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 }
 

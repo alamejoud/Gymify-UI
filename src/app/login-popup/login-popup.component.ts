@@ -29,7 +29,7 @@ export class LoginPopupComponent {
       this.userServiceService.loginUser(this.userServiceService.mapUser(this.loginForm.value)).subscribe(
         {
           next: response => this.handleLoginSuccess(response),
-          error: error => this.handleError(error.error.message)
+          error: error => this.commonServiceService.handleError(error)
         }
       )
     }
@@ -43,11 +43,4 @@ export class LoginPopupComponent {
 
   }
 
-  handleError(message: string): void {
-    this.messageService.clear();
-    this.messageService.add({
-      severity: 'error', summary: "Error", detail: message
-    });
-
-  }
 }

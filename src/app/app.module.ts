@@ -47,6 +47,10 @@ import { HomeComponent } from './home/home.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -93,7 +97,11 @@ import { ExerciseListComponent } from './exercise-list/exercise-list.component';
     ConfirmDialogModule,
     NbMenuModule.forRoot(),
     FileUploadModule,
-    FocusTrapModule
+    FocusTrapModule,
+    DropdownModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    AutoCompleteModule
   ],
   providers: [
     provideClientHydration(),

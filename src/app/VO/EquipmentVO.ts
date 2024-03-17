@@ -1,7 +1,7 @@
 import { ExerciseVO } from "./ExerciseVO";
 
-export class ExerciseEquipmentVO {
+export class EquipmentVO {
   equipmentId: number;
   equipment: string;
-  exercise: ExerciseVO;
+  equipmentPicture: ArrayBuffer;
 }
