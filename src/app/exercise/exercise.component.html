@@ -1,21 +1,31 @@
 
 <div class="exerciseContainer">
   <div class="exerciseHeader">
-
-        <p-dropdown [options]="exerciseGroups" [(ngModel)]="selectedGroup" optionLabel="lookupName" placeholder="Group By" (onChange)="getExerciseCategories(selectedGroup.lookupCode)"></p-dropdown>
-      <p-autoComplete [(ngModel)]="selectedExercise" [suggestions]="filteredCountries"
-        (completeMethod)="filterExercises($event)" field="name">
-        <ng-template let-exercise pTemplate="item">
-            <div class="flex align-items-center gap-2">
-                <div>{{ exercise.exerciseName }}</div>
+    <p-dropdown [options]="exerciseGroups" [(ngModel)]="selectedGroup" optionLabel="lookupName" placeholder="Group By" (onChange)="getExerciseCategories(selectedGroup.lookupCode)"></p-dropdown>
+    <p-autoComplete #exerciseAutoComplete [(ngModel)]="selectedExercise" [suggestions]="filteredExercises"
+      (completeMethod)="filterExercises($event)" field="name" placeholder="Search for an exercise" (keyup.enter)="searchForExercises(search)" [delay]="0">
+      <ng-template let-exercise pTemplate="item">
+          <div class="flex align-items-center gap-2 w-full autocompleteElement" [routerLink]="['/homePage/exercises', 'search', search]">
+            <p-image [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" width="50px"></p-image>
+            <div class="autocompleteElementInfo">
+              <div class="autocompleteHeader">
+                <h3 class="exerciseName" [innerHTML]="exercise.exerciseSafeHtml"></h3>
+                <!-- <p-avatar [pTooltip]="exercise.createdBy.userName" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar> -->
+                <!-- <p-chip [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" [label]="exercise.createdBy.username | titlecase"></p-chip> -->
+              </div>
+              <!-- <div class="muscleChips">
+                <p-tag [value]="exercise.majorMuscle.muscleName" severity="info" [rounded]="true"></p-tag>
+                <p-tag *ngFor="let minorMuscle of exercise.minorMuscles" [value]="minorMuscle.muscleName" severity="warning" [rounded]="true"></p-tag>
+              </div> -->
             </div>
-        </ng-template>
-      </p-autoComplete>
-      <button type="button" pButton label="Search"></button>
+          </div>
+      </ng-template>
+    </p-autoComplete>
+    <button type="button" pButton label="Search" (click)="searchForExercises(search)"></button>
   </div>
   <p-card>
-    <div class="card" *ngFor="let category of exerciseCategories" [routerLink]="'/homePage/exercises/' + getObject().entries(category)[0][1]">
-      <img [src]="getImage(getObject().entries(category)[2][1])"/>
+    <div class="card" *ngFor="let category of exerciseCategories" [routerLink]="['/homePage/exercises/', selectedGroup.lookupCode , getObject().entries(category)[0][1]]">
+      <img [src]="getCommonService().transformImage(getObject().entries(category)[2][1])"/>
       <div class="card__content">
         <p class="card__title">{{getObject().entries(category)[1][1]}}</p>
       </div>

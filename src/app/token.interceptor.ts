@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { MessageService } from 'primeng/api';
 import { tap } from 'rxjs/operators';
+import { UserServiceService } from './Services/user-service.service';
+import { CommonServiceService } from './Services/common-service.service';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   let router = inject(Router);
@@ -12,7 +14,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   if (typeof window !== 'undefined') {
     token = localStorage?.getItem('token');
   }
-  debugger;
   if (token) {
     try {
       let decodedToken = jwtDecode(token);
@@ -39,6 +40,5 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     console.log('No token found');
     router.navigate(['/userLogin/login']);
   }
-  debugger;
   return next(req);
 };

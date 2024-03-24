@@ -51,6 +51,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { SkeletonModule } from 'primeng/skeleton';
+import { AccordionModule } from 'primeng/accordion';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -101,7 +108,14 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     DropdownModule,
     InputGroupModule,
     InputGroupAddonModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    ChipModule,
+    TagModule,
+    DataViewModule,
+    RatingModule,
+    SkeletonModule,
+    AccordionModule,
+    ScrollPanelModule
   ],
   providers: [
     provideClientHydration(),

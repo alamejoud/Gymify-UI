@@ -1,0 +1,103 @@
+:host {
+  ::ng-deep {
+    height: 100%;
+    display: block;
+  }
+
+  ::ng-deep .p-dataview-header {
+    background-color: #1b1b1b;
+    border-top: none;
+    color: #D7FB00;
+    border-color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dataview-content {
+    background-color: #1b1b1b;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dataview-content>* {
+    border-bottom: 1px solid #151515;
+  }
+
+  ::ng-deep .p-avatar {
+    margin: auto;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-button-icon {
+    font-family: "primeicons" !important;
+  }
+}
+
+.exerciseList {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 10px;
+}
+
+.exerciseListTitle {
+  color: #f8f8ff;
+}
+
+.exerciseDataView {
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: 20px 0 0 20px;
+}
+
+.exerciseElement {
+  cursor: pointer;
+}
+
+.exerciseElement:hover {
+  background-color: #151515;
+}
+
+.exerciseElement:active {
+  background-color: #101010;
+}
+
+.exerciseInfo {
+  height: 100%;
+  border:#D7FB00 2px solid;
+  border-radius: 0 20px 20px 0;
+  color: #f8f8ff;
+  padding: 20px;
+}
+
+.highlight {
+  background-color: #131313;
+}
+
+.back {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.back:hover {
+  background-color: #f8f8ff11;
+}
+
+.back:active {
+  background-color: #f8f8ff22;
+}
+
+.exerciseTitle {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.exerciseFooter {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+
+}

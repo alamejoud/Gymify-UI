@@ -55,7 +55,7 @@ const routes: Routes = [
         component: ExerciseComponent,
       },
       {
-        path: 'exercises/:muscleId',
+        path: 'exercises/:groupId/:categoryId',
         component: ExerciseListComponent
       }
     ]

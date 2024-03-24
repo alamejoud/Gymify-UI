@@ -60,6 +60,19 @@
   }
 }
 
+.menuToggle {
+  color: #D7FB00;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: 50%;
+  transition: all .3s ease;
+}
+
+.menuToggle:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+  transform: translateY(-0.25em);
+}
+
 .chatBtn {
   display: flex;
   transition: all .3s ease;

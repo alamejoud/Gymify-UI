@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
+import { UserServiceService } from './user-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class IdleServiceService {
   title = 'You are idle!';
   visible: boolean = false;
 
-  constructor(private router: Router, private idle: Idle, private keepalive: Keepalive) { }
+  constructor(private router: Router, private idle: Idle, private keepalive: Keepalive, private userServiceService: UserServiceService) { }
 
   startIdleTimer(): void {
     this.idle.setIdle(600);
@@ -22,6 +23,14 @@ export class IdleServiceService {
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     this.idle.onIdleEnd.subscribe(() => {
+      this.userServiceService.generateToken().subscribe({
+        next: data => {
+          localStorage.setItem('token', data.token);
+        },
+        error: error => {
+          console.log('Error Generating Token');
+        }
+      });
       this.reset();
     });
 

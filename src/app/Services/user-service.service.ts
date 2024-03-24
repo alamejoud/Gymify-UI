@@ -49,4 +49,8 @@ export class UserServiceService {
     return this.http.get<Blob>('http://localhost:9090/user/getLoggedInProfilePicture?token=' + localStorage?.getItem('token'));
   }
 
+  generateToken(): Observable<any> {
+    return this.http.post('http://localhost:9090/user/generateToken', this.displayedUser);
+  }
+
 }

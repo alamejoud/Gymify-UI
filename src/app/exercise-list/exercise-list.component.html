@@ -1,1 +1,63 @@
-<p>exercise-list works!</p>
+<div class="exerciseList">
+  <div class="exerciseDataView">
+    <p-dataView #dv [value]="exerciseList">
+      <ng-template pTemplate="header">
+        <div class="flex flex-row">
+          <div class="back my-auto mx-2" (click)="back()"><i class="pi pi-angle-double-left"></i></div>
+          <h2 class="exerciseListTitle">{{title}}</h2>
+        </div>
+      </ng-template>
+      <ng-template  let-exercises pTemplate="listItem">
+        <div *ngIf="exerciseList[0].exerciseId != undefined">
+        <div class="col-12" *ngFor="let exercise of exercises; let first = first" >
+          <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="selectExercise(exercise)" [ngClass]="{'highlight' : getExerciseService().selectedExercise.exerciseId == exercise.exerciseId}">
+            <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round bg-white" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.name" />
+            <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                    <div class="text-2xl font-bold">{{ exercise.exerciseName }}</div>
+                    <div class="flex align-items-center gap-3">
+                        <span class="flex align-items-center gap-2">
+                            <p-tag [value]="exercise.majorMuscle.muscleName" severity="info" [rounded]="true"></p-tag>
+                            <p-tag *ngFor="let minorMuscle of exercise.minorMuscles" [value]="minorMuscle.muscleName" severity="warning" [rounded]="true"></p-tag>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                  <p-avatar [pTooltip]="exercise.createdBy.userName" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="exerciseList[0].exerciseId == undefined">
+        <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" *ngFor="let item of exerciseList">
+          <p-skeleton size="5rem"></p-skeleton>
+          <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+              <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-3">
+                    <span class="flex align-items-center gap-2">
+                      <p-skeleton width="5rem" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+                      <p-skeleton width="5rem" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+                    </span>
+                </div>
+              </div>
+              <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+              </div>
+          </div>
+        </div>
+      </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+  <div class="exerciseInfo">
+    <div class="exerciseHeader">
+      <h1 class="font-bold exerciseTitle">{{ getExerciseService().selectedExercise.exerciseName }}</h1>
+    </div>
+    <div class="exerciseContent"></div>
+    <div class="exerciseFooter">
+      <button pButton icon="pi pi-plus" label="Add to Workout"></button>
+    </div>
+  </div>
+</div>

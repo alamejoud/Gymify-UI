@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IdleServiceService } from '../Services/idle-service.service';
 import { UserServiceService } from '../Services/user-service.service';
 import { MenuItem } from 'primeng/api';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +13,7 @@ export class HomePageComponent {
 
   menuTab: MenuItem[];
 
-  constructor(private idleServiceService: IdleServiceService) { }
+  constructor(private idleServiceService: IdleServiceService, private commonServiceService: CommonServiceService) { }
 
   ngOnInit(): void {
 
@@ -33,7 +34,7 @@ export class HomePageComponent {
       },
       {
         label: 'Exercises',
-        icon: 'pi pi-list',
+        icon: 'fa-solid fa-dumbbell',
         routerLink: '/homePage/exercises'
       },
       {
@@ -54,6 +55,10 @@ export class HomePageComponent {
       }
     ]
 
+  }
+
+  getCommonService() {
+    return this.commonServiceService;
   }
 
 }

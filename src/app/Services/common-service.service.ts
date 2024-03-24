@@ -8,11 +8,13 @@ import { MessageService } from 'primeng/api';
 })
 export class CommonServiceService {
 
+  toggleMenu: boolean = true;
+
   constructor(private sanitizer: DomSanitizer, private messageService: MessageService, private router: Router) { }
 
-  transformImage(image: any) {
+  transformImage(image: any): any {
     if (image == null) {
-      return '../../assets/images/Default-Profile-Picture.png';
+      return '../../assets/images/missing-image.jpg';
     }
     let objectURL = 'data:image/png;base64,' + image;
     return this.sanitizer.bypassSecurityTrustUrl(objectURL);
@@ -22,7 +24,7 @@ export class CommonServiceService {
     return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
   }
 
-  handleError(error) {
+  handleError(error): any {
     this.messageService.clear();
     this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
     if (error.status === 401) {

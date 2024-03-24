@@ -84,8 +84,8 @@
 .homeBody {
   height: 100%;
   width: 100%;
-  display: grid;
-  grid-template-columns: 275px auto;
+  display: flex;
+  flex-direction: row;
 
 }
 
@@ -93,13 +93,15 @@
   height: 88vh;
   width: 100%;
   padding: 20px;
+  margin: auto;
 }
 
 .pageNavigation {
-  width: 100%;
   height: 100%;
+  width: 275px;
   margin: auto;
   color: #D7FB00;
+  transition: all .3s ease;
 }
 
 .pageNavigation i {

@@ -12,23 +12,22 @@ export class NavBarComponent {
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService) { }
 
+  ngOnInit() {
+    this.userServiceService.getLoggedInUser().subscribe({
+      next: response => {
+        this.userServiceService.displayedUser = response.user;
+        this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
+      }
+    });
+  }
+
   getUserService() {
     return this.userServiceService;
   }
 
   showProfileDialog() {
-    this.userServiceService.getLoggedInUser().subscribe({
-      next: response => {
-        this.userServiceService.displayedUser = response.user;
-        this.userServiceService.profileDialogVisible = true;
-        this.userServiceService.isEditingProfile = false;
-        this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
-      },
-      error: error => {
-        this.commonServiceService.handleError(error);
-      }
-    });
-
+    this.userServiceService.profileDialogVisible = true;
+    this.userServiceService.isEditingProfile = false;
   }
 
   logout() {
@@ -49,6 +48,10 @@ export class NavBarComponent {
         this.logout();
       }
     });
+  }
+
+  getCommonService() {
+    return this.commonServiceService;
   }
 
 }
