@@ -3,16 +3,16 @@
     <p-dataView #dv [value]="exerciseList">
       <ng-template pTemplate="header">
         <div class="flex flex-row">
-          <div class="back my-auto mx-2" (click)="back()"><i class="pi pi-angle-double-left"></i></div>
+          <div class="back my-auto mx-2" (click)="back()"><i class="pi pi-chevron-left"></i></div>
           <h2 class="exerciseListTitle">{{title}}</h2>
         </div>
       </ng-template>
-      <ng-template  let-exercises pTemplate="listItem">
-        <div *ngIf="exerciseList[0].exerciseId != undefined">
-        <div class="col-12" *ngFor="let exercise of exercises; let first = first" >
-          <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="selectExercise(exercise)" [ngClass]="{'highlight' : getExerciseService().selectedExercise.exerciseId == exercise.exerciseId}">
-            <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round bg-white" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.name" />
-            <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+      <ng-template let-exercises pTemplate="listItem">
+        <div *ngIf="exerciseList[0].exerciseId">
+          <div class="col-12" *ngFor="let exercise of exercises; let first = first" >
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="this.selectedExercise = exercise" [ngClass]="{'highlight' : selectedExercise?.exerciseId == exercise.exerciseId}">
+              <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round bg-white" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.name" />
+              <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                 <div class="flex flex-column align-items-center sm:align-items-start gap-3">
                     <div class="text-2xl font-bold">{{ exercise.exerciseName }}</div>
                     <div class="flex align-items-center gap-3">
@@ -23,13 +23,13 @@
                     </div>
                 </div>
                 <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                  <p-avatar [pTooltip]="exercise.createdBy.userName" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+                  <p-avatar [pTooltip]="exercise.createdBy.userName" [pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
                 </div>
+              </div>
             </div>
-          </div>
         </div>
       </div>
-      <div *ngIf="exerciseList[0].exerciseId == undefined">
+      <div *ngIf="!exerciseList[0].exerciseId">
         <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" *ngFor="let item of exerciseList">
           <p-skeleton size="5rem"></p-skeleton>
           <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
@@ -49,15 +49,54 @@
         </div>
       </div>
       </ng-template>
+      <ng-template pTemplate="footer">
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"></p-paginator>
+      </ng-template>
     </p-dataView>
   </div>
   <div class="exerciseInfo">
-    <div class="exerciseHeader">
-      <h1 class="font-bold exerciseTitle">{{ getExerciseService().selectedExercise.exerciseName }}</h1>
+    <div class="exerciseHeader py-4">
+      <h1 class="font-bold exerciseTitle max-w-full" *ngIf="selectedExercise">{{ selectedExercise?.exerciseName }}</h1>
+      <p-skeleton width="10rem" styleClass="mb-2" *ngIf="!selectedExercise"></p-skeleton>
     </div>
-    <div class="exerciseContent"></div>
-    <div class="exerciseFooter">
-      <button pButton icon="pi pi-plus" label="Add to Workout"></button>
+    <div class="exerciseContent py-4">
+      <div *ngIf="selectedExercise">
+        <iframe class="exerciseVideoLink" [src]="selectedExercise.safeVideoLink"></iframe>
+        <div class="exerciseMusclesTypesEquipments">
+          <span>Muscle Group</span>
+          <div class="exerciseChips">
+            <p-chip class="mx-1" [image]="getCommonService().transformImage(selectedExercise?.majorMuscle.musclePicture)" [label]="selectedExercise?.majorMuscle.muscleName | titlecase"></p-chip>
+            <p-chip class="mx-1" *ngFor="let muscle of selectedExercise?.minorMuscles" [image]="getCommonService().transformImage(muscle.musclePicture)" [label]="muscle.muscleName | titlecase"></p-chip>
+          </div>
+          <span>Type</span>
+          <div class="exerciseChips">
+            <p-chip class="mx-1" *ngFor="let type of selectedExercise?.types" [image]="getCommonService().transformImage(type.typePicture)" [label]="type.typeName | titlecase"></p-chip>
+          </div>
+          <span>Equipment</span>
+          <div class="exerciseChips">
+            <p-chip class="mx-1" *ngFor="let equipment of selectedExercise?.equipments" [image]="getCommonService().transformImage(equipment.equipmentPicture)" [label]="equipment.equipmentName | titlecase"></p-chip>
+          </div>
+        </div>
+        <div  class="exerciseDescription">
+          <span>
+            Notes
+          </span>
+          <span>
+            Modifications
+          </span>
+          <p>
+            {{selectedExercise?.notes || '(none)'}}
+          </p>
+          <p>
+            {{selectedExercise?.modifications || '(none)'}}
+          </p>
+        </div>
+      </div>
+      <p-skeleton width="100%" height="500px" *ngIf="!selectedExercise"></p-skeleton>
+    </div>
+    <div class="exerciseFooter py-4">
+      <p-button icon="pi pi-plus" label="Add to Workout" *ngIf="selectedExercise"></p-button>
+      <p-skeleton width="10rem" height="4rem" *ngIf="!selectedExercise"></p-skeleton>
     </div>
   </div>
 </div>

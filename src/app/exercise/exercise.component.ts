@@ -54,7 +54,6 @@ export class ExerciseComponent {
     this.search = $event.query;
     this.exerciseServiceService.filterExercises($event.query).subscribe({
       next: response => {
-        debugger;
         this.filteredExercises = response.exerciseList;
         this.filteredExercises.forEach(exercise => {
           let highlightedText = '<span style="color: cyan; font-weight: bold;">$&</span>'
@@ -89,5 +88,9 @@ export class ExerciseComponent {
 
   print(value) {
     alert(value);
+  }
+
+  getExerciseService() {
+    return this.exerciseServiceService;
   }
 }

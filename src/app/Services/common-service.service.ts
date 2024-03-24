@@ -32,4 +32,8 @@ export class CommonServiceService {
       this.router.navigate(['/userLogin/login']);
     }
   }
+
+  transformUrl(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }

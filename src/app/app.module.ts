@@ -58,6 +58,7 @@ import { RatingModule } from 'primeng/rating';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AccordionModule } from 'primeng/accordion';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     RatingModule,
     SkeletonModule,
     AccordionModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    PaginatorModule
   ],
   providers: [
     provideClientHydration(),

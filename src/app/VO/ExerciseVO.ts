@@ -1,7 +1,7 @@
 import { EquipmentVO } from "./EquipmentVO";
 import { TypeVO } from "./TypeVO";
 import { MuscleVO } from "./MuscleVO";
-import { SafeHtml } from "@angular/platform-browser";
+import { SafeHtml, SafeResourceUrl } from "@angular/platform-browser";
 import { UserVO } from "./UserVO";
 
 export class ExerciseVO {
@@ -15,5 +15,6 @@ export class ExerciseVO {
   minorMuscles: MuscleVO[];
   types: TypeVO[];
   videoLink: string;
+  safeVideoLink: SafeResourceUrl;
   createdBy: UserVO;
 }

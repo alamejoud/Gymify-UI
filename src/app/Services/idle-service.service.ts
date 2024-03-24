@@ -23,14 +23,6 @@ export class IdleServiceService {
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     this.idle.onIdleEnd.subscribe(() => {
-      this.userServiceService.generateToken().subscribe({
-        next: data => {
-          localStorage.setItem('token', data.token);
-        },
-        error: error => {
-          console.log('Error Generating Token');
-        }
-      });
       this.reset();
     });
 

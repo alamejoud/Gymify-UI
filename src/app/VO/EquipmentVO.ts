@@ -2,6 +2,6 @@ import { ExerciseVO } from "./ExerciseVO";
 
 export class EquipmentVO {
   equipmentId: number;
-  equipment: string;
+  equipmentName: string;
   equipmentPicture: ArrayBuffer;
 }
