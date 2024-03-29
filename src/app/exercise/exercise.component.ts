@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { ExerciseVO } from '../VO/ExerciseVO';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { UserServiceService } from '../Services/user-service.service';
 
 @Component({
   selector: 'app-exercise',
@@ -21,9 +22,12 @@ export class ExerciseComponent {
   filteredExercises: ExerciseVO[];
   selectedExercise: ExerciseVO;
   search: string;
-  constructor(private exerciseServiceService: ExerciseServiceService, private commonServiceService: CommonServiceService, private messageService: MessageService, private sanitizer: DomSanitizer, private router: Router) { }
+  route: string;
+  constructor(private exerciseServiceService: ExerciseServiceService, private commonServiceService: CommonServiceService, private messageService: MessageService, private sanitizer: DomSanitizer, private router: Router, private userServiceService: UserServiceService) { }
   ngOnInit() {
     this.getExerciseGroups();
+    let role = this.commonServiceService.getRole();
+    this.route = role == 'trainer' ? '/homePage/trainerExercise/exercises/' : '/homePage/exercises/';
   }
 
   getExerciseGroups() {
@@ -92,5 +96,9 @@ export class ExerciseComponent {
 
   getExerciseService() {
     return this.exerciseServiceService;
+  }
+
+  getUserService() {
+    return this.userServiceService;
   }
 }

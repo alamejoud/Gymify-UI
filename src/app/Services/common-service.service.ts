@@ -24,6 +24,11 @@ export class CommonServiceService {
     return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
   }
 
+  handleSuccess(message): any {
+    this.messageService.clear();
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+  }
+
   handleError(error): any {
     this.messageService.clear();
     this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
@@ -35,5 +40,15 @@ export class CommonServiceService {
 
   transformUrl(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  getRole() {
+    let token = localStorage?.getItem('token');
+    if (token) {
+      let payload = token.split('.')[1];
+      let payloadData = JSON.parse(atob(payload));
+      console.log(payloadData);
+      return payloadData.payload.role;
+    }
   }
 }

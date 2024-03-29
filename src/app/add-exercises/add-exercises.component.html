@@ -1,0 +1,106 @@
+<div class="addExerciseContainer">
+  <div class="addExerciseBody">
+    <div class="addExerciseMainInfo">
+      <h1>Main Information</h1>
+      <div></div>
+      <div class="p-float-label m-auto my-4 w-full">
+        <input pInputText type="text" autocomplete="off" id="exerciseName"
+          class="w-full" [required]="true" [maxLength]="4000" [(ngModel)]="exercise.exerciseName"/>
+        <label for="exerciseName"><span class="text-red-500">*</span> Exercise Name</label>
+      </div>
+      <div class="p-float-label m-auto my-4 w-full">
+        <p-autoComplete class="mr-2 autocompleteField" [(ngModel)]="exercise.majorMuscle" [suggestions]="filteredMajorMuscles"
+        (completeMethod)="filterMajorMuscles($event)" field="muscleName" [delay]="0" [forceSelection]="true" [required]="true" id="majorMuscle"
+         [virtualScroll]="false" [dropdown]="true">
+          <ng-template let-muscle pTemplate="item">
+            <div class="flex align-items-center gap-2 w-full autocompleteElement">
+              <p-image [src]="getCommonService().transformImage(muscle.musclePicture)" width="50px"></p-image>
+              <div class="autocompleteElementInfo">
+                <div class="autocompleteHeader">
+                  <h3>{{muscle.muscleName}}</h3>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-autoComplete>
+        <label for="majorMuscle"><span class="text-red-500">*</span> Main Muscle</label>
+      </div>
+    </div>
+    <div class="addExerciseSecondaryInfo">
+      <h1>Secondary Information</h1>
+      <div></div>
+      <div class="p-float-label m-auto my-4 w-full grid fields">
+        <p-autoComplete class="mr-2 autocompleteField" [(ngModel)]="exercise.equipments" [suggestions]="filteredEquipments"
+        (completeMethod)="filterEquipments($event)" field="equipmentName" [delay]="0" [forceSelection]="true" [required]="true" [multiple]="true" id="equipments"
+        [virtualScroll]="false" [dropdown]="true" [unique]="true">
+          <ng-template let-equipment pTemplate="item">
+            <div class="flex align-items-center gap-2 w-full autocompleteElement">
+              <p-image [src]="getCommonService().transformImage(equipment.equipmentPicture)" width="50px"></p-image>
+              <div class="autocompleteElementInfo">
+                <div class="autocompleteHeader">
+                  <h3>{{equipment.equipmentName}}</h3>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-autoComplete>
+        <label for="equipments"><span class="text-red-500">*</span> Equipments</label>
+      </div>
+      <div class="p-float-label m-auto my-4 w-full grid fields">
+        <p-autoComplete class="mr-2 autocompleteField" [(ngModel)]="exercise.types" [suggestions]="filteredTypes"
+        (completeMethod)="filterTypes($event)" field="typeName" [delay]="0" [forceSelection]="true" [required]="true" [multiple]="true" id="types"
+         [virtualScroll]="false" [dropdown]="true" [unique]="true">
+          <ng-template let-type pTemplate="item">
+            <div class="flex align-items-center gap-2 w-full autocompleteElement">
+              <p-image [src]="getCommonService().transformImage(type.typePicture)" width="50px"></p-image>
+              <div class="autocompleteElementInfo">
+                <div class="autocompleteHeader">
+                  <h3>{{type.typeName}}</h3>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-autoComplete>
+        <label for="types"><span class="text-red-500">*</span> Types</label>
+      </div>
+      <div class="p-float-label m-auto my-4 w-full grid fields">
+        <p-autoComplete class="mr-2 autocompleteField" [(ngModel)]="exercise.minorMuscles" [suggestions]="filteredMinorMuscles"
+        (completeMethod)="filterMinorMuscles($event)" field="muscleName" [delay]="0" [forceSelection]="true" [multiple]="true" id="minorMuscles"
+         [virtualScroll]="false" [dropdown]="true" [unique]="true">
+          <ng-template let-muscle pTemplate="item">
+            <div class="flex align-items-center gap-2 w-full autocompleteElement">
+              <p-image [src]="getCommonService().transformImage(muscle.musclePicture)" width="50px"></p-image>
+              <div class="autocompleteElementInfo">
+                <div class="autocompleteHeader">
+                  <h3>{{muscle.muscleName}}</h3>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-autoComplete>
+        <label for="minorMuscles">Minor Muscles</label>
+      </div>
+      <div class="p-float-label m-auto my-4 w-full grid fields">
+        <input pInputText type="text" autocomplete="off" id="videoId"
+          class="w-full" [required]="true" [maxLength]="4000" [(ngModel)]="exercise.videoLink"/>
+        <label for="videoId"><span class="text-red-500">*</span> Video Id</label>
+      </div>
+    </div>
+    <div class="addExerciseAdditionalInfo">
+      <h1>Additional Information</h1>
+      <div></div>
+      <div class="p-float-label m-auto my-4 w-full">
+        <textarea id="notes" rows="5" cols="30" pInputTextarea [maxLength]="4000" [autoResize]="true" [(ngModel)]="exercise.notes"></textarea>
+        <label for="notes">Notes</label>
+      </div>
+      <div class="p-float-label m-auto my-4 w-full">
+        <textarea id="notes" rows="5" cols="30" pInputTextarea [maxLength]="4000" [autoResize]="true" [(ngModel)]="exercise.modifications"></textarea>
+        <label for="notes">Modifications</label>
+      </div>
+    </div>
+  </div>
+  <div class="addExerciseFooter">
+    <p-button [disabled]="checkFields()" (click)="save()"><i class="pi pi-save"></i> Save</p-button>
+    <p-button class="cancelBtn" (click)="cancel()"><i class="pi pi-times"></i> Cancel</p-button>
+  </div>
+</div>

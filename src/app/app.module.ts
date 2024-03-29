@@ -59,6 +59,9 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { AccordionModule } from 'primeng/accordion';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { PaginatorModule } from 'primeng/paginator';
+import { TrainerExerciseComponent } from './trainer-exercise/trainer-exercise.component';
+import { AddExercisesComponent } from './add-exercises/add-exercises.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -74,6 +77,8 @@ import { PaginatorModule } from 'primeng/paginator';
     WorkoutComponent,
     ExerciseComponent,
     ExerciseListComponent,
+    TrainerExerciseComponent,
+    AddExercisesComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,7 +122,8 @@ import { PaginatorModule } from 'primeng/paginator';
     SkeletonModule,
     AccordionModule,
     ScrollPanelModule,
-    PaginatorModule
+    PaginatorModule,
+    InputTextareaModule
   ],
   providers: [
     provideClientHydration(),

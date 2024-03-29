@@ -33,6 +33,15 @@ export class ExerciseServiceService {
   filterExercises(exerciseName: string): Observable<any> {
     return this.http.get('http://localhost:9090/exercise/filterExercises?exerciseName=' + exerciseName);
   }
+  filterMuscles(muscleName: string): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/filterMuscles?muscleName=' + muscleName);
+  }
+  filterEquipments(equipmentName: string): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/filterEquipments?equipmentName=' + equipmentName);
+  }
+  filterTypes(typeName: string): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/filterTypes?typeName=' + typeName);
+  }
   getMuscleName(muscleId: string): Observable<any> {
     return this.http.get('http://localhost:9090/exercise/getMuscleName?muscleId=' + muscleId);
   }
@@ -45,5 +54,13 @@ export class ExerciseServiceService {
   getExerciseCount(groupId: string, categoryId: string): Observable<any> {
     return this.http.get('http://localhost:9090/exercise/getExerciseCount?group=' + groupId + '&id=' + categoryId);
   }
-
+  saveExercise(exercise: ExerciseVO): Observable<any> {
+    return this.http.post('http://localhost:9090/exercise/saveExercise', exercise);
+  }
+  deleteExercise(exerciseId: number): Observable<any> {
+    return this.http.delete('http://localhost:9090/exercise/deleteExercise?exerciseId=' + exerciseId);
+  }
+  getExerciseById(exerciseId: string): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/getExerciseById?exerciseId=' + exerciseId);
+  }
 }

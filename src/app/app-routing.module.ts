@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { TrainerExerciseComponent } from './trainer-exercise/trainer-exercise.component';
+import { AddExercisesComponent } from './add-exercises/add-exercises.component';
 
 const routes: Routes = [
   {
@@ -57,6 +59,33 @@ const routes: Routes = [
       {
         path: 'exercises/:groupId/:categoryId',
         component: ExerciseListComponent
+      },
+      {
+        path: 'trainerExercise',
+        component: TrainerExerciseComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'exercises',
+            pathMatch: 'full'
+          },
+          {
+            path: 'exercises',
+            component: ExerciseComponent
+          },
+          {
+            path: 'exercises/:groupId/:categoryId',
+            component: ExerciseListComponent
+          },
+          {
+            path: 'manageExercises',
+            component: AddExercisesComponent
+          },
+          {
+            path: 'manageExercises/:exerciseId',
+            component: AddExercisesComponent
+          }
+        ]
       }
     ]
   },

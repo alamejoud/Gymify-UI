@@ -11,9 +11,9 @@ export class ExerciseVO {
   majorMuscle: MuscleVO;
   notes: string;
   modifications: string;
-  equipments: EquipmentVO[];
-  minorMuscles: MuscleVO[];
-  types: TypeVO[];
+  equipments: EquipmentVO[] = [];
+  minorMuscles: MuscleVO[] = [];
+  types: TypeVO[] = [];
   videoLink: string;
   safeVideoLink: SafeResourceUrl;
   createdBy: UserVO;

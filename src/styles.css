@@ -77,6 +77,10 @@ body {
   padding: 0;
 }
 
+.p-skeleton {
+  background-color: #222222;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

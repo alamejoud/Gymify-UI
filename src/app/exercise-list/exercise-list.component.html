@@ -8,7 +8,7 @@
         </div>
       </ng-template>
       <ng-template let-exercises pTemplate="listItem">
-        <div *ngIf="exerciseList[0].exerciseId">
+        <div *ngIf="!loading && exerciseList.length != 0">
           <div class="col-12" *ngFor="let exercise of exercises; let first = first" >
             <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="this.selectedExercise = exercise" [ngClass]="{'highlight' : selectedExercise?.exerciseId == exercise.exerciseId}">
               <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round bg-white" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.name" />
@@ -23,13 +23,14 @@
                     </div>
                 </div>
                 <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                  <p-avatar [pTooltip]="exercise.createdBy.userName" [pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+                  <p-avatar *ngIf="!isTrainer()" [pTooltip]="exercise.createdBy.userName" [pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+                  <p-button *ngIf="isTrainer()" (click)="editExercise()">Edit</p-button>
                 </div>
               </div>
             </div>
         </div>
       </div>
-      <div *ngIf="!exerciseList[0].exerciseId">
+      <div *ngIf="loading">
         <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" *ngFor="let item of exerciseList">
           <p-skeleton size="5rem"></p-skeleton>
           <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
@@ -56,15 +57,15 @@
   </div>
   <div class="exerciseInfo">
     <div class="exerciseHeader py-4">
-      <h1 class="font-bold exerciseTitle max-w-full" *ngIf="selectedExercise">{{ selectedExercise?.exerciseName }}</h1>
-      <p-skeleton width="10rem" styleClass="mb-2" *ngIf="!selectedExercise"></p-skeleton>
+      <h1 class="font-bold exerciseTitle max-w-full" *ngIf="!loading && selectedExercise">{{ selectedExercise?.exerciseName }}</h1>
+      <p-skeleton width="10rem" styleClass="mb-2" *ngIf="loading"></p-skeleton>
     </div>
     <div class="exerciseContent py-4">
-      <div *ngIf="selectedExercise">
+      <div *ngIf="!loading && selectedExercise">
         <iframe class="exerciseVideoLink" [src]="selectedExercise.safeVideoLink"></iframe>
         <div class="exerciseMusclesTypesEquipments">
           <span>Muscle Group</span>
-          <div class="exerciseChips">
+          <div class="exerciseMuscleChips exerciseChips">
             <p-chip class="mx-1" [image]="getCommonService().transformImage(selectedExercise?.majorMuscle.musclePicture)" [label]="selectedExercise?.majorMuscle.muscleName | titlecase"></p-chip>
             <p-chip class="mx-1" *ngFor="let muscle of selectedExercise?.minorMuscles" [image]="getCommonService().transformImage(muscle.musclePicture)" [label]="muscle.muscleName | titlecase"></p-chip>
           </div>
@@ -92,11 +93,20 @@
           </p>
         </div>
       </div>
-      <p-skeleton width="100%" height="500px" *ngIf="!selectedExercise"></p-skeleton>
+      <p-skeleton width="100%" height="500px" *ngIf="loading"></p-skeleton>
     </div>
     <div class="exerciseFooter py-4">
-      <p-button icon="pi pi-plus" label="Add to Workout" *ngIf="selectedExercise"></p-button>
-      <p-skeleton width="10rem" height="4rem" *ngIf="!selectedExercise"></p-skeleton>
+      <p-button  icon="pi pi-plus" label="Add to Workout" *ngIf="!loading && selectedExercise"></p-button>
+      <p-skeleton width="10rem" height="4rem" *ngIf="loading"></p-skeleton>
+      <div class="delete">
+        <button *ngIf="isTrainer() && !loading && selectedExercise" (click)="confirmDelete($event)" class="Btn">
+          <div class="sign">
+            <i class="fa-solid fa-trash"></i>
+          </div>
+          <div class="text">Delete</div>
+        </button>
+        <p-skeleton width="60px" height="60px" *ngIf="loading" borderRadius="40px"></p-skeleton>
+      </div>
     </div>
   </div>
 </div>
