@@ -11,7 +11,7 @@
         <div *ngIf="!loading && exerciseList.length != 0">
           <div class="col-12" *ngFor="let exercise of exercises; let first = first" >
             <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="this.selectedExercise = exercise" [ngClass]="{'highlight' : selectedExercise?.exerciseId == exercise.exerciseId}">
-              <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round bg-white" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.name" />
+              <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.exerciseName" />
               <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                 <div class="flex flex-column align-items-center sm:align-items-start gap-3">
                     <div class="text-2xl font-bold">{{ exercise.exerciseName }}</div>
@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                  <p-avatar *ngIf="!isTrainer()" [pTooltip]="exercise.createdBy.userName" [pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
-                  <p-button *ngIf="isTrainer()" (click)="editExercise()">Edit</p-button>
+                  <p-avatar *ngIf="!isTrainer()" [pTooltip]="exercise.createdBy.username" [pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+                  <p-button class="editButton" *ngIf="isTrainer()" (click)="editExercise()"><i class="pi pi-file-edit"></i></p-button>
                 </div>
               </div>
             </div>

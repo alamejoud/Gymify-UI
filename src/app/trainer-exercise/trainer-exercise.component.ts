@@ -29,9 +29,5 @@ export class TrainerExerciseComponent {
     ];
 
     this.activeItem = this.items[0];
-
-    this.route.url.subscribe(url => {
-      const activatedRoute = this.route.snapshot.children[0];
-    });
   }
 }

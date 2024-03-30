@@ -8,4 +8,8 @@ import { Observable } from 'rxjs';
 export class WorkoutServiceService {
 
   constructor(private http: HttpClient) { }
+
+  getWorkoutById(id: number): Observable<any> {
+    return this.http.get('http://localhost:9090/workout/getWorkoutById?workoutId=' + id);
+  }
 }

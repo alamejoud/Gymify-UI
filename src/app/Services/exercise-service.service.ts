@@ -63,4 +63,7 @@ export class ExerciseServiceService {
   getExerciseById(exerciseId: string): Observable<any> {
     return this.http.get('http://localhost:9090/exercise/getExerciseById?exerciseId=' + exerciseId);
   }
+  getExerciseList(): Observable<any> {
+    return this.http.get('http://localhost:9090/exercise/getExerciseList');
+  }
 }

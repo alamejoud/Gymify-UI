@@ -60,7 +60,7 @@ export class ExerciseComponent {
       next: response => {
         this.filteredExercises = response.exerciseList;
         this.filteredExercises.forEach(exercise => {
-          let highlightedText = '<span style="color: cyan; font-weight: bold;">$&</span>'
+          let highlightedText = '<span style="color: cyan; font-weight: bold; border-bottom: 1px solid cyan;">$&</span>'
           let lowerCaseHandle: string = exercise.exerciseName.replaceAll(new RegExp($event.query.toLowerCase(), "g"), highlightedText);
           let upperCaseHandle: string = lowerCaseHandle.replaceAll(new RegExp($event.query.toUpperCase(), "g"), highlightedText)
           let capitalizeHandle: string = upperCaseHandle.replaceAll(new RegExp(this.titleCaseWord($event.query), "g"), highlightedText)

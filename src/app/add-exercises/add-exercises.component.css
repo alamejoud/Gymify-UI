@@ -153,8 +153,16 @@
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 5% 85% 5%;
   border-radius: 20px;
+}
+
+.addExerciseHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
 .addExerciseBody {
@@ -192,6 +200,7 @@
 .addExerciseFooter {
   display: flex;
   flex-direction: row-reverse;
+  padding-block: 20px;
 }
 
 .addExerciseFooter>* {
@@ -199,6 +208,12 @@
 }
 
 h1 {
+  color: #f8f8ff;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+h2 {
   color: #D7FB00;
 }
 

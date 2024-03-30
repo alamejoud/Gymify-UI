@@ -8,9 +8,14 @@ import { MessageService } from 'primeng/api';
 })
 export class CommonServiceService {
 
-  toggleMenu: boolean = true;
+  toggleMenu: boolean = false;
+  routePageMap = new Map<string, string>();
 
-  constructor(private sanitizer: DomSanitizer, private messageService: MessageService, private router: Router) { }
+  constructor(private sanitizer: DomSanitizer, private messageService: MessageService, private router: Router) {
+    this.routePageMap.set('home', 'Home');
+    this.routePageMap.set('workout', 'Workout');
+    this.routePageMap.set('exercises', 'Exercises');
+  }
 
   transformImage(image: any): any {
     if (image == null) {
@@ -50,5 +55,9 @@ export class CommonServiceService {
       console.log(payloadData);
       return payloadData.payload.role;
     }
+  }
+
+  updateTitle() {
+    return this.routePageMap.get(this.router.url.split('/')[2]);
   }
 }

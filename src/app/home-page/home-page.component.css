@@ -71,6 +71,10 @@
     }
   }
 
+  ::ng-deep .p-sidebar {
+    background: #151515;
+  }
+
 }
 
 .homePage {
@@ -92,7 +96,6 @@
 .bodyContent {
   height: 88vh;
   width: 100%;
-  padding: 20px;
   margin: auto;
 }
 
@@ -114,4 +117,35 @@ hr {
   border: 1px solid #222222;
   width: 100%;
   margin: 0;
+}
+
+
+.logoNavigation {
+  width: 100%;
+  margin: auto;
+  object-fit: contain;
+  display: grid;
+  grid-template-columns: 84% 15%;
+  gap: 10px;
+}
+
+.logoNavigation img {
+  width: 100%;
+}
+
+.close {
+  color: #f8f8ff !important;
+  border-radius: 50% !important;
+  margin: auto !important;
+  font-size: 1.5rem !important;
+  padding: 7px !important;
+  cursor: pointer !important;
+}
+
+.close:hover {
+  background-color: #f8f8ff11 !important;
+}
+
+.closeL:active {
+  background-color: #f8f8ff22 !important;
 }

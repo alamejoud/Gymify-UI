@@ -22,6 +22,8 @@ export class AddExercisesComponent {
   exercise: ExerciseVO = new ExerciseVO();
   tempExercise = new ExerciseVO();
 
+  title = '';
+
   constructor(private exerciseServiceService: ExerciseServiceService, private commonServiceService: CommonServiceService, private route: ActivatedRoute) {
 
   }
@@ -34,11 +36,14 @@ export class AddExercisesComponent {
           this.exercise = response.exercise;
           this.exercise.videoLink = this.exercise.videoLink.substring(this.exercise.videoLink.lastIndexOf('/') + 1);
           this.tempExercise = JSON.parse(JSON.stringify(this.exercise));
+          this.title = 'Edit Exercise';
         },
         error: error => {
           this.commonServiceService.handleError(error);
         }
       });
+    } else {
+      this.title = 'Add Exercise';
     }
   }
 

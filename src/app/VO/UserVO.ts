@@ -1,3 +1,5 @@
+import { WorkoutVO } from "./WorkoutVO";
+
 export class UserVO {
   userId: number;
   username: string;
@@ -15,5 +17,6 @@ export class UserVO {
   statusName: string;
   title: string;
   profilePicture: ArrayBuffer;
+  workouts: WorkoutVO[] = [];
 
 }

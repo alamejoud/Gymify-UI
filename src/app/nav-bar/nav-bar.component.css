@@ -64,7 +64,6 @@
   color: #D7FB00;
   font-size: 1.5rem;
   cursor: pointer;
-  border: 50%;
   transition: all .3s ease;
 }
 
@@ -100,7 +99,7 @@
   align-items: center;
 }
 
-.logoNavigation {
+.titleNavigation {
   width: 100%;
   height: 100%;
   margin: auto;
@@ -111,8 +110,13 @@
   justify-content: flex-start;
 }
 
-.logoNavigation img {
-  height: 100%;
+.titleNavigation i {
+  margin-inline: 50px !important;
+}
+
+.titleNavigation h1 {
+  font-size: 2.5rem;
+  color: #f8f8ff;
 }
 
 .profileNavigation {

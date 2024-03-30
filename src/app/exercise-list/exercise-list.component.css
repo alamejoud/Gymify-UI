@@ -143,12 +143,12 @@
   font-size: 2em;
 }
 
-.back:hover {
-  background-color: #f8f8ff11;
+.back:hover{
+  background-color: #f8f8ff22;
 }
 
-.back:active {
-  background-color: #f8f8ff22;
+.back:active{
+  background-color: #f8f8ff33;
 }
 
 .exerciseInfo {

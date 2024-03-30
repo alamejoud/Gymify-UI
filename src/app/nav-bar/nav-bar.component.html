@@ -1,7 +1,7 @@
 <div class="navBar w-full">
-  <div class="logoNavigation">
+  <div class="titleNavigation">
     <i class="pi pi-bars ml-3 menuToggle" (click) = "getCommonService().toggleMenu = !getCommonService().toggleMenu "></i>
-    <img src="../../assets/images/Gymify.png" alt="Gymify">
+    <h1>{{getCommonService().updateTitle()}}</h1>
   </div>
   <div class="profileNavigation">
     <button class="chatBtn">

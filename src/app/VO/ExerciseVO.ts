@@ -3,6 +3,7 @@ import { TypeVO } from "./TypeVO";
 import { MuscleVO } from "./MuscleVO";
 import { SafeHtml, SafeResourceUrl } from "@angular/platform-browser";
 import { UserVO } from "./UserVO";
+import { WorkoutExerciseVO } from "./WorkoutExerciseVO";
 
 export class ExerciseVO {
   exerciseId: number;
@@ -17,4 +18,5 @@ export class ExerciseVO {
   videoLink: string;
   safeVideoLink: SafeResourceUrl;
   createdBy: UserVO;
+  workoutExercises: WorkoutExerciseVO[] = [];
 }

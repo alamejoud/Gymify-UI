@@ -62,6 +62,11 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TrainerExerciseComponent } from './trainer-exercise/trainer-exercise.component';
 import { AddExercisesComponent } from './add-exercises/add-exercises.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SidebarModule } from 'primeng/sidebar';
+import { DragDropModule } from 'primeng/dragdrop';
+import { WorkoutPageComponent } from './workout-page/workout-page.component';
+import { WorkoutListComponent } from './workout-list/workout-list.component';
+import { BrowseWorkoutComponent } from './browse-workout/browse-workout.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +84,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ExerciseListComponent,
     TrainerExerciseComponent,
     AddExercisesComponent,
+    WorkoutPageComponent,
+    WorkoutListComponent,
+    BrowseWorkoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,7 +131,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     AccordionModule,
     ScrollPanelModule,
     PaginatorModule,
-    InputTextareaModule
+    InputTextareaModule,
+    SidebarModule,
+    DragDropModule
   ],
   providers: [
     provideClientHydration(),

@@ -37,33 +37,40 @@ export class HomePageComponent {
         {
           label: 'Home',
           icon: 'pi pi-home',
-          routerLink: '/homePage/home'
+          routerLink: '/homePage/home',
+          command: () => { this.navigate() }
         },
         {
           label: 'Workout',
           icon: 'pi pi-heart',
-          routerLink: '/homePage/workout'
+          routerLink: '/homePage/workout',
+          command: () => { this.navigate() }
         },
         {
           label: 'Exercises',
           icon: 'fa-solid fa-dumbbell',
-          routerLink: '/homePage/exercises'
+          routerLink: '/homePage/exercises',
+          command: () => { this.navigate() }
         },
         {
           label: 'Nutrition',
-          icon: 'pi pi-apple'
+          icon: 'pi pi-apple',
+          command: () => { this.navigate() }
         },
         {
           label: 'Progress',
-          icon: 'pi pi-chart-line'
+          icon: 'pi pi-chart-line',
+          command: () => { this.navigate() }
         },
         {
           label: 'Community',
-          icon: 'pi pi-users'
+          icon: 'pi pi-users',
+          command: () => { this.navigate() }
         },
         {
           label: 'More',
-          icon: 'pi pi-ellipsis-h'
+          icon: 'pi pi-ellipsis-h',
+          command: () => { this.navigate() }
         }
       ]
     } else if (this.userServiceService.displayedUser.role == 'trainee') {
@@ -71,33 +78,40 @@ export class HomePageComponent {
         {
           label: 'Home',
           icon: 'pi pi-home',
-          routerLink: '/homePage/home'
+          routerLink: '/homePage/home',
+          command: () => { this.navigate() }
         },
         {
-          label: 'Workout',
+          label: 'Workouts',
           icon: 'pi pi-heart',
-          routerLink: '/homePage/workout'
+          routerLink: '/homePage/workout',
+          command: () => { this.navigate() }
         },
         {
           label: 'Exercises',
           icon: 'fa-solid fa-dumbbell',
-          routerLink: '/homePage/exercises'
+          routerLink: '/homePage/exercises',
+          command: () => { this.navigate() }
         },
         {
           label: 'Nutrition',
-          icon: 'pi pi-apple'
+          icon: 'pi pi-apple',
+          command: () => { this.navigate() }
         },
         {
           label: 'Progress',
-          icon: 'pi pi-chart-line'
+          icon: 'pi pi-chart-line',
+          command: () => { this.navigate() }
         },
         {
           label: 'Community',
-          icon: 'pi pi-users'
+          icon: 'pi pi-users',
+          command: () => { this.navigate() }
         },
         {
           label: 'More',
-          icon: 'pi pi-ellipsis-h'
+          icon: 'pi pi-ellipsis-h',
+          command: () => { this.navigate() }
         }
       ]
     } else if (this.userServiceService.displayedUser.role == 'trainer') {
@@ -105,12 +119,14 @@ export class HomePageComponent {
         {
           label: 'Home',
           icon: 'pi pi-home',
-          routerLink: '/homePage/home'
+          routerLink: '/homePage/home',
+          command: () => { this.navigate() }
         },
         {
           label: 'Exercises',
           icon: 'fa-solid fa-dumbbell',
-          routerLink: '/homePage/trainerExercise'
+          routerLink: '/homePage/trainerExercise',
+          command: () => { this.navigate() }
         }
       ]
     } else if (this.userServiceService.displayedUser.role == 'dietitian') {
@@ -126,6 +142,11 @@ export class HomePageComponent {
 
   getCommonService() {
     return this.commonServiceService;
+  }
+
+  navigate() {
+    this.commonServiceService.updateTitle();
+    this.commonServiceService.toggleMenu = false;
   }
 
 }
