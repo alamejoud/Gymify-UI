@@ -28,7 +28,7 @@ export class WorkoutPageComponent {
       },
       {
         label: 'Browse Workouts',
-        icon: 'pi pi-plus-search',
+        icon: 'pi pi-search',
         routerLink: '/homePage/workout/browseWorkout'
       }
     ];

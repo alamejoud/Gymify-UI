@@ -82,9 +82,15 @@
 
   ::ng-deep .p-button {
     background-color: #D7FB00;
-    color: #222222;
-    border: 2px solid #D7FB00;
     font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
   }
 
   ::ng-deep .exerciseMuscleChips > * .p-chip{

@@ -117,18 +117,17 @@ export class ExerciseListComponent {
     this.exerciseServiceService.getExercisesBySearch(searchText, this.first, this.rows).subscribe({
       next: data => {
         this.exerciseList = data.exerciseList;
+        this.exerciseList.forEach(element => {
+          element.safeVideoLink = this.commonServiceService.transformUrl(element.videoLink);
+        });
         if (this.exerciseServiceService.autoCompleteSelectedExerciseId != 0) {
           this.selectedExercise = this.exerciseList.find(exercise => exercise.exerciseId === this.exerciseServiceService.autoCompleteSelectedExerciseId) || undefined;
           this.exerciseServiceService.autoCompleteSelectedExerciseId = 0;
-          this.exerciseList.forEach(element => {
-            element.safeVideoLink = this.commonServiceService.transformUrl(element.videoLink);
-          });
-          this.loading = false;
         }
         else {
           this.selectedExercise = this.exerciseList[0];
-          this.loading = false;
         }
+        this.loading = false;
       },
       error: error => {
         this.exerciseList = [];
@@ -199,7 +198,6 @@ export class ExerciseListComponent {
   }
 
   onPageChange(event) {
-    console.log(event);
     this.first = event.first;
     this.rows = event.rows;
     switch (this.groupId) {

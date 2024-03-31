@@ -69,6 +69,10 @@ const routes: Routes = [
             component: WorkoutComponent
           },
           {
+            path: 'manageWorkout/:workoutId',
+            component: WorkoutComponent
+          },
+          {
             path: 'browseWorkout',
             component: BrowseWorkoutComponent
           }

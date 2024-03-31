@@ -45,14 +45,14 @@
 
 }
 
-.trainerExercise {
+.workoutPage {
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-rows: auto auto 1fr;
 }
 
-.trainerExercise>*:first-child {
+.workoutPage>*:first-child {
   padding-inline: 20px;
 }
 

@@ -58,6 +58,28 @@
   ::ng-deep .p-avatar img {
     height: auto;
   }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
+  }
+
+  ::ng-deep .p-dialog-header {
+    color: #D7FB00;
+  }
+
+  ::ng-deep .hidden {
+    display: none;
+  }
+
 }
 
 .workoutBody {
@@ -68,29 +90,50 @@
 }
 
 .exercisesList {
+  min-width: 370px;
+  height: calc(100vh - 200px);
   display: grid;
-  grid-template-rows: 5% 88% 5%;
+  grid-template-rows: auto 1fr auto;
   gap: 5px;
   padding: 10px;
   border-radius: 20px 0 0 20px;
   background-color: #1b1b1b;
 }
 
+.exercisesList ul {
+  height: fit-content;
+}
+
+.exercisesList>*:nth-child(3) {
+  padding-block: 30px;
+}
+
 .scheduleContainer {
-  overflow-y: scroll;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 5px;
+  position: relative;
+  height: calc(100vh - 200px);
   border-radius: 0 20px 20px 0;
   background-color: #1b1b1b;
+  overflow-y: scroll;
+}
+
+.scheduleSubContainer {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow-y: scroll;
+  min-height: 100%;
+}
+
+.scheduleContainer>*:last-child {
+  position: sticky;
+  bottom: 0;
+  right: 0;
 }
 
 .scheduleContainer .scheduleDay {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   gap: 5px;
   align-items: center;
   justify-content: center;
@@ -108,7 +151,11 @@
   border-bottom: 1px solid #f8f8ff;
 }
 
-.exercise {
+.scheduleDay ul {
+  align-self: flex-start;
+}
+
+.exercise, .add {
   cursor: pointer;
   padding: 10px;
   background-color: #2b2b2b;
@@ -117,7 +164,10 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+}
 
+.add {
+  background-color: #f8f8ff05;
 }
 
 .exercise:hover {
@@ -161,4 +211,33 @@
   width: 100%;
   height: fit-content;
   color: #f8f8ff;
+}
+
+.workoutName {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 400px;
+}
+
+.workoutName > * {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 1300px) {
+  .scheduleContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .scheduleContainer {
+    grid-template-columns: 1fr;
+  }
 }

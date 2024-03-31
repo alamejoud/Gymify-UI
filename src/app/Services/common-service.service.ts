@@ -52,8 +52,16 @@ export class CommonServiceService {
     if (token) {
       let payload = token.split('.')[1];
       let payloadData = JSON.parse(atob(payload));
-      console.log(payloadData);
       return payloadData.payload.role;
+    }
+  }
+
+  getUsername() {
+    let token = localStorage?.getItem('token');
+    if (token) {
+      let payload = token.split('.')[1];
+      let payloadData = JSON.parse(atob(payload));
+      return payloadData.sub;
     }
   }
 

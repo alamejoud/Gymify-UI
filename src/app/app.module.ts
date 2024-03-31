@@ -67,6 +67,7 @@ import { DragDropModule } from 'primeng/dragdrop';
 import { WorkoutPageComponent } from './workout-page/workout-page.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { BrowseWorkoutComponent } from './browse-workout/browse-workout.component';
+import { ScrollerModule } from 'primeng/scroller';
 
 @NgModule({
   declarations: [
@@ -133,7 +134,8 @@ import { BrowseWorkoutComponent } from './browse-workout/browse-workout.componen
     PaginatorModule,
     InputTextareaModule,
     SidebarModule,
-    DragDropModule
+    DragDropModule,
+    ScrollerModule
   ],
   providers: [
     provideClientHydration(),

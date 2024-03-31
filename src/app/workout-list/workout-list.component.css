@@ -1,0 +1,169 @@
+.workoutList {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.workoutScroller {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  gap: 20px;
+  padding: 20px;
+  background-color: #1b1b1b;
+  border-radius: 20px 20px 0 0;
+  border: 1px solid #1b1b1b;
+}
+
+.workoutScrollerItem {
+  height: 100%;
+  max-width: 15%;
+  min-width: 15%;
+  color: #D7FB00;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px;
+  transition: all .3s ease;
+  cursor: pointer;
+  border: 2px solid #f8f8ff;
+}
+
+.selected {
+  border-color: #D7FB00;
+}
+
+.workoutScrollerItemText {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  display: inline-block;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.workoutScrollerItemButton {
+  width: fit-content;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.workoutScrollerItemButton i {
+  margin: auto;
+  margin-inline: 10px;
+  color: #f8f8ff;
+  border-radius: 50%;
+  margin: auto;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.workoutScrollerItemButton i:hover {
+  color: #D7FB00;
+  background-color: #f8f8ff22 !important;
+}
+
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  display: block;
+}
+
+::-webkit-scrollbar-thumb {
+  display: block;
+  background-color: #D7FB0099;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  display: block;
+  background-color: #D7FB00aa;
+}
+
+
+.scheduleContainer {
+  height: calc(100vh - 300px);
+  overflow-y: scroll;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 0 0 20px 20px;
+  background-color: #1b1b1b;
+}
+
+.scheduleContainer .scheduleDay {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #2b2b2b;
+  color: #D7FB00;
+}
+
+.scheduleContainer .scheduleDay h2 {
+  font-size: 1.5em;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f8f8ff;
+}
+
+.scheduleDay ul {
+  align-self: flex-start;
+}
+
+.exercise {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2b2b2b;
+  color: #f8f8ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.add {
+  background-color: #f8f8ff05;
+}
+
+.scheduleDay {
+  border-radius: var(--border-radius) !important;
+}
+
+.scheduleExercise {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+  height: fit-content;
+  color: #f8f8ff;
+}
+
+@media screen and (max-width: 1300px) {
+  .scheduleContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .scheduleContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
