@@ -42,6 +42,29 @@
     color: rgba(215, 251, 0, 1) !important;
     border-color: #D7FB00;
   }
+  .exerciseInfoDialog {
+    ::ng-deep .p-dialog {
+      height: 100%;
+    }
+
+    ::ng-deep .p-dialog-content {
+      width: 40vw;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 1300px) {
+      ::ng-deep .p-dialog-content {
+        width: 60vw;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      ::ng-deep .p-dialog-content {
+        width: 80vw;
+      }
+    }
+
+  }
 
 }
 

@@ -8,7 +8,7 @@
       <p-image [src]="getUserService().imageUrl"
         [imageStyle]="{'width': '170px', 'height': '170px', 'border-radius': '50%', 'border': '4px solid #D7FB00',  'object-fit': 'cover', 'padding': '3px'}"
         [preview]="true"></p-image>
-      <span><i class="fa-solid fa-location-dot" *ngIf="getUserService().displayedUser.city != null || getUserService().displayedUser.address != null"></i> {{getUserService().displayedUser.city ? getUserService().displayedUser.city : '' + getUserService().displayedUser.city && getUserService().displayedUser.address ? ', ' : '' + getUserService().displayedUser.address ? getUserService().displayedUser.address : ''}}</span>
+      <span><i class="fa-solid fa-location-dot" *ngIf="getLocation() != ''"></i> {{ getLocation() }}</span>
     </div>
     <div class="profileInfoSection">
       <div class="titleSection">

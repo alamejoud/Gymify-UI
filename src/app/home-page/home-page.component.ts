@@ -123,6 +123,12 @@ export class HomePageComponent {
           command: () => { this.navigate() }
         },
         {
+          label: 'Workouts',
+          icon: 'pi pi-heart',
+          routerLink: '/homePage/workout',
+          command: () => { this.navigate() }
+        },
+        {
           label: 'Exercises',
           icon: 'fa-solid fa-dumbbell',
           routerLink: '/homePage/trainerExercise',

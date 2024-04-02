@@ -1,0 +1,135 @@
+:host {
+  ::ng-deep {
+    max-width: 50vw;
+  }
+
+  ::ng-deep .p-chip {
+    justify-self: center;
+    background-color: #222222;
+    color: #f8f8ff;
+    border-radius: 16px;
+    padding: 0 0.75rem;
+    font-size: 1rem;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .exerciseMuscleChips > * .p-chip{
+    background-color: #FBC02D;
+    color: #222222;
+  }
+
+  ::ng-deep .exerciseMuscleChips > *:first-child .p-chip {
+    background-color: #0288D1;
+    color: #f8f8ff;
+  }
+
+}
+
+.exerciseInfo {
+  height: 100%;
+  border:#D7FB00 2px solid;
+  border-radius: 20px;
+  color: #f8f8ff;
+  padding-inline: 20px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow-y: scroll;
+}
+
+.exerciseHeader {
+  border-bottom: 1px solid #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exerciseTitle {
+  font-size: 3em;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exerciseContent {
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.exerciseContent>* {
+  overflow-y: scroll;
+}
+
+.exerciseVideoLink {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #222222;
+}
+
+.exerciseMusclesTypesEquipments {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.exerciseMusclesTypesEquipments>* {
+  padding-block: 20px;
+  display: flex;
+  border-bottom: 1px solid #222222;
+}
+
+.exerciseMusclesTypesEquipments span {
+  padding-right: 50px;
+  padding-left: 10px;
+  font-size: 1.2em;
+}
+
+.exerciseChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exerciseChips>* {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exerciseDescription {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+  gap: 10px 20px;
+}
+
+.exerciseDescription span {
+  font-weight: 900;
+  font-size: 25px;
+  color: #D7FB00;
+}
+
+.exerciseFooter {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #222222;
+}
+
+.createdByInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: baseline;
+  padding: 20px;
+}

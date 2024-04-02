@@ -19,8 +19,8 @@
 
 .workoutScrollerItem {
   height: 100%;
-  max-width: 15%;
-  min-width: 15%;
+  max-width: 200px;
+  min-width: 200px;
   color: #D7FB00;
   padding-right: 50px;
   border-radius: 20px;
@@ -154,6 +154,30 @@
   height: fit-content;
   color: #f8f8ff;
 }
+
+.selectable {
+  cursor: pointer;
+}
+
+.selectable:hover {
+  border: 1px inset #f8f8ff;
+}
+
+.selected {
+  border: 2px inset #D7FB00;
+}
+
+.saveBtn{
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-inline: 20px;
+}
+
 
 @media screen and (max-width: 1300px) {
   .scheduleContainer {

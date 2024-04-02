@@ -1,0 +1,11 @@
+:host {
+  ::ng-deep .p-dialog{
+    width: 90vw;
+    height: 90vh;
+  }
+
+  ::ng-deep .p-dialog-header {
+    color: #f8f8ff;
+    border-bottom: 1px solid #222222;
+  }
+}

@@ -23,6 +23,7 @@ export class ExerciseListComponent {
   rows: number = 4;
   totalRecords = 0;
   loading: boolean = false;
+  addToWorkoutScreen: boolean = false;
 
   constructor(private route: ActivatedRoute, private exerciseServiceService: ExerciseServiceService,
     private messageService: MessageService, private commonServiceService: CommonServiceService,
@@ -276,4 +277,11 @@ export class ExerciseListComponent {
   editExercise() {
     this.router.navigate(['/homePage/trainerExercise/manageExercises/' + this.selectedExercise.exerciseId]);
   }
+
+  openAddToWorkoutScreen() {
+    console.log(1);
+
+    this.addToWorkoutScreen = true;
+  }
+
 }

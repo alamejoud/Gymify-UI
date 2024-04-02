@@ -7,7 +7,6 @@ import { WorkoutExerciseVO } from '../VO/WorkoutExerciseVO';
 import { CommonServiceService } from '../Services/common-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Paginator } from 'primeng/paginator';
-import { Button } from 'primeng/button';
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
@@ -30,11 +29,14 @@ export class WorkoutComponent {
   @ViewChild('b') button: ElementRef;
   @ViewChild('paginator') paginator: Paginator;
   workoutId: number = 0;
+  loading: boolean = false;
 
   constructor(private workoutServiceService: WorkoutServiceService, private exerciseServiceService: ExerciseServiceService, private commonServiceService: CommonServiceService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    debugger;
+    this.workoutServiceService.selectedExerciseId = 0;
+    this.workoutServiceService.openExerciseInfo = false;
+
     this.filterExercises();
 
     this.workoutId = Number(this.route.snapshot.paramMap.get('workoutId'));
@@ -51,12 +53,6 @@ export class WorkoutComponent {
     } else {
       this.tempWorkout = { ...this.workout };
     }
-  }
-
-  ngAfterViewInit() {
-    console.log(this.paginator);
-
-    console.log(this.button);
   }
 
   dragStart(exercise, event) {
@@ -88,6 +84,7 @@ export class WorkoutComponent {
   }
 
   filterExercises(fromSearch?) {
+    this.loading = true;
     if (fromSearch) {
       this.first = 0;
     }
@@ -101,9 +98,11 @@ export class WorkoutComponent {
         this.exercises.forEach(element => {
           element.safeVideoLink = this.commonServiceService.transformUrl(element.videoLink);
         });
+        this.loading = false;
       },
       error: error => {
         this.exercises = [];
+        this.loading = false;
       }
     });
   }
@@ -111,10 +110,6 @@ export class WorkoutComponent {
   onPageChange(event) {
     this.first = event.first;
     this.filterExercises();
-  }
-
-  isTrainer(): boolean {
-    return this.router.url.includes('trainerExercise');
   }
 
   getCommonService() {
@@ -167,4 +162,8 @@ export class WorkoutComponent {
     this.paginator.changePageToFirst(event);
   }
 
+  openExerciseInfo(exerciseId: number) {
+    this.workoutServiceService.selectedExerciseId = exerciseId;
+    this.workoutServiceService.openExerciseInfo = true;
+  }
 }

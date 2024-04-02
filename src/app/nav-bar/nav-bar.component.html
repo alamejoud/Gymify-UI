@@ -4,7 +4,7 @@
     <h1>{{getCommonService().updateTitle()}}</h1>
   </div>
   <div class="profileNavigation">
-    <button class="chatBtn">
+    <button class="chatBtn" (click)="openChatPage()">
       <i class="fa-regular fa-message"></i>
     </button>
     <p-avatar (click)="showProfileDialog()" [image]="getUserService().imageUrl" shape="circle"
@@ -20,4 +20,5 @@
   </div>
   <p-confirmDialog></p-confirmDialog>
   <app-profile-popup></app-profile-popup>
+  <app-chat-page></app-chat-page>
 </div>

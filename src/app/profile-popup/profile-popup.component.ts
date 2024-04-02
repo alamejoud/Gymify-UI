@@ -56,4 +56,18 @@ export class ProfilePopupComponent {
     this.userServiceService.editedUser = JSON.parse(JSON.stringify(this.userServiceService.displayedUser));
     this.userServiceService.isEditingProfile = !this.userServiceService.isEditingProfile;
   }
+
+  getLocation() {
+    let location = '';
+    if (this.userServiceService.displayedUser.city && this.userServiceService.displayedUser.city.trim().length > 0) {
+      location += this.userServiceService.displayedUser.city;
+    }
+    if (this.userServiceService.displayedUser.address && this.userServiceService.displayedUser.address.trim().length > 0) {
+      if (location.length > 0) {
+        location += ', ';
+      }
+      location += this.userServiceService.displayedUser.address;
+    }
+    return location;
+  }
 }

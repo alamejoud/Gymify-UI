@@ -1,5 +1,8 @@
 <div class="workoutPage">
   <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
   <router-outlet></router-outlet>
+  <p-dialog class="exerciseInfoDialog" header="Exercise Info" [(visible)]="getWorkoutService().openExerciseInfo" [modal]="true" [draggable]="false" [resizable]="false">
+    <app-exercise-info *ngIf="getWorkoutService().openExerciseInfo"></app-exercise-info>
+  </p-dialog>
 </div>
 

@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { UserServiceService } from '../Services/user-service.service';
 import { CommonServiceService } from '../Services/common-service.service';
+import { ChatServiceService } from '../Services/chat-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,7 @@ import { CommonServiceService } from '../Services/common-service.service';
 })
 export class NavBarComponent {
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService) { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService, private chatServiceService: ChatServiceService) { }
 
   ngOnInit() {
     this.userServiceService.getLoggedInUser().subscribe({
@@ -52,6 +53,10 @@ export class NavBarComponent {
 
   getCommonService() {
     return this.commonServiceService;
+  }
+
+  openChatPage() {
+    this.chatServiceService.chatPage = true;
   }
 
 }

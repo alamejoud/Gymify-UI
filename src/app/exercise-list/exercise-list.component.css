@@ -124,6 +124,7 @@
 
 .exerciseElement {
   cursor: pointer;
+  padding: 20px !important;
 }
 
 .exerciseElement:hover {
@@ -248,7 +249,6 @@
   align-items: center;
   border-top: 1px solid #222222;
 }
-
 
 .Btn {
   margin: auto;

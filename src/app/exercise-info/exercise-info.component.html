@@ -1,0 +1,47 @@
+<div class="exerciseInfo">
+  <div class="exerciseHeader py-4">
+    <h1 class="font-bold exerciseTitle max-w-full" *ngIf="!loading && selectedExercise">{{ selectedExercise?.exerciseName }}</h1>
+    <p-skeleton width="10rem" styleClass="mb-2" *ngIf="loading"></p-skeleton>
+  </div>
+  <div class="exerciseContent py-4">
+    <div *ngIf="!loading && selectedExercise">
+      <iframe class="exerciseVideoLink" [src]="selectedExercise.safeVideoLink"></iframe>
+      <div class="exerciseMusclesTypesEquipments">
+        <span>Muscle Group</span>
+        <div class="exerciseMuscleChips exerciseChips">
+          <p-chip class="mx-1" [image]="getCommonService().transformImage(selectedExercise?.majorMuscle.musclePicture)" [label]="selectedExercise?.majorMuscle.muscleName | titlecase"></p-chip>
+          <p-chip class="mx-1" *ngFor="let muscle of selectedExercise?.minorMuscles" [image]="getCommonService().transformImage(muscle.musclePicture)" [label]="muscle.muscleName | titlecase"></p-chip>
+        </div>
+        <span>Type</span>
+        <div class="exerciseChips">
+          <p-chip class="mx-1" *ngFor="let type of selectedExercise?.types" [image]="getCommonService().transformImage(type.typePicture)" [label]="type.typeName | titlecase"></p-chip>
+        </div>
+        <span>Equipment</span>
+        <div class="exerciseChips">
+          <p-chip class="mx-1" *ngFor="let equipment of selectedExercise?.equipments" [image]="getCommonService().transformImage(equipment.equipmentPicture)" [label]="equipment.equipmentName | titlecase"></p-chip>
+        </div>
+      </div>
+      <div  class="exerciseDescription">
+        <span>
+          Notes
+        </span>
+        <span>
+          Modifications
+        </span>
+        <p>
+          {{selectedExercise?.notes || '(none)'}}
+        </p>
+        <p>
+          {{selectedExercise?.modifications || '(none)'}}
+        </p>
+      </div>
+    </div>
+    <p-skeleton width="100%" height="500px" *ngIf="loading"></p-skeleton>
+  </div>
+  <div class="exerciseFooter">
+    <div class="createdByInfo">
+      <h4>Created By: </h4>
+      <p-chip [image]="getCommonService().transformImage(selectedExercise?.createdBy.profilePicture)" [label]="selectedExercise?.createdBy.username | titlecase"></p-chip>
+    </div>
+  </div>
+</div>

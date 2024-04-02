@@ -68,6 +68,8 @@ import { WorkoutPageComponent } from './workout-page/workout-page.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { BrowseWorkoutComponent } from './browse-workout/browse-workout.component';
 import { ScrollerModule } from 'primeng/scroller';
+import { ExerciseInfoComponent } from './exercise-info/exercise-info.component';
+import { ChatPageComponent } from './chat-page/chat-page.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { ScrollerModule } from 'primeng/scroller';
     WorkoutPageComponent,
     WorkoutListComponent,
     BrowseWorkoutComponent,
+    ExerciseInfoComponent,
+    ChatPageComponent,
   ],
   imports: [
     BrowserModule,

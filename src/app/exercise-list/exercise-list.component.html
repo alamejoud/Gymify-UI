@@ -10,7 +10,7 @@
       <ng-template let-exercises pTemplate="listItem">
         <div *ngIf="!loading && exerciseList.length != 0">
           <div class="col-12" *ngFor="let exercise of exercises; let first = first" >
-            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="this.selectedExercise = exercise" [ngClass]="{'highlight' : selectedExercise?.exerciseId == exercise.exerciseId}">
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 exerciseElement" (click)="selectedExercise = exercise" [ngClass]="{'highlight' : selectedExercise?.exerciseId == exercise.exerciseId}">
               <img class="w-9 sm:w-16rem xl:w-5rem shadow-2 block xl:block mx-auto border-round" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.exerciseName" />
               <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                 <div class="flex flex-column align-items-center sm:align-items-start gap-3">
@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                  <p-avatar *ngIf="!isTrainer()" [pTooltip]="exercise.createdBy.username" [pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
-                  <p-button class="editButton" *ngIf="isTrainer()" (click)="editExercise()"><i class="pi pi-file-edit"></i></p-button>
+                  <p-avatar *ngIf="exercise.createdBy.username.toLowerCase() != getCommonService().getUsername().toLowerCase()"[pTooltip]="exercise.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(exercise.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+                  <p-button class="editButton" *ngIf="exercise.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase()" (click)="editExercise()"><i class="pi pi-file-edit"></i>&nbsp;Edit</p-button>
                 </div>
               </div>
             </div>
@@ -96,10 +96,10 @@
       <p-skeleton width="100%" height="500px" *ngIf="loading"></p-skeleton>
     </div>
     <div class="exerciseFooter py-4">
-      <p-button  icon="pi pi-plus" label="Add to Workout" *ngIf="!loading && selectedExercise"></p-button>
+      <p-button  icon="pi pi-plus" label="Add to Workout" *ngIf="!loading && selectedExercise" (click)="openAddToWorkoutScreen()"></p-button>
       <p-skeleton width="10rem" height="4rem" *ngIf="loading"></p-skeleton>
       <div class="delete">
-        <button *ngIf="isTrainer() && !loading && selectedExercise" (click)="confirmDelete($event)" class="Btn">
+        <button *ngIf="!loading && selectedExercise && selectedExercise.createdBy.username.toLowerCase() == getCommonService().getUsername()" (click)="confirmDelete($event)" class="Btn">
           <div class="sign">
             <i class="fa-solid fa-trash"></i>
           </div>
@@ -109,4 +109,9 @@
       </div>
     </div>
   </div>
+  <p-dialog header="Add To Workout" [(visible)]="addToWorkoutScreen" [modal]="true" [draggable]="false" [resizable]="false">
+    <div style="width: 75vw;">
+      <app-workout-list *ngIf="addToWorkoutScreen" [exercise]="selectedExercise"></app-workout-list>
+    </div>
+  </p-dialog>
 </div>
