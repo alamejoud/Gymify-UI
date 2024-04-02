@@ -81,6 +81,38 @@ body {
   background-color: #222222;
 }
 
+.nb-theme-default h1 {
+  color: #f8f8ff !important;
+}
+
+.nb-theme-default h2 {
+  color: #D7FB00 !important;
+}
+
+.nb-theme-default h3 {
+  color: #f8f8ff !important;
+}
+
+.nb-theme-default h4 {
+  color: #f8f8ff !important;
+}
+
+.nb-theme-default h5 {
+  color: #f8f8ff !important;
+}
+
+.nb-theme-default p {
+  color: #f8f8ff !important;
+}
+
+.nb-theme-default a {
+  text-decoration: none !important;
+}
+
+.nb-theme-dark nb-layout .layout {
+  min-height: 100% !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

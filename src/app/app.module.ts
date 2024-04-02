@@ -38,7 +38,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { BadgeModule } from 'primeng/badge';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { NbMenuModule } from '@nebular/theme';
+import { NbButtonModule, NbChatModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule, NbToastrModule } from '@nebular/theme';
 import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
 import { tokenInterceptor } from './token.interceptor';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -70,6 +70,7 @@ import { BrowseWorkoutComponent } from './browse-workout/browse-workout.componen
 import { ScrollerModule } from 'primeng/scroller';
 import { ExerciseInfoComponent } from './exercise-info/exercise-info.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
     WorkoutListComponent,
     BrowseWorkoutComponent,
     ExerciseInfoComponent,
-    ChatPageComponent,
+    ChatPageComponent
   ],
   imports: [
     BrowserModule,
@@ -139,7 +140,16 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
     InputTextareaModule,
     SidebarModule,
     DragDropModule,
-    ScrollerModule
+    ScrollerModule,
+    NbThemeModule.forRoot({ name: 'dark' }),
+    NbInputModule,
+    NbButtonModule,
+    NbToastrModule.forRoot(),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbIconModule,
+    NbSidebarModule.forRoot(),
+    NbChatModule,
   ],
   providers: [
     provideClientHydration(),

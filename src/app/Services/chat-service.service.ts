@@ -5,7 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class ChatServiceService {
 
-  chatPage: boolean = false;
+  chatPage: boolean = true;
 
   constructor() { }
+
+  loadMessages(): any[] {
+    return [];
+  }
 }
