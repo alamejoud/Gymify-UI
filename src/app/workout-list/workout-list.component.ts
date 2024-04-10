@@ -4,9 +4,9 @@ import { CommonServiceService } from '../Services/common-service.service';
 import { WorkoutServiceService } from '../Services/workout-service.service';
 import { ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { ExerciseServiceService } from '../Services/exercise-service.service';
 import { ExerciseVO } from '../VO/ExerciseVO';
 import { WorkoutExerciseVO } from '../VO/WorkoutExerciseVO';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-workout-list',
@@ -22,7 +22,7 @@ export class WorkoutListComponent {
   days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   loading: boolean = false;
 
-  constructor(private commonServiceService: CommonServiceService, private workoutServiceService: WorkoutServiceService, private confirmationService: ConfirmationService, private router: Router, private exerciseServiceService: ExerciseServiceService) {
+  constructor(private commonServiceService: CommonServiceService, private workoutServiceService: WorkoutServiceService, private confirmationService: ConfirmationService, private router: Router) {
 
   }
 
@@ -46,7 +46,7 @@ export class WorkoutListComponent {
         this.loading = false;
       },
       error: (error) => {
-        console.log(error);
+        this.commonServiceService.handleError(error);
         this.loading = false;
       }
     });

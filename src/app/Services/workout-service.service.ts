@@ -17,7 +17,6 @@ export class WorkoutServiceService {
     return this.http.get('http://localhost:9090/workout/getWorkoutById?workoutId=' + id);
   }
   saveWorkout(workout: WorkoutVO): Observable<any> {
-    debugger;
     return this.http.post('http://localhost:9090/workout/saveWorkout', workout);
   }
   getMyWorkouts(onlyCreatedWorkout: boolean): Observable<any> {

@@ -4,7 +4,7 @@
     <h1>{{getCommonService().updateTitle()}}</h1>
   </div>
   <div class="profileNavigation">
-    <button class="chatBtn" (click)="openChatPage()">
+    <button class="chatBtn" (click)="openChatPage()" pBadge [value]="getChatService().unreadChats" [ngClass]="{'hideBadge': getChatService().unreadChats == undefined || getChatService().unreadChats.trim() == '' || getChatService().unreadChats.trim() == '0'}">
       <i class="fa-regular fa-message"></i>
     </button>
     <p-avatar (click)="showProfileDialog()" [image]="getUserService().imageUrl" shape="circle"
@@ -20,5 +20,5 @@
   </div>
   <p-confirmDialog></p-confirmDialog>
   <app-profile-popup></app-profile-popup>
-  <app-chat-page></app-chat-page>
+  <app-chat-page *ngIf="getChatService().chatPage"></app-chat-page>
 </div>

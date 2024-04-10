@@ -85,7 +85,6 @@ export class AddExercisesComponent {
   }
 
   filterMinorMuscles($event) {
-    debugger;
     this.exerciseServiceService.filterMuscles($event.query).subscribe({
       next: response => {
 

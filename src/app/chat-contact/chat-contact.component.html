@@ -1,0 +1,54 @@
+<div class="contactSection">
+  <div class="flex flex-row align-items-center justify-content-center">
+    <input pInputText [(ngModel)]="getChatService().search" placeholder="Search for contacts">
+    <p-button class="pl-2" (click)="reloadContacts()">
+      Search
+    </p-button>
+  </div>
+  <p-dataView [value]="contacts">
+    <ng-template pTemplate="list" let-products>
+      <div class="grid grid-nogutter">
+        <div class="w-full" *ngIf="!loading && contacts.length != 0">
+          <div class="col-12" *ngFor="let contact of contacts; let first = first" >
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 contactElement" (click)="getChatService().selectedContact = contact; markMessagesAsRead(contact)" [ngClass]="{'highlight' : getChatService().selectedContact?.username == contact.username}">
+              <p-avatar [image]="getCommonService().transformImage(contact.profilePicture)" shape="circle" size="large"></p-avatar>
+              <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                    <div class="text-2xl font-bold">{{ contact.username | titlecase }}</div>
+                    <div class="flex align-items-center gap-3">
+                      <p-badge *ngIf="contact.unreadMessages != 0 && contact.unreadMessages != undefined" [value]="contact.unreadMessages"></p-badge>
+                        <span class="messageView flex align-items-center gap-2" [innerHTML]="displayMessage(contact)">
+                        </span>
+                    </div>
+                </div>
+                <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                  <p-tag [value]="contact.role | titlecase" [severity]="getSeverity(contact.role)" [rounded]="true"></p-tag>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="w-full" *ngIf="loading">
+        <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 contactElement" *ngFor="let contact of contacts">
+          <div>
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+          </div>
+          <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+              <div class="w-full flex flex-column align-items-center sm:align-items-start gap-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="w-full h-2rem flex align-items-center gap-3">
+                    <span class="w-full h-full flex align-items-center gap-2">
+                      <p-skeleton class="w-full h-full"></p-skeleton>
+                    </span>
+                </div>
+              </div>
+              <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                <p-skeleton width="5rem" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  </p-dataView>
+</div>

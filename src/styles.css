@@ -81,31 +81,38 @@ body {
   background-color: #222222;
 }
 
-.nb-theme-default h1 {
+.nb-theme-default h1,
+.nb-theme-dark h1 {
   color: #f8f8ff !important;
 }
 
-.nb-theme-default h2 {
+.nb-theme-default h2,
+.nb-theme-dark h2 {
   color: #D7FB00 !important;
 }
 
-.nb-theme-default h3 {
+.nb-theme-default h3,
+.nb-theme-dark h3 {
   color: #f8f8ff !important;
 }
 
-.nb-theme-default h4 {
+.nb-theme-default h4,
+.nb-theme-dark h4 {
   color: #f8f8ff !important;
 }
 
-.nb-theme-default h5 {
+.nb-theme-default h5,
+.nb-theme-dark h5 {
   color: #f8f8ff !important;
 }
 
-.nb-theme-default p {
+.nb-theme-default p,
+.nb-theme-dark p {
   color: #f8f8ff !important;
 }
 
-.nb-theme-default a {
+.nb-theme-default a,
+.nb-theme-dark a {
   text-decoration: none !important;
 }
 

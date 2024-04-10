@@ -32,6 +32,8 @@
 
 h1 {
   font-size: 2.8rem;
+  color: #D7FB00 !important;
+  font-weight: normal !important;
 }
 
 .formContainer {
@@ -43,6 +45,7 @@ h1 {
 }
 
 .loginHeader {
+  color: #D7FB00 !important;
   display: flex;
   flex-direction: column;
   justify-content: center;

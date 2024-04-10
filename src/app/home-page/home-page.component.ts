@@ -36,13 +36,13 @@ export class HomePageComponent {
       this.menuTab = [
         {
           label: 'Home',
-          icon: 'pi pi-home',
+          icon: 'fa-solid fa-house',
           routerLink: '/homePage/home',
           command: () => { this.navigate() }
         },
         {
           label: 'Workout',
-          icon: 'pi pi-heart',
+          icon: 'fa-regular fa-calendar',
           routerLink: '/homePage/workout',
           command: () => { this.navigate() }
         },
@@ -54,7 +54,7 @@ export class HomePageComponent {
         },
         {
           label: 'Nutrition',
-          icon: 'pi pi-apple',
+          icon: 'fa-solid fa-apple-whole',
           command: () => { this.navigate() }
         },
         {
@@ -77,13 +77,13 @@ export class HomePageComponent {
       this.menuTab = [
         {
           label: 'Home',
-          icon: 'pi pi-home',
+          icon: 'fa-solid fa-house',
           routerLink: '/homePage/home',
           command: () => { this.navigate() }
         },
         {
           label: 'Workouts',
-          icon: 'pi pi-heart',
+          icon: 'fa-regular fa-calendar',
           routerLink: '/homePage/workout',
           command: () => { this.navigate() }
         },
@@ -95,7 +95,7 @@ export class HomePageComponent {
         },
         {
           label: 'Nutrition',
-          icon: 'pi pi-apple',
+          icon: 'fa-solid fa-apple-whole',
           command: () => { this.navigate() }
         },
         {
@@ -118,13 +118,13 @@ export class HomePageComponent {
       this.menuTab = [
         {
           label: 'Home',
-          icon: 'pi pi-home',
+          icon: 'fa-solid fa-house',
           routerLink: '/homePage/home',
           command: () => { this.navigate() }
         },
         {
           label: 'Workouts',
-          icon: 'pi pi-heart',
+          icon: 'fa-regular fa-calendar',
           routerLink: '/homePage/workout',
           command: () => { this.navigate() }
         },
@@ -139,7 +139,7 @@ export class HomePageComponent {
       this.menuTab = [
         {
           label: 'Home',
-          icon: 'pi pi-home',
+          icon: 'fa-solid fa-house',
           routerLink: '/homePage/home'
         }
       ]

@@ -1,3 +1,4 @@
+import { MessageVO } from "./MessageVO";
 import { WorkoutVO } from "./WorkoutVO";
 
 export class UserVO {
@@ -18,5 +19,9 @@ export class UserVO {
   title: string;
   profilePicture: ArrayBuffer;
   workouts: WorkoutVO[] = [];
+  sentMessages: MessageVO[] = [];
+  receivedMessages: MessageVO[] = [];
+  unreadMessages: number = 0;
+  lastMessage: MessageVO;
 
 }

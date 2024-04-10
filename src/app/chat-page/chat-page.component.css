@@ -8,33 +8,32 @@
     color: #f8f8ff;
     border-bottom: 1px solid #222222;
   }
-
-  ::ng-deep .chatSection *:not(.header):not(.form):not(.messages) {
-    height: 100%;
-  }
 }
 
 .chatPopup {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 100%;
   grid-template-rows: 100%;
-
 }
 
-.contentSection {
+.back {
+  width: 40px;
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0 1rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 2em;
+  color: #D7FB00;
 }
 
-.chatSection {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0 1rem;
+.back:hover{
+  background-color: #f8f8ff22;
 }
 
-
+.back:active{
+  background-color: #f8f8ff33;
+}

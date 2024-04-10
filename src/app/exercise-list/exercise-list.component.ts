@@ -279,8 +279,6 @@ export class ExerciseListComponent {
   }
 
   openAddToWorkoutScreen() {
-    console.log(1);
-
     this.addToWorkoutScreen = true;
   }
 

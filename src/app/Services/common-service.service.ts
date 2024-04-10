@@ -68,4 +68,9 @@ export class CommonServiceService {
   updateTitle() {
     return this.routePageMap.get(this.router.url.split('/')[2]);
   }
+
+  titleCaseWord(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
 }

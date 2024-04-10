@@ -15,7 +15,6 @@
           </div>
         </div>
       </li>
-
     </ul>
     <ul *ngIf="loading"  class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" >
       <li>
@@ -171,7 +170,7 @@
       </ul>
     </div>
   </div>
-  <div class="w-full flex flex-row-reverse pb-5 pr-5">
+  <div class="flex flex-row-reverse">
     <p-button *ngIf="workoutId == undefined || workoutId == 0" [disabled]="!scheduleIsNotEmpty()" (click)="showNamePopup()"><i class="pi pi-save"></i>&nbsp;Save</p-button>
     <p-button *ngIf="workoutId != undefined && workoutId != 0" [disabled]="!scheduleIsNotEmpty()" (click)="showNamePopup()"><i class="pi pi-file-edit"></i>&nbsp;Edit</p-button>
   </div>

@@ -71,6 +71,8 @@ import { ScrollerModule } from 'primeng/scroller';
 import { ExerciseInfoComponent } from './exercise-info/exercise-info.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { ChatContactComponent } from './chat-contact/chat-contact.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,9 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     WorkoutListComponent,
     BrowseWorkoutComponent,
     ExerciseInfoComponent,
-    ChatPageComponent
+    ChatPageComponent,
+    ChatContactComponent,
+    ChatMessageComponent
   ],
   imports: [
     BrowserModule,

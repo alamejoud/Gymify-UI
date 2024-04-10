@@ -63,7 +63,7 @@ export class ExerciseComponent {
           let highlightedText = '<span style="color: cyan; font-weight: bold; border-bottom: 1px solid cyan;">$&</span>'
           let lowerCaseHandle: string = exercise.exerciseName.replaceAll(new RegExp($event.query.toLowerCase(), "g"), highlightedText);
           let upperCaseHandle: string = lowerCaseHandle.replaceAll(new RegExp($event.query.toUpperCase(), "g"), highlightedText)
-          let capitalizeHandle: string = upperCaseHandle.replaceAll(new RegExp(this.titleCaseWord($event.query), "g"), highlightedText)
+          let capitalizeHandle: string = upperCaseHandle.replaceAll(new RegExp(this.commonServiceService.titleCaseWord($event.query), "g"), highlightedText)
           exercise.exerciseSafeHtml = this.sanitizer.bypassSecurityTrustHtml(capitalizeHandle);
         });
       },
@@ -79,11 +79,6 @@ export class ExerciseComponent {
 
   getCommonService() {
     return this.commonServiceService;
-  }
-
-  titleCaseWord(word: string) {
-    if (!word) return word;
-    return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 
   searchForExercises(searchValue) {

@@ -3,6 +3,7 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { UserServiceService } from '../Services/user-service.service';
 import { CommonServiceService } from '../Services/common-service.service';
 import { ChatServiceService } from '../Services/chat-service.service';
+import { UserVO } from '../VO/UserVO';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,6 +12,8 @@ import { ChatServiceService } from '../Services/chat-service.service';
 })
 export class NavBarComponent {
 
+  updateUnreadChatsSubscription;
+
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService, private chatServiceService: ChatServiceService) { }
 
   ngOnInit() {
@@ -18,6 +21,19 @@ export class NavBarComponent {
       next: response => {
         this.userServiceService.displayedUser = response.user;
         this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
+      },
+      error: error => {
+        console.log(error);
+
+      }
+    });
+    this.updateUnreadChatsSubscription = this.chatServiceService.updateUnreadChats().subscribe({
+      next: response => {
+        this.chatServiceService.unreadChats = response.unreadChats;
+      },
+      error: error => {
+        console.log(error);
+
       }
     });
   }
@@ -56,7 +72,12 @@ export class NavBarComponent {
   }
 
   openChatPage() {
+    this.chatServiceService.selectedContact = new UserVO();
     this.chatServiceService.chatPage = true;
+  }
+
+  getChatService() {
+    return this.chatServiceService;
   }
 
 }

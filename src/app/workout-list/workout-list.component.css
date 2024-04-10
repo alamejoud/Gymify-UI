@@ -15,6 +15,25 @@
   background-color: #1b1b1b;
   border-radius: 20px 20px 0 0;
   border: 1px solid #1b1b1b;
+
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  display: block;
+}
+
+::-webkit-scrollbar-thumb {
+  display: block;
+  background-color: #D7FB0099;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  display: block;
+  background-color: #D7FB00aa;
 }
 
 .workoutScrollerItem {
@@ -72,26 +91,6 @@
   color: #D7FB00;
   background-color: #f8f8ff22 !important;
 }
-
-
-::-webkit-scrollbar {
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  display: block;
-}
-
-::-webkit-scrollbar-thumb {
-  display: block;
-  background-color: #D7FB0099;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  display: block;
-  background-color: #D7FB00aa;
-}
-
 
 .scheduleContainer {
   height: calc(100vh - 300px);
