@@ -1,9 +1,6 @@
 <div class="contactSection">
   <div class="flex flex-row align-items-center justify-content-center">
     <input pInputText [(ngModel)]="getChatService().search" placeholder="Search for contacts">
-    <p-button class="pl-2" (click)="reloadContacts()">
-      Search
-    </p-button>
   </div>
   <p-dataView [value]="contacts">
     <ng-template pTemplate="list" let-products>
@@ -13,16 +10,19 @@
             <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 contactElement" (click)="getChatService().selectedContact = contact; markMessagesAsRead(contact)" [ngClass]="{'highlight' : getChatService().selectedContact?.username == contact.username}">
               <p-avatar [image]="getCommonService().transformImage(contact.profilePicture)" shape="circle" size="large"></p-avatar>
               <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-                    <div class="text-2xl font-bold">{{ contact.username | titlecase }}</div>
-                    <div class="flex align-items-center gap-3">
+                <div class="w-full grid grid-nogutter">
+                    <div class="col-10 text-2xl font-bold p-2">{{ contact.username | titlecase }}</div>
+                    <p-tag class="col-2 flex flex-row align-items-end justify-content-end p-2" [value]="contact.role | titlecase" [severity]="getSeverity(contact.role)" [rounded]="true"></p-tag>
+                    <div class="col-10 flex align-items-center gap-3 p-2">
                       <p-badge *ngIf="contact.unreadMessages != 0 && contact.unreadMessages != undefined" [value]="contact.unreadMessages"></p-badge>
                         <span class="messageView flex align-items-center gap-2" [innerHTML]="displayMessage(contact)">
                         </span>
                     </div>
-                </div>
-                <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                  <p-tag [value]="contact.role | titlecase" [severity]="getSeverity(contact.role)" [rounded]="true"></p-tag>
+                    <div class="col-2 flex align-items-center justify-content-end gap-3 p-2">
+                        <span class="messageView flex align-items-center gap-2">
+                          {{contact.lastMessage?.messageDate | date}}
+                        </span>
+                    </div>
                 </div>
               </div>
             </div>

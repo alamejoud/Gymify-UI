@@ -8,9 +8,9 @@
         {{workout.workoutName}}
       </div>
       <div class="workoutScrollerItemButton">
-        <i *ngIf="workout.createdBy.username.toLowerCase() == getCommonService().getUsername() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined)" class="pi pi-pencil" (click)="editWorkout(workout.workoutId)"></i>
-        <i *ngIf="workout.createdBy.username.toLowerCase() == getCommonService().getUsername() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined)" class="pi pi-trash" (click)="confirmDelete($event)"></i>
-        <i *ngIf="!(workout.createdBy.username.toLowerCase() == getCommonService().getUsername() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined))" class="pi pi-minus-circle" (click)="unsubscribeFromWorkout(workout.workoutId)"></i>
+        <i *ngIf="workout.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined)" class="pi pi-pencil" (click)="editWorkout(workout.workoutId)"></i>
+        <i *ngIf="workout.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined)" class="pi pi-trash" (click)="confirmDelete($event)"></i>
+        <i *ngIf="!(workout.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined))" class="pi pi-minus-circle" (click)="unsubscribeFromWorkout(workout.workoutId)"></i>
       </div>
     </div>
     <div *ngIf="loading">

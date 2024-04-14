@@ -12,9 +12,10 @@ body {
   overflow: hidden;
 }
 
-*:not(i, .p-menuitem-icon) {
+*:not(i, .p-menuitem-icon, .p-badge) {
   font-family: DM-Sans, sans-serif !important;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  line-height: normal;
 }
 
 .p-dialog-header,

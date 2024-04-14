@@ -14,13 +14,17 @@ export class ChatContactComponent {
 
   contacts: any[] = [];
   loading: boolean = false;
-  updateContactsSubscription;
+  search = '';
 
   constructor(private chatServiceService: ChatServiceService, private commonServiceService: CommonServiceService, private userServiceService: UserServiceService) {
 
   }
 
   ngOnInit() {
+    this.chatServiceService.search = '';
+    if (this.chatServiceService.updateUnreadChatsSubscription) {
+      this.chatServiceService.updateUnreadChatsSubscription.unsubscribe();
+    }
     this.chatServiceService.pendingContactResponse = false;
     this.chatServiceService.selectedContact = new UserVO();
     this.chatServiceService.msg = [];
@@ -30,7 +34,7 @@ export class ChatContactComponent {
     }
     this.loading = true;
     this.reloadContacts();
-    this.updateContactsSubscription = this.chatServiceService.updateContacts().subscribe({
+    this.chatServiceService.updateContactsSubscription = this.chatServiceService.updateContacts().subscribe({
       next: response => {
         this.loading = false;
         this.contacts = response.contacts;
@@ -38,16 +42,17 @@ export class ChatContactComponent {
           return new Date(b.lastMessage?.messageDate || '01-01-1970').getTime() - new Date(a.lastMessage?.messageDate || '01-01-1970').getTime();
         });
         this.chatServiceService.pendingContactResponse = false;
+        this.chatServiceService.unreadChats = this.contacts.filter(contact => contact.unreadMessages > 0).length;
       }, error: error => {
-        this.commonServiceService.handleError(error);
-        this.loading = false;
+        console.log(error);
         this.chatServiceService.pendingContactResponse = false;
+        this.loading = false;
       }
     });
   }
 
   ngOnDestroy() {
-    this.updateContactsSubscription.unsubscribe();
+    this.chatServiceService.updateContactsSubscription.unsubscribe();
   }
 
   getChatService() {
@@ -81,8 +86,9 @@ export class ChatContactComponent {
     let displayedMessage = contact.lastMessage;
     let message = '';
     if (displayedMessage != undefined) {
-      if (displayedMessage.messageFromUsername == this.commonServiceService.getUsername()) {
-        message = 'You: ';
+      if (displayedMessage.messageFromUsername.toLowerCase() == this.commonServiceService.getUsername().toLowerCase()) {
+        message = displayedMessage.messageStatus == 'sent' ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-check-double"></i>';
+        message += 'You: ';
       }
       if (displayedMessage.messageType == 'file') {
         message += '<i class="fa-solid fa-image"></i>Photo';
@@ -96,6 +102,9 @@ export class ChatContactComponent {
   markMessagesAsRead(contact: UserVO) {
     this.chatServiceService.markMessagesAsRead(contact.username).subscribe({
       next: response => {
+        if (contact.lastMessage?.messageStatus == 'sent' && contact.lastMessage?.messageFromUsername.toLowerCase() != this.commonServiceService.getUsername().toLowerCase()) {
+          this.chatServiceService.unreadChats = String(Number(this.chatServiceService.unreadChats) - 1);
+        }
         this.chatServiceService.reloadChat();
       }, error: error => {
         console.log(error);
@@ -116,7 +125,6 @@ export class ChatContactComponent {
         this.contacts.sort((a, b) => {
           return new Date(b.lastMessage?.messageDate || '01-01-1970').getTime() - new Date(a.lastMessage?.messageDate || '01-01-1970').getTime();
         });
-        console.log(this.contacts);
 
       }, error: error => {
         this.commonServiceService.handleError(error);

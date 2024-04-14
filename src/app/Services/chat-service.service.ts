@@ -20,13 +20,18 @@ export class ChatServiceService {
   selectedContact: UserVO = new UserVO();
   pendingContactResponse = false;
   pendingUnreadChatsResponse = false;
-  unreadChats = '2';
+  updateUnreadChatsSubscription;
+  unreadChats;
+  updateContactsSubscription;
 
   constructor(private http: HttpClient, private commonServiceService: CommonServiceService) {
     this.initializeWebSocketConnection();
   }
   getContacts(): Observable<any> {
     return this.http.get('http://localhost:9090/chat/getContacts?role=' + this.commonServiceService.getRole() + '&search=' + this.search);
+  }
+  getUnreadChats(): Observable<any> {
+    return this.http.get('http://localhost:9090/chat/getUnreadChats');
   }
   getMessages(username: string): Observable<any> {
     return this.http.get('http://localhost:9090/chat/getMessages?username=' + username);
@@ -37,24 +42,18 @@ export class ChatServiceService {
   markMessagesAsRead(username: string): Observable<any> {
     return this.http.get('http://localhost:9090/chat/markMessagesAsRead?username=' + username);
   }
-  getUnreadMessages(username: string): Observable<any> {
-    return interval(1000)
-      .pipe(
-        switchMap(() => this.http.get('http://localhost:9090/chat/getUnreadMessages?username=' + username))
-      );
-  }
 
   initializeWebSocketConnection() {
     const serverUrl = 'http://localhost:9090/socket';
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
-    // tslint:disable-next-line:only-arrow-functions
+
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/message', (message) => {
         let messageVO = JSON.parse(message.body);
         debugger;
-        if (messageVO.messageToUsername == that.commonServiceService.getUsername() || messageVO.messageFromUsername == that.commonServiceService.getUsername()) {
+        if (messageVO.messageToUsername.toLowerCase() == that.commonServiceService.getUsername().toLowerCase() || messageVO.messageFromUsername.toLowerCase() == that.commonServiceService.getUsername().toLowerCase()) {
           const files = !messageVO.messageFiles ? [] : messageVO.messageFiles.map((file) => {
             return {
               url: file.fileSrc,
@@ -65,7 +64,7 @@ export class ChatServiceService {
           that.msg.push({
             text: messageVO.message,
             date: messageVO.messageDate,
-            reply: messageVO.messageFromUsername == that.commonServiceService.getUsername(),
+            reply: messageVO.messageFromUsername.toLowerCase() == that.commonServiceService.getUsername().toLowerCase(),
             type: messageVO.messageType,
             files: files,
             user: {
@@ -93,12 +92,11 @@ export class ChatServiceService {
   updateContacts() {
     return interval(1000)
       .pipe(
-        switchMap(() => this.sendRequest())
+        switchMap(() => this.sendContactRequest())
       );
   }
 
-  sendRequest(): Observable<any> {
-    debugger;
+  sendContactRequest(): Observable<any> {
     if (this.pendingContactResponse) {
       return new Observable();
     }
@@ -106,18 +104,10 @@ export class ChatServiceService {
     return this.http.get<any>('http://localhost:9090/chat/getContacts?role=' + this.commonServiceService.getRole() + '&search=' + this.search)
   }
 
-  updateUnreadChats(): Observable<any> {
-    return interval(1000)
-      .pipe(
-        switchMap(() => this.http.get('http://localhost:9090/chat/getUnreadChats'))
-      );
-  }
-
   reloadChat() {
     this.msg = [];
     this.getMessages(this.selectedContact.username).subscribe({
       next: response => {
-        debugger;
         response.messages.forEach((message: MessageVO) => {
           const files = !message.messageFiles ? [] : message.messageFiles.map((file) => {
             return {
@@ -129,7 +119,7 @@ export class ChatServiceService {
           this.msg.push({
             text: message.message,
             date: message.messageDate,
-            reply: message.messageFromUsername == this.commonServiceService.getUsername(),
+            reply: message.messageFromUsername.toLowerCase() == this.commonServiceService.getUsername().toLowerCase(),
             type: message.messageType,
             files: files,
             user: {

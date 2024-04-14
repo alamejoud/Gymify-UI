@@ -99,7 +99,7 @@
       <p-button  icon="pi pi-plus" label="Add to Workout" *ngIf="!loading && selectedExercise" (click)="openAddToWorkoutScreen()"></p-button>
       <p-skeleton width="10rem" height="4rem" *ngIf="loading"></p-skeleton>
       <div class="delete">
-        <button *ngIf="!loading && selectedExercise && selectedExercise.createdBy.username.toLowerCase() == getCommonService().getUsername()" (click)="confirmDelete($event)" class="Btn">
+        <button *ngIf="!loading && selectedExercise && selectedExercise.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase()" (click)="confirmDelete($event)" class="Btn">
           <div class="sign">
             <i class="fa-solid fa-trash"></i>
           </div>

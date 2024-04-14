@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { UserServiceService } from '../Services/user-service.service';
 import { CommonServiceService } from '../Services/common-service.service';
@@ -12,11 +12,13 @@ import { UserVO } from '../VO/UserVO';
 })
 export class NavBarComponent {
 
-  updateUnreadChatsSubscription;
-
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService, private chatServiceService: ChatServiceService) { }
 
   ngOnInit() {
+    if (this.chatServiceService.updateUnreadChatsSubscription) {
+      this.chatServiceService.updateUnreadChatsSubscription.unsubscribe();
+    }
+    this.chatServiceService.pendingUnreadChatsResponse = false;
     this.userServiceService.getLoggedInUser().subscribe({
       next: response => {
         this.userServiceService.displayedUser = response.user;
@@ -27,13 +29,12 @@ export class NavBarComponent {
 
       }
     });
-    this.updateUnreadChatsSubscription = this.chatServiceService.updateUnreadChats().subscribe({
+    this.chatServiceService.getUnreadChats().subscribe({
       next: response => {
         this.chatServiceService.unreadChats = response.unreadChats;
       },
       error: error => {
         console.log(error);
-
       }
     });
   }

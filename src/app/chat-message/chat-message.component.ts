@@ -39,7 +39,7 @@ export class ChatMessageComponent {
     message.messageDate = new Date();
     message.messageStatus = 'sent';
     message.messageType = filesToSend.length ? 'file' : 'text';
-    message.messageFromUsername = this.getCommonService().getUsername();
+    message.messageFromUsername = this.getCommonService().getUsername().toLowerCase();
     message.messageToUsername = this.chatServiceService.selectedContact.username;
     message.messageFiles = filesToSend;
 
