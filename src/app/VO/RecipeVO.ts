@@ -1,4 +1,5 @@
 import { KeywordVO } from "./KeywordVO";
+import { RecipeCategoryVO } from "./RecipeCategoryVO";
 import { RecipeImageVO } from "./RecipeImageVO";
 import { RecipeIngredientVO } from "./RecipeIngredientVO";
 import { RecipeInstructionVO } from "./RecipeInstructionVO";
@@ -11,7 +12,7 @@ export class RecipeVO {
   cookTime: string;
   prepTime: string;
   totalTime: string;
-  datePublished: string;
+  publishedDate: Date;
   description: string;
   aggregatedRating: number;
   reviewCount: number;
@@ -26,6 +27,7 @@ export class RecipeVO {
   proteinContent: number;
   recipeServings: number;
   recipeYield: String;
+  recipeCategory: RecipeCategoryVO;
   createdBy: UserVO;
   images: RecipeImageVO[] = [];
   instructions: RecipeInstructionVO[] = [];

@@ -10,6 +10,7 @@ export class CommonServiceService {
 
   toggleMenu: boolean = false;
   routePageMap = new Map<string, string>();
+  missingImage = '../../assets/images/missing-image.jpg';
 
   constructor(private sanitizer: DomSanitizer, private messageService: MessageService, private router: Router) {
     this.routePageMap.set('home', 'Home');
@@ -21,7 +22,7 @@ export class CommonServiceService {
 
   transformImage(image: any): any {
     if (image == null) {
-      return '../../assets/images/missing-image.jpg';
+      return this.missingImage;
     }
     let objectURL = 'data:image/png;base64,' + image;
     return this.sanitizer.bypassSecurityTrustUrl(objectURL);

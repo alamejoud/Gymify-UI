@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NutritionServiceService } from '../Services/nutrition-service.service';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-all-recipes',
@@ -8,17 +9,24 @@ import { NutritionServiceService } from '../Services/nutrition-service.service';
 })
 export class AllRecipesComponent {
 
-  constructor(private nutritionServiceService: NutritionServiceService) { }
+  recipe;
+
+  constructor(private nutritionServiceService: NutritionServiceService, private commonServiceService: CommonServiceService) { }
 
   ngOnInit() {
     this.nutritionServiceService.getRecipeById(3260).subscribe({
-      next: (recipe) => {
-        console.log(recipe);
+      next: (data) => {
+        console.log(data);
+        this.recipe = data.recipe;
       },
       error: (err) => {
         console.log(err);
       }
     });
+  }
+
+  getCommonService() {
+    return this.commonServiceService;
   }
 
 }

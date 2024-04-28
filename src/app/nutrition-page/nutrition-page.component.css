@@ -42,7 +42,6 @@
 .nutritionPage {
   width: 100%;
   height: 100%;
-  display: block;
   position: relative;
   display: grid;
   grid-template-rows: auto auto 1fr;
