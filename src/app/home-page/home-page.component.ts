@@ -55,6 +55,7 @@ export class HomePageComponent {
         {
           label: 'Nutrition',
           icon: 'fa-solid fa-apple-whole',
+          routerLink: '/homePage/nutrition',
           command: () => { this.navigate() }
         },
         {
@@ -96,6 +97,7 @@ export class HomePageComponent {
         {
           label: 'Nutrition',
           icon: 'fa-solid fa-apple-whole',
+          routerLink: '/homePage/nutrition',
           command: () => { this.navigate() }
         },
         {
@@ -140,7 +142,14 @@ export class HomePageComponent {
         {
           label: 'Home',
           icon: 'fa-solid fa-house',
-          routerLink: '/homePage/home'
+          routerLink: '/homePage/home',
+          command: () => { this.navigate() }
+        },
+        {
+          label: 'Nutrition',
+          icon: 'fa-solid fa-apple-whole',
+          routerLink: '/homePage/nutrition',
+          command: () => { this.navigate() }
         }
       ]
     }

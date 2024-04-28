@@ -15,6 +15,8 @@ export class CommonServiceService {
     this.routePageMap.set('home', 'Home');
     this.routePageMap.set('workout', 'Workout');
     this.routePageMap.set('exercises', 'Exercises');
+    this.routePageMap.set('nutrition', 'Nutrition');
+    this.routePageMap.set('trainerExercise', 'Trainer Exercise');
   }
 
   transformImage(image: any): any {

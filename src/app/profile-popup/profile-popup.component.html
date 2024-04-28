@@ -21,32 +21,32 @@
           <span class="title">First Name</span>
           <br />
           <span [pTooltip]="getUserService().displayedUser.firstName" tooltipPosition="bottom">{{getUserService().displayedUser.firstName
-            || '(none)'}}</span>
+            || '-'}}</span>
         </div>
         <div>
           <span class="title">Last Name</span>
           <br />
-          <span [pTooltip]="getUserService().displayedUser.lastName" tooltipPosition="bottom">{{getUserService().displayedUser.lastName || '(none)'}}</span>
+          <span [pTooltip]="getUserService().displayedUser.lastName" tooltipPosition="bottom">{{getUserService().displayedUser.lastName || '-'}}</span>
         </div>
         <div>
           <span class="title">Email</span>
           <br />
-          <span [pTooltip]="getUserService().displayedUser.email" tooltipPosition="bottom">{{getUserService().displayedUser.email || '(none)'}}</span>
+          <span [pTooltip]="getUserService().displayedUser.email" tooltipPosition="bottom">{{getUserService().displayedUser.email || '-'}}</span>
         </div>
         <div>
           <span class="title">Phone Number</span>
           <br />
-          <span [pTooltip]="getUserService().displayedUser.phoneNumber" tooltipPosition="bottom">{{getUserService().displayedUser.phoneNumber || '(none)'}}</span>
+          <span [pTooltip]="getUserService().displayedUser.phoneNumber" tooltipPosition="bottom">{{getUserService().displayedUser.phoneNumber || '-'}}</span>
         </div>
         <div>
           <span class="title">Role</span>
           <br />
-          <span>{{getUserService().displayedUser.roleName || '(none)'}}</span>
+          <span>{{getUserService().displayedUser.roleName || '-'}}</span>
         </div>
         <div>
           <span class="title">Status</span>
           <br />
-          <span>{{getUserService().displayedUser.statusName || '(none)'}}</span>
+          <span>{{getUserService().displayedUser.statusName || '-'}}</span>
         </div>
       </div>
     </div>

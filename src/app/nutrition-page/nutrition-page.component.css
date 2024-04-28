@@ -1,0 +1,54 @@
+:host {
+  ::ng-deep .p-tabmenu {
+    border: none;
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu-nav-container {
+    border: none;
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu-nav-content {
+    border: none;
+    padding-bottom: 10px;
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu-nav {
+    background-color: transparent !important;
+    width: fit-content;
+  }
+
+  ::ng-deep .p-menuitem-link {
+    background-color: transparent !important;
+    color: #f8f8ff !important;
+  }
+
+  ::ng-deep .p-menuitem-link:hover {
+    background-color: #15151588 !important;
+  }
+
+  ::ng-deep .ptabmenuitem {
+    background-color: transparent !important;
+  }
+
+  ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    color: rgba(215, 251, 0, 1) !important;
+    border-color: #D7FB00;
+  }
+}
+
+.nutritionPage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.nutritionPage>*:first-child {
+  padding-inline: 20px;
+}
+

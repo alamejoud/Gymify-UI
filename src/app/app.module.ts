@@ -73,6 +73,10 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ChatContactComponent } from './chat-contact/chat-contact.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { NutritionPageComponent } from './nutrition-page/nutrition-page.component';
+import { DietPlanComponent } from './diet-plan/diet-plan.component';
+import { AllRecipesComponent } from './all-recipes/all-recipes.component';
+import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +100,11 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     ExerciseInfoComponent,
     ChatPageComponent,
     ChatContactComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
+    NutritionPageComponent,
+    DietPlanComponent,
+    AllRecipesComponent,
+    CreateDietPlanComponent
   ],
   imports: [
     BrowserModule,

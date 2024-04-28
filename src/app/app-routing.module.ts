@@ -16,6 +16,10 @@ import { AddExercisesComponent } from './add-exercises/add-exercises.component';
 import { WorkoutPageComponent } from './workout-page/workout-page.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { BrowseWorkoutComponent } from './browse-workout/browse-workout.component';
+import { NutritionPageComponent } from './nutrition-page/nutrition-page.component';
+import { AllRecipesComponent } from './all-recipes/all-recipes.component';
+import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.component';
+import { DietPlanComponent } from './diet-plan/diet-plan.component';
 
 const routes: Routes = [
   {
@@ -110,6 +114,29 @@ const routes: Routes = [
           {
             path: 'manageExercises/:exerciseId',
             component: AddExercisesComponent
+          }
+        ]
+      },
+      {
+        path: 'nutrition',
+        component: NutritionPageComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'allRecipes',
+            pathMatch: 'full'
+          },
+          {
+            path: 'allRecipes',
+            component: AllRecipesComponent
+          },
+          {
+            path: 'createDietPlan',
+            component: CreateDietPlanComponent
+          },
+          {
+            path: 'dietPlanGenerator',
+            component: DietPlanComponent
           }
         ]
       }
