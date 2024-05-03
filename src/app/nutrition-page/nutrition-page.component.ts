@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { CommonServiceService } from '../Services/common-service.service';
+import { NutritionServiceService } from '../Services/nutrition-service.service';
 
 @Component({
   selector: 'app-nutrition-page',
@@ -13,7 +14,7 @@ export class NutritionPageComponent {
   items: MenuItem[];
   activeItem: MenuItem;
 
-  constructor(private route: ActivatedRoute, private commonServiceService: CommonServiceService) { }
+  constructor(private route: ActivatedRoute, private commonServiceService: CommonServiceService, private nutritionServiceService: NutritionServiceService) { }
 
   ngOnInit() {
 
@@ -36,6 +37,14 @@ export class NutritionPageComponent {
     ];
 
     this.activeItem = this.items[0];
+  }
+
+  getCommonService() {
+    return this.commonServiceService;
+  }
+
+  getNutritionService() {
+    return this.nutritionServiceService;
   }
 
 }

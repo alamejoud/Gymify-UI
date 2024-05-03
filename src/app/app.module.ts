@@ -77,6 +77,11 @@ import { NutritionPageComponent } from './nutrition-page/nutrition-page.componen
 import { DietPlanComponent } from './diet-plan/diet-plan.component';
 import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -104,7 +109,8 @@ import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.com
     NutritionPageComponent,
     DietPlanComponent,
     AllRecipesComponent,
-    CreateDietPlanComponent
+    CreateDietPlanComponent,
+    RecipeInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -162,6 +168,10 @@ import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.com
     NbIconModule,
     NbSidebarModule.forRoot(),
     NbChatModule,
+    CheckboxModule,
+    SelectButtonModule,
+    GalleriaModule,
+    CarouselModule
   ],
   providers: [
     provideClientHydration(),

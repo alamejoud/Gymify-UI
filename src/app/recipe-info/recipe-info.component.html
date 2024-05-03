@@ -1,0 +1,60 @@
+<div class="recipeInfo">
+  <div class="leftSide">
+    <p-galleria [value]="recipe.images" [showThumbnails]="false" [showItemNavigators]="false" [autoPlay]="true" [circular]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+      <ng-template pTemplate="item" let-image>
+          <img [src]="image.imageSrc" style="width: 100%;" />
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-image>
+          <div class="grid grid-nogutter justify-content-center">
+              <img [src]="image.imageSrc" />
+          </div>
+      </ng-template>
+  </p-galleria>
+  <h1 class="recipeName">
+    {{recipe.recipeName | titlecase}}
+  </h1>
+  <span class="recipeCategory">
+    {{recipe.recipeCategory.recipeCategory | titlecase}}
+  </span>
+  <div class="createdBySection">
+    <div class="recipeReviewDate">
+      <div class="card-meta">
+        <div class="card-meta card-meta--views">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
+            <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          {{recipe.reviewCount}}
+        </div>
+        <div class="rating">
+          <i class="pi pi-star"></i>
+          {{recipe.aggregatedRating}}
+        </div>
+      </div>
+      <div class="card-meta card-meta--date">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+          <rect x="2" y="4" width="20" height="18" rx="4" />
+          <path d="M8 2v4" />
+          <path d="M16 2v4" />
+          <path d="M2 10h20" />
+        </svg>
+        <h4>
+          {{recipe.publishedDate | date:'MMM dd, yyyy'}}
+        </h4>
+      </div>
+    </div>
+    <div class="createdByInfo">
+      <h4>Created By: </h4>
+      <p-chip [image]="getCommonService().transformImage(recipe?.createdBy.profilePicture)" [label]="recipe?.createdBy.username | titlecase"></p-chip>
+    </div>
+  </div>
+  </div>
+  <div class="rightSide">
+    <h3>
+      Description
+    </h3>
+    <p>
+      {{recipe.description}}
+    </p>
+  </div>
+</div>

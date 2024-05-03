@@ -99,21 +99,6 @@ export class HomePageComponent {
           icon: 'fa-solid fa-apple-whole',
           routerLink: '/homePage/nutrition',
           command: () => { this.navigate() }
-        },
-        {
-          label: 'Progress',
-          icon: 'pi pi-chart-line',
-          command: () => { this.navigate() }
-        },
-        {
-          label: 'Community',
-          icon: 'pi pi-users',
-          command: () => { this.navigate() }
-        },
-        {
-          label: 'More',
-          icon: 'pi pi-ellipsis-h',
-          command: () => { this.navigate() }
         }
       ]
     } else if (this.userServiceService.displayedUser.role == 'trainer') {

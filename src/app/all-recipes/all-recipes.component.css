@@ -5,27 +5,18 @@
     width: 100%;
     height: 100%;
     display: block;
+    overflow: hidden;
   }
 
-  ::ng-deep .p-inputtext {
-    font-size: 0.5rem;
-    width: 100%;
-    display: block;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid #f8f8ff;
-    background-color: transparent;
-    font-family: DM-Sans, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    padding: 1rem 2rem;
-    margin-right: 10px;
-    color: #f8f8ff;
+  ::ng-deep .p-inputtext:enabled:hover {
+    border-color: #D7FB00;
   }
 
-  ::ng-deep .p-inputtext:focus {
-    box-shadow: none;
-    border-bottom: 1px solid #D7FB00;
+  ::ng-deep .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #c5d46a;
+    border-color: #D7FB00;
   }
 
   ::ng-deep .p-button {
@@ -42,6 +33,44 @@
   ::ng-deep .p-button:active {
     transform: translate(2px, 2px);
   }
+
+  ::ng-deep .p-selectbutton .p-button {
+    background-color: transparent;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(0px);
+  }
+
+  ::ng-deep .p-highlight {
+    background-color: #D7FB00 !important;
+    color: #1c1c1c !important;
+  }
+
+  ::ng-deep .p-paginator {
+    background-color: #151515;
+  }
+
+  ::ng-deep .p-paginator-next,
+  ::ng-deep .p-paginator-prev,
+  ::ng-deep .p-paginator-last,
+  ::ng-deep .p-paginator-first,
+  ::ng-deep .p-paginator-page {
+    color: #f8f8ff;
+    margin-inline: 5px;
+  }
+
+  ::ng-deep .p-paginator .p-highlight,
+  ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover,
+  ::ng-deep .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-last:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
+    background-color: #D7FB00;
+    color: #151515;
+  }
+
 }
 
 *, *:after, *:before {
@@ -51,43 +80,53 @@
 .recipePage {
   font-family: "Lexend", sans-serif;
   line-height: 1.5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto 1fr;
   color: #f8f8ff;
   padding: 0px;
   margin: 0px;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
 }
 
 .searchField {
-  width: 50%;
+  width: 90%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  margin-block: 20px;
+  gap: 10px;
+  justify-self: center;
+}
+
+.searchField>*:first-child {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
+  align-items: end;
 }
 
 .recipeList {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding-inline: 3%;
+  gap: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 1%;
+  overflow-y: scroll;
+
 }
 
 img {
   max-width: 100%;
   display: block;
+  border-radius: 10px;
 }
 
 .card-list {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
 }
 
-.card {
+.cardRecipe {
   background-color: #1b1b1b;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 20px 50px 0 rgba(0, 0, 0, .1);
   border-radius: 15px;
@@ -96,9 +135,12 @@ img {
   position: relative;
   transition: .15s ease-in;
   cursor: pointer;
+  height: 100%;
+  display: grid;
+  grid-auto-rows: 1fr auto auto;
 }
 
-.card:hover, .card:focus-within {
+.cardRecipe:hover, .cardRecipe:focus-within {
   box-shadow: 0 0 0 2px #D7FB00, 0 10px 60px 0 rgba(0, 0, 0, .1);
   transform: translatey(-5px);
 }
@@ -106,16 +148,18 @@ img {
 .card-image {
   border-radius: 10px;
   overflow: hidden;
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 .card-header {
-  margin-top: 1.5rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   justify-content: space-between;
 }
 
-.card-header a {
+.card-header span {
   font-weight: 600;
   font-size: 1.375rem;
   line-height: 1.25;
@@ -125,7 +169,7 @@ img {
   will-change: transform;
 }
 
-.card-header a:after {
+.card-header span:after {
   content: "";
   position: absolute;
   left: 0;
@@ -149,7 +193,7 @@ img {
   color: #787878;
 }
 
-.card-meta:first-child:after {
+.card-meta--views:first-child:after {
   display: block;
   content: "";
   width: 4px;

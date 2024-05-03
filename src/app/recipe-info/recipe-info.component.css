@@ -1,0 +1,156 @@
+:host {
+
+  ::ng-deep .p-galleria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ::ng-deep .p-galleria-content {
+    max-width: 80%;
+  }
+
+  ::ng-deep .p-galleria-item-next,
+  ::ng-deep .p-galleria-item-prev {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+
+  ::ng-deep .p-galleria-item {
+    max-height: 300px;
+    overflow: hidden;
+    border-radius: 16px;
+    align-items: end;
+  }
+
+  ::ng-deep .p-chip {
+    justify-self: center;
+    background-color: #222222;
+    color: #f8f8ff;
+    border-radius: 16px;
+    padding: 0 0.75rem;
+    font-size: 1rem;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+}
+
+.recipeInfo {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #1b1b1b;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.card-image {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 2px solid #222222;
+}
+
+.recipeName {
+  align-self: end;
+  margin-right: 50px;
+}
+
+.recipeCategory {
+  opacity: 0.7;
+  align-self: end;
+  margin-right: 50px;
+}
+
+.createdBySection {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.recipeReviewDate {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.recipeReview {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-footer {
+  margin-top: 1.25rem;
+  border-top: 1px solid #4e4e4e;
+  padding-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  color: #787878;
+}
+
+.card-meta--views:first-child:after {
+  display: block;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentcolor;
+  margin-left: .75rem;
+  margin-right: .75rem;
+}
+
+.card-meta svg {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: .25em;
+}
+
+.rating {
+  color: #a8a8a8;
+}
+
+.createdByInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding-right: 20px;
+  justify-content: end;
+  text-wrap: nowrap;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+}
