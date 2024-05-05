@@ -191,7 +191,7 @@ export class ExerciseListComponent {
   }
 
   back() {
-    if (this.userServiceService.displayedUser.role === 'trainer') {
+    if (this.userServiceService.displayedUser.role === 'trainer' || this.userServiceService.displayedUser.role === 'admin') {
       this.router.navigate(['/homePage/trainerExercise/exercises']);
     } else {
       this.router.navigate(['/homePage/exercises']);
@@ -268,10 +268,6 @@ export class ExerciseListComponent {
         this.commonServiceService.handleError(error);
       }
     });
-  }
-
-  isTrainer(): boolean {
-    return this.router.url.includes('trainerExercise');
   }
 
   editExercise() {

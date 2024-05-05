@@ -25,6 +25,19 @@ body {
   color: #f8f8ff;
 }
 
+.p-dialog-header-icons .p-button{
+  color: #6c757d !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.p-dialog-header-icons .p-button:hover{
+  color: #495057 !important;
+  background-color: #e9ecef !important;
+  box-shadow: none;
+  border-color: transparent;
+}
+
 .p-tooltip.p-tooltip-right,
 .p-tooltip.p-tooltip-left,
 .p-tooltip.p-tooltip-top,

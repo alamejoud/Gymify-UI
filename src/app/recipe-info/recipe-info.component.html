@@ -1,6 +1,6 @@
 <div class="recipeInfo">
   <div class="leftSide">
-    <p-galleria [value]="recipe.images" [showThumbnails]="false" [showItemNavigators]="false" [autoPlay]="true" [circular]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+    <p-galleria *ngIf="recipe.images?.length > 0" [value]="recipe.images" [showThumbnails]="false" [showItemNavigators]="false" [autoPlay]="true" [circular]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
       <ng-template pTemplate="item" let-image>
           <img [src]="image.imageSrc" style="width: 100%;" />
       </ng-template>
@@ -11,11 +11,16 @@
       </ng-template>
   </p-galleria>
   <h1 class="recipeName">
-    {{recipe.recipeName | titlecase}}
+    {{recipe.recipeName}}
   </h1>
   <span class="recipeCategory">
     {{recipe.recipeCategory.recipeCategory | titlecase}}
   </span>
+  <div class="recipeKeywords">
+    <span *ngFor="let keyword of recipe.keywords">
+      &nbsp;#{{keyword.keyword.trim()}}
+    </span>
+  </div>
   <div class="createdBySection">
     <div class="recipeReviewDate">
       <div class="card-meta">
@@ -50,11 +55,114 @@
   </div>
   </div>
   <div class="rightSide">
-    <h3>
-      Description
-    </h3>
-    <p>
-      {{recipe.description}}
-    </p>
+    <div class="recipeDesciption">
+      <h2>
+        Description
+      </h2>
+      <p>
+        {{recipe.description}}
+      </p>
+    </div>
+    <div class="recipeTiming">
+      <p-table [value]="[recipe]" [tableStyle]="{ 'width': '100%' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Prep Time</th>
+                <th>Cook Time</th>
+                <th>Total Time</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-recipe>
+            <tr>
+                <td>{{ recipe.prepTime || '-' }}</td>
+                <td>{{ recipe.cookTime || '-' }}</td>
+                <td>{{ recipe.totalTime || '-' }}</td>
+            </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="nutritionInfo">
+      <p-accordion>
+        <p-accordionTab header="Nutrition Info">
+          <p-table [value]="[recipe]" [tableStyle]="{ 'width': '100%' }">
+            <ng-template pTemplate="body" let-recipe>
+                <tr>
+                    <td>Calories</td>
+                    <td>{{ recipe.calories }}Kcal</td>
+                </tr>
+                <tr>
+                  <td>Protein</td>
+                  <td>{{ recipe.proteinContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Total Carbohydrates</td>
+                  <td>{{ recipe.carbohydrateContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Sugars</td>
+                  <td>{{ recipe.sugarContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Dietary Fibers</td>
+                  <td>{{ recipe.fiberContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Fat</td>
+                  <td>{{ recipe.fatContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Saturated Fat</td>
+                  <td>{{ recipe.saturatedFatContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Cholesterol</td>
+                  <td>{{ recipe.cholesterolContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Sodium</td>
+                  <td>{{ recipe.sodiumContent }}g</td>
+                </tr>
+                <tr>
+                  <td>Servings</td>
+                  <td>{{ recipe.recipeServings == 0 ? '-' : recipe.recipeServings}}</td>
+                </tr>
+                <tr>
+                  <td>Yield</td>
+                  <td>{{ recipe.recipeYield ? recipe.recipeYield : '-' }}</td>
+                </tr>
+            </ng-template>
+          </p-table>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+    <div class="recipeIngredients">
+      <h2>
+        Ingredients
+      </h2>
+      <p-table [value]="recipe.ingredients" [tableStyle]="{ 'width': '100%' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ingredient>
+            <tr>
+                <td>{{ ingredient.ingredient.ingredientName | titlecase}}</td>
+                <td>{{ ingredient.ingredientQuantity }}</td>
+            </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="recipeInstructions">
+      <h2>
+        Instructions
+      </h2>
+      <div class="instructions">
+        <span class="instruction" *ngFor="let instruction of recipe.instructions">
+          {{instruction.recipeInstructionId - recipe.instructions[0].recipeInstructionId + 1}}. {{instruction.instruction}}
+        </span>
+      </div>
+    </div>
   </div>
 </div>

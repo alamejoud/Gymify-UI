@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NutritionServiceService } from '../Services/nutrition-service.service';
 import { RecipeVO } from '../VO/RecipeVO';
 import { CommonServiceService } from '../Services/common-service.service';
@@ -12,13 +12,8 @@ export class RecipeInfoComponent {
 
   recipe: RecipeVO;
   responsiveOptions: any[] | undefined;
-  defaultImage = [
-    {
-      imageSrc: 'assets/demo/images/nutrition/recipe1.jpg',
-    }
-  ]
 
-  constructor(private nutritionServiceService: NutritionServiceService, private commonServiceService: CommonServiceService) { }
+  constructor(private nutritionServiceService: NutritionServiceService, private commonServiceService: CommonServiceService, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.recipe = this.nutritionServiceService.selectedRecipe;

@@ -1,9 +1,9 @@
 <div class="workoutBody">
   <div class="exercisesList list">
-    <input pInputText [(ngModel)]="search" placeholder="Search for Trainer's Workouts" (keyup)="filterWorkouts(true)"/>
+    <input pInputText [(ngModel)]="search" placeholder="Search for Trainer's Workouts" (keyup.enter)="filterWorkouts(true)"/>
     <ul *ngIf="!loading && workouts?.length != 0" class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" id="list">
       <li *ngFor="let workout of workouts" class="list p-2 border-round shadow-1 exercise" [ngClass]="{'highlight' : selectedWorkout?.workoutId == workout.workoutId}" (click)="selectedWorkout = workout">
-        <div class="flex flex-column xl:flex-row p-3 gap-4 w-full workoutItem">
+        <div class="flex flex-column xl:flex-row pb-1 px-3 gap-4 w-full workoutItem">
           <p-avatar tooltipPosition="bottom" [image]="getCommonService().transformImage(workout.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
           <div class="flex flex-column justify-content-center align-items-center flex-1 gap-4">
             <div class="flex flex-row align-items-center gap-3 align-self-start">
@@ -32,7 +32,7 @@
     </ul>
     <p *ngIf="!loading && workouts?.length == 0" class="text-white text-xl pt-3 pl-3">No Records Found</p>
     <button #b class="hidden" (click)="changePaginator($event)"></button>
-    <p-paginator #paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords" [alwaysShow]="false" [showFirstLastIcon]="false"></p-paginator>
+    <p-paginator #paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"></p-paginator>
   </div>
   <div class="scheduleContainer">
     <div class="scheduleSubContainer">
@@ -192,8 +192,8 @@
     </div>
   </div>
   <div class="w-full flex flex-row-reverse pb-5 pr-5">
-    <p-button (click)="subscribeToWorkout()" *ngIf="!isSubscribed()"><i class="pi pi-plus-circle"></i>&nbsp;Subscribe</p-button>
-    <p-button (click)="unsubscribeFromWorkout()" *ngIf="isSubscribed()"><i class="pi pi-minus-circle"></i>&nbsp;Unsubscribe</p-button>
+    <p-button (click)="subscribeToWorkout()" *ngIf="!isSubscribed() && getCommonService().getRole() != 'admin'"><i class="pi pi-plus-circle"></i>&nbsp;Subscribe</p-button>
+    <p-button (click)="unsubscribeFromWorkout()" *ngIf="isSubscribed() && getCommonService().getRole() != 'admin'"><i class="pi pi-minus-circle"></i>&nbsp;Unsubscribe</p-button>
   </div>
   </div>
 </div>

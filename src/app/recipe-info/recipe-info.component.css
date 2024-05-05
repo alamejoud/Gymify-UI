@@ -1,5 +1,4 @@
 :host {
-
   ::ng-deep .p-galleria {
     display: flex;
     justify-content: center;
@@ -39,6 +38,62 @@
     border-color: #bdce5c;
     box-shadow: 0 0.5em 0.5em -0.4em #151515;
     transition: all .1s ease;
+  }
+
+  ::ng-deep tr,
+  ::ng-deep td,
+  ::ng-deep th {
+    background-color: transparent;
+    color: #C7C7C7;
+    border-color: #f8f8ff33;
+  }
+
+  ::ng-deep tr td:nth-child(2),
+  ::ng-deep tr th:nth-child(2) {
+    text-align: end;
+  }
+
+  ::ng-deep tr td:nth-child(1) {
+    font-weight: bolder;
+  }
+
+  ::ng-deep .p-datatable-thead tr th {
+    font-size: 1.5rem;
+  }
+
+  ::ng-deep .p-accordion-header-link {
+    border: none;
+    display: flex;
+    flex-direction: row-reverse;
+    color: #D7FB00;
+    padding-left: 0;
+  }
+
+  ::ng-deep .p-accordion-header-text {
+    align-self: initial;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus-visible {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
+
+  ::ng-deep .p-accordion-content {
+    background-color: transparent;
+    border: none;
+  }
+
+  ::ng-deep .recipeTiming th,
+  ::ng-deep .recipeTiming td {
+    text-align: center !important;
+
+  }
+
+  ::ng-deep .recipeTiming td {
+    font-weight: normal !important;
   }
 }
 
@@ -80,6 +135,16 @@ img {
 
 .recipeCategory {
   opacity: 0.7;
+  align-self: end;
+  margin-right: 50px;
+  padding-bottom: 5px;
+}
+
+.recipeKeywords {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #d5fb00c0;
+  flex-wrap: wrap;
   align-self: end;
   margin-right: 50px;
 }
@@ -136,7 +201,7 @@ img {
   margin-right: .25em;
 }
 
-.rating {
+.card-meta:first-child {
   color: #a8a8a8;
 }
 
@@ -153,4 +218,22 @@ img {
 .rightSide {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+}
+
+.rightSide h2 {
+  color: #D7FB00;
+}
+
+.nutritionInfo {
+  margin-top: 20px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+}
+
+.instruction {
+  margin-bottom: 10px;
 }

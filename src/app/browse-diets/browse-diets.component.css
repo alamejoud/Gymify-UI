@@ -118,6 +118,24 @@
     background: #e9ecef11 !important;
   }
 
+
+  ::ng-deep .p-avatar {
+    margin: auto;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-avatar img {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  ::ng-deep .dietNameListItem>*:first-child {
+    display: flex;
+    margin-right: 10px;
+  }
+
 }
 
 .myDietPlans {
@@ -141,6 +159,9 @@
 .dietPlanList {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .dietPlanList>* {
@@ -155,6 +176,7 @@
   background: #222222;
   padding: 20px;
   cursor: pointer;
+  margin: 0;
 }
 
 .dietPlan h3:hover {

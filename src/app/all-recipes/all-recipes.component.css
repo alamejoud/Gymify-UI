@@ -25,7 +25,6 @@
     color: #1c1c1c;
     border-color: #bdce5c;
     box-shadow: 0 0.5em 0.5em -0.4em #151515;
-    align-self: baseline;
     transition: all .1s ease;
     align-self: end;
   }
@@ -71,6 +70,40 @@
     color: #151515;
   }
 
+  ::ng-deep .addButton {
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid #f8f8ff66;
+    padding-inline: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ::ng-deep .addButton .p-button {
+    align-self: center;
+    border-radius: 100px;
+  }
+
+  ::ng-deep .recipeInfo .p-inputtext {
+    font-size: 0.5rem;
+    width: 100%;
+    display: block;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #f8f8ff;
+    background-color: transparent;
+    font-family: DM-Sans, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep  .recipeInfo .p-inputtext:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #D7FB00;
+  }
+
 }
 
 *, *:after, *:before {
@@ -93,15 +126,22 @@
 .searchField {
   width: 90%;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   margin-block: 20px;
   gap: 10px;
   justify-self: center;
 }
 
-.searchField>*:first-child {
+.searchField>*:nth-child(2) {
   display: flex;
   align-items: end;
+}
+
+.searchBy {
+  margin-block: 0;
+  margin-right: 10px;
+  height: fit-content;
+  align-self: center;
 }
 
 .recipeList {
@@ -112,7 +152,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   padding: 1%;
   overflow-y: scroll;
-
 }
 
 img {

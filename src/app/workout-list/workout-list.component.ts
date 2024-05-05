@@ -62,12 +62,12 @@ export class WorkoutListComponent {
       rejectIcon: "none",
       rejectButtonStyleClass: "p-button-text",
       accept: () => {
-        this.deleteExercise();
+        this.deleteWorkout();
       }
     });
   }
 
-  deleteExercise() {
+  deleteWorkout() {
     this.workoutServiceService.deleteWorkout(this.selectedWorkout.workoutId).subscribe({
       next: response => {
         this.commonServiceService.handleSuccess(response.message);

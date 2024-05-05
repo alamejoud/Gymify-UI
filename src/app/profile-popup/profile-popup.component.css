@@ -19,6 +19,19 @@
     padding: 20px;
   }
 
+  ::ng-deep .p-dialog-header-icons .p-button{
+    color: #6c757d !important;
+    background-color: transparent !important;
+    box-shadow: none;
+  }
+
+  ::ng-deep .p-dialog-header-icons .p-button:hover{
+    color: #495057 !important;
+    background-color: #e9ecef !important;
+    box-shadow: none;
+    border-color: transparent;
+  }
+
   ::ng-deep .p-dialog-content {
     padding: 0;
   }

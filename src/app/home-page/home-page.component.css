@@ -134,18 +134,18 @@ hr {
 }
 
 .close {
-  color: #f8f8ff !important;
+  color: #6c757d  !important;
   border-radius: 50% !important;
   margin: auto !important;
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
   padding: 7px !important;
   cursor: pointer !important;
+  transition: all .1s ease;
 }
 
 .close:hover {
-  background-color: #f8f8ff11 !important;
-}
-
-.closeL:active {
-  background-color: #f8f8ff22 !important;
+  color: #495057 !important;
+  background-color: #e9ecef !important;
+  box-shadow: none;
+  border-color: transparent;
 }

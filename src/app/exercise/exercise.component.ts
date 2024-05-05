@@ -27,7 +27,7 @@ export class ExerciseComponent {
   ngOnInit() {
     this.getExerciseGroups();
     let role = this.commonServiceService.getRole();
-    this.route = role == 'trainer' ? '/homePage/trainerExercise/exercises/' : '/homePage/exercises/';
+    this.route = role == 'trainer' || role == 'admin' ? '/homePage/trainerExercise/exercises/' : '/homePage/exercises/';
   }
 
   getExerciseGroups() {

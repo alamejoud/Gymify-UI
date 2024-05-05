@@ -1,3 +1,4 @@
+import { DietRecipeVO } from "./DietRecipeVO";
 import { KeywordVO } from "./KeywordVO";
 import { RecipeCategoryVO } from "./RecipeCategoryVO";
 import { RecipeImageVO } from "./RecipeImageVO";
@@ -33,4 +34,5 @@ export class RecipeVO {
   instructions: RecipeInstructionVO[] = [];
   ingredients: RecipeIngredientVO[] = [];
   keywords: KeywordVO[] = [];
+  dietRecipes: DietRecipeVO[] = [];
 }

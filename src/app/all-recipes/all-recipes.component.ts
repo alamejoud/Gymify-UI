@@ -23,6 +23,8 @@ export class AllRecipesComponent {
   constructor(private nutritionServiceService: NutritionServiceService, private commonServiceService: CommonServiceService) { }
 
   ngOnInit() {
+    this.nutritionServiceService.openRecipeInfo = false;
+    this.nutritionServiceService.selectedRecipe = new RecipeVO();
     this.searchOptions = [
       { label: 'Everything', value: 'everything' },
       { label: 'Name', value: 'name' },
@@ -66,8 +68,6 @@ export class AllRecipesComponent {
         this.totalRecords = data.totalRecords;
         this.recipeList = data.recipeList;
         this.loading = false;
-        this.nutritionServiceService.selectedRecipe = this.recipeList[0];
-        this.nutritionServiceService.openRecipeInfo = true;
       },
       error: (err) => {
         console.log(err);

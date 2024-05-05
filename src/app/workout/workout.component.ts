@@ -136,7 +136,6 @@ export class WorkoutComponent {
 
   saveWorkout() {
     let modifiedWorkout: WorkoutVO = { ...this.workout };
-    ;
     this.days.forEach(day => {
       modifiedWorkout[day + 'Exercises'].forEach((workoutExercise) => {
         delete workoutExercise.workout;

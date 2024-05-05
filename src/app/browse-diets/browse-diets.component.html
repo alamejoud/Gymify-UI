@@ -1,13 +1,15 @@
 <div class="myDietPlans">
   <div class="allDietPlans">
     <div class="dietPlanList">
-      <button pButton class="flex justify-content-center" (click)="addDiet()"><i class="pi pi-plus"></i></button>
+      <input pInputText type="text" autocomplete="off" id="dietPlanName" placeholder="Search for Diets"
+          class="w-full" [maxLength]="4000" [(ngModel)]="search" (keyup.enter)="getDietPlans()"/>
       <div class="dietPlan" *ngFor="let dietPlan of dietPlans">
         <p-skeleton height="100%" *ngIf="dietPlanLoading"></p-skeleton>
-        <h3 *ngIf="!dietPlanLoading" class="flex align-items-center" [ngClass]="{'highlight': selectedDietPlan == dietPlan}" (click)="selectDiet(dietPlan)">
+        <h3 *ngIf="!dietPlanLoading" class="flex align-items-center dietNameListItem" [ngClass]="{'highlight': selectedDietPlan == dietPlan}" (click)="selectDiet(dietPlan)">
+          <p-avatar [pTooltip]="dietPlan.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(dietPlan.createdBy.profilePicture)" shape="circle" size="normal"></p-avatar>
           <span class="w-full">{{dietPlan.dietName | titlecase}}</span>
-          <i class="pi pi-trash delete" (click)="confirmDelete($event)" *ngIf="dietPlan.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase()"></i>
-          <i class="pi pi-minus-circle delete" (click)="unsubscribeToDiet(dietPlan)" *ngIf="dietPlan.createdBy.username.toLowerCase() != getCommonService().getUsername().toLowerCase()"></i>
+          <i class="pi pi-plus-circle delete" pTooltip="Subscribe" (click)="subscribeToDiet(dietPlan)" *ngIf="!isSubscribed(dietPlan) && getCommonService().getRole() != 'admin'"></i>
+          <i class="pi pi-minus-circle delete" pTooltip="Unsubscribe" (click)="unsubscribeToDiet(dietPlan)" *ngIf="isSubscribed(dietPlan) && getCommonService().getRole() != 'admin'"></i>
         </h3>
       </div>
     </div>
@@ -16,10 +18,7 @@
     <div class="monday">
       <h2>Monday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0 || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('monday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.mondayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.mondayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -29,7 +28,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'monday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -47,10 +45,7 @@
     <div class="tuesday">
       <h2>Tuesday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('tuesday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.tuesdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.tuesdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -60,7 +55,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'tuesday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -78,10 +72,7 @@
     <div class="wednesday">
       <h2>Wednesday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('wednesday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.wednesdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.wednesdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -91,7 +82,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'wednesday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -109,10 +99,7 @@
     <div class="thursday">
       <h2>Thursday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('thursday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.thursdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.thursdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -122,7 +109,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'thursday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -140,10 +126,7 @@
     <div class="friday">
       <h2>Friday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('friday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.fridayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.fridayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -153,7 +136,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'friday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -171,10 +153,7 @@
     <div class="saturday">
       <h2>Saturday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('saturday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.saturdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.saturdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -184,7 +163,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'saturday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -202,10 +180,7 @@
     <div class="sunday">
       <h2>Sunday</h2>
       <div class="dayRecipes card xl:flex flex-column">
-        <button *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0" pButton class="flex justify-content-center" (click)="openRecipes('sunday')">
-          <i class="pi pi-plus"></i>
-        </button>
-        <p-orderList [value]="editedDietPlan.sundayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
+        <p-orderList [value]="selectedDietPlan.sundayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
           <ng-template let-recipe pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
               <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
@@ -215,7 +190,6 @@
                   <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
                 </div>
               </div>
-              <div (click)="removeFromList(recipe.recipe, 'sunday')" class="font-bold remove" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0"><i class="pi pi-times"></i></div>
             </div>
             <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
               <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
@@ -230,68 +204,6 @@
         </p-orderList>
       </div>
     </div>
-    <div class="actionButtons" *ngIf="selectedDietPlan.createdBy?.username.toLowerCase() == getCommonService().getUsername().toLowerCase() || selectedDietPlan.dietId == null ||selectedDietPlan.dietId == 0">
-      <button pButton (click)="cancel()"><i class="pi pi-times"></i>&nbsp;Cancel</button>
-      <button pButton [disabled]="!dietIsNotEmpty()" (click)="showNamePopup()"><i class="pi pi-save"></i>&nbsp;Save</button>
-    </div>
   </div>
 </div>
-<p-dialog [style]="{'width': '700px'}" [header]="'Choose Recipes for ' + day | titlecase" #op [(visible)]="showRecipeSearch">
-  <ng-template pTemplate="content">
-    <div class="mb-2 flex flex-row gap-2">
-      <input pInputText placeholder="Search for a recipe" [(ngModel)]="searchInput" (keyup.enter)="search()"/>
-      <button pButton (click)="search()">Search</button>
-    </div>
-      <p-table
-          [value]="recipeList"
-          selectionMode="multiple"
-          [(selection)]="selectedRecipes"
-          responsiveLayout="scroll">
-              <ng-template pTemplate="header">
-                  <tr>
-                      <th>Name</th>
-                      <th>Image</th>
-                      <th>Rating</th>
-                      <th *ngIf="!loading" class="recipeInfoIcon" (click)="addRecipeToDay()"><i class="pi pi-plus"></i></th>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-rowData let-recipe>
-                  <tr [pSelectableRow]="rowData">
-                      <td *ngIf="loading">
-                        <p-skeleton></p-skeleton>
-                      </td>
-                      <td *ngIf="loading">
-                        <p-skeleton></p-skeleton>
-                      </td>
-                      <td *ngIf="loading">
-                        <p-skeleton></p-skeleton>
-                      </td>
-                      <td *ngIf="loading">
-                        <p-skeleton></p-skeleton>
-                      </td>
 
-                      <td *ngIf="!loading">
-                          {{ recipe.recipeName }}
-                      </td>
-                      <td *ngIf="!loading">
-                          <img
-                              [src]="recipe.images[0]?.imageSrc || getCommonService().missingImage"
-                              [alt]="recipe.recipeName"
-                              class="w-5rem shadow-2" />
-                      </td>
-                      <td *ngIf="!loading" class="text-center"><i class="pi pi-star"></i>&nbsp;{{ recipe.aggregatedRating }}</td>
-                      <td *ngIf="!loading" class="recipeInfoIcon" (click)="openRecipeInfo(recipe)"><i class="pi pi-eye"></i></td>
-                  </tr>
-              </ng-template>
-      </p-table>
-      <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"></p-paginator>
-  </ng-template>
-</p-dialog>
-<p-dialog header="Diet Plan Name" [(visible)]="namePopup" [modal]="true" [draggable]="false" [resizable]="false" >
-  <div class="dietName">
-    <input type="text" placeholder="Enter Diet Plan Name" [(ngModel)]="editedDietPlan.dietName" pInputText maxlength="100">
-    <div class="saveButton">
-      <p-button [disabled]="editedDietPlan.dietName?.trim().length == 0" (click)="saveDiet()"><i class="pi pi-save"></i>&nbsp;Save</p-button>
-    </div>
-  </div>
-</p-dialog>

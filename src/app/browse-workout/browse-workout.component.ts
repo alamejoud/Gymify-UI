@@ -45,7 +45,7 @@ export class BrowseWorkoutComponent {
     this.workoutServiceService.getTrainersWorkouts(this.search, this.first, this.rows).subscribe({
       next: (response) => {
         this.workouts = response.workoutList;
-        this.totalRecords = response.totalRecords;
+        this.totalRecords = response.workoutListSize;
         this.selectedWorkout = this.workouts[0];
         this.loading = false;
       },

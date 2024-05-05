@@ -112,7 +112,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/404NotFound.js"
+            ]
           }
         }
       }

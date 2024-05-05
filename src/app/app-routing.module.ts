@@ -20,6 +20,7 @@ import { NutritionPageComponent } from './nutrition-page/nutrition-page.componen
 import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.component';
 import { DietPlanComponent } from './diet-plan/diet-plan.component';
+import { BrowseDietsComponent } from './browse-diets/browse-diets.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,7 @@ const routes: Routes = [
     path: 'homePage',
     component: HomePageComponent,
     canActivate: [authGuardGuard],
+    data: { roles: ['admin', 'trainer', 'dietitian', 'trainee'] },
     children: [
       {
         path: '',
@@ -53,11 +55,15 @@ const routes: Routes = [
       },
       {
         path: 'home',
+        canActivate: [authGuardGuard],
+        data: { roles: ['admin', 'trainer', 'dietitian', 'trainee'] },
         component: HomeComponent
       },
       {
         path: 'workout',
         component: WorkoutPageComponent,
+        canActivate: [authGuardGuard],
+        data: { roles: ['admin', 'trainer', 'trainee'] },
         children: [
           {
             path: '',
@@ -66,32 +72,46 @@ const routes: Routes = [
           },
           {
             path: 'workoutList',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer', 'trainee'] },
             component: WorkoutListComponent
           },
           {
             path: 'manageWorkout',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer', 'trainee'] },
             component: WorkoutComponent
           },
           {
             path: 'manageWorkout/:workoutId',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer', 'trainee'] },
             component: WorkoutComponent
           },
           {
             path: 'browseWorkout',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainee'] },
             component: BrowseWorkoutComponent
           }
         ]
       },
       {
         path: 'exercises',
+        canActivate: [authGuardGuard],
+        data: { roles: ['trainee'] },
         component: ExerciseComponent,
       },
       {
         path: 'exercises/:groupId/:categoryId',
+        canActivate: [authGuardGuard],
+        data: { roles: ['trainee'] },
         component: ExerciseListComponent
       },
       {
         path: 'trainerExercise',
+        canActivate: [authGuardGuard],
+        data: { roles: ['admin', 'trainer'] },
         component: TrainerExerciseComponent,
         children: [
           {
@@ -101,24 +121,34 @@ const routes: Routes = [
           },
           {
             path: 'exercises',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer'] },
             component: ExerciseComponent
           },
           {
             path: 'exercises/:groupId/:categoryId',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer'] },
             component: ExerciseListComponent
           },
           {
             path: 'manageExercises',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer'] },
             component: AddExercisesComponent
           },
           {
             path: 'manageExercises/:exerciseId',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer'] },
             component: AddExercisesComponent
           }
         ]
       },
       {
         path: 'nutrition',
+        canActivate: [authGuardGuard],
+        data: { roles: ['admin', 'dietitian', 'trainee'] },
         component: NutritionPageComponent,
         children: [
           {
@@ -128,17 +158,33 @@ const routes: Routes = [
           },
           {
             path: 'allRecipes',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'dietitian', 'trainee'] },
             component: AllRecipesComponent
           },
           {
             path: 'createDietPlan',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'dietitian', 'trainee'] },
             component: CreateDietPlanComponent
           },
           {
             path: 'dietPlanGenerator',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainee'] },
             component: DietPlanComponent
+          },
+          {
+            path: 'browseDiets',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainee'] },
+            component: BrowseDietsComponent
           }
         ]
+      },
+      {
+        path: 'pageNotFound',
+        component: PageNotFoundComponent
       }
     ]
   },
@@ -148,8 +194,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'pageNotFound',
+    component: PageNotFoundComponent
+
+  },
+  {
     path: '**',
-    component: PageNotFoundComponent,
+    component: PageNotFoundComponent
   }
 ];
 

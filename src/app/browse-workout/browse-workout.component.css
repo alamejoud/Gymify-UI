@@ -30,6 +30,8 @@
 
   ::ng-deep .p-paginator {
     background-color: #1b1b1b;
+    display: flex;
+    gap: 5px;
   }
 
   ::ng-deep .p-paginator-next,
@@ -48,6 +50,11 @@
   ::ng-deep .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
     background-color: #D7FB00;
     color: #151515;
+  }
+
+  ::ng-deep .p-paginator-pages {
+    display: flex;
+    gap: 5px;
   }
 
   ::ng-deep .p-avatar {

@@ -82,6 +82,10 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { CarouselModule } from 'primeng/carousel';
+import { OrderListModule } from 'primeng/orderlist';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { BrowseDietsComponent } from './browse-diets/browse-diets.component';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @NgModule({
   declarations: [
@@ -110,7 +114,8 @@ import { CarouselModule } from 'primeng/carousel';
     DietPlanComponent,
     AllRecipesComponent,
     CreateDietPlanComponent,
-    RecipeInfoComponent
+    RecipeInfoComponent,
+    BrowseDietsComponent
   ],
   imports: [
     BrowserModule,
@@ -171,7 +176,10 @@ import { CarouselModule } from 'primeng/carousel';
     CheckboxModule,
     SelectButtonModule,
     GalleriaModule,
-    CarouselModule
+    CarouselModule,
+    OrderListModule,
+    OverlayPanelModule,
+    AnimateOnScrollModule
   ],
   providers: [
     provideClientHydration(),

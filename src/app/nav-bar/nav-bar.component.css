@@ -60,6 +60,7 @@
   ::ng-deep .p-confirm-dialog-reject {
     font-weight: bold;
     color: #D7FB00;
+    margin-right: 10px;
   }
 
   ::ng-deep .hideBadge .p-badge {

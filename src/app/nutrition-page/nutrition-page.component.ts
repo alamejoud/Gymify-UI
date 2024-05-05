@@ -18,23 +18,43 @@ export class NutritionPageComponent {
 
   ngOnInit() {
 
-    this.items = [
-      {
-        label: 'All Recipes',
-        icon: 'fa-solid fa-bowl-food',
-        routerLink: '/homePage/nutrition/allRecipes'
-      },
-      {
-        label: 'Create Diet Plan',
-        icon: 'pi pi-plus',
-        routerLink: '/homePage/nutrition/createDietPlan'
-      },
-      {
-        label: 'Diet Plan Generator',
-        icon: 'fa-solid fa-brain',
-        routerLink: '/homePage/nutrition/dietPlanGenerator'
-      }
-    ];
+    if (this.commonServiceService.getRole() == 'trainee' || this.commonServiceService.getRole() == 'admin') {
+      this.items = [
+        {
+          label: 'All Recipes',
+          icon: 'fa-solid fa-bowl-food',
+          routerLink: '/homePage/nutrition/allRecipes'
+        },
+        {
+          label: 'My Diet Plans',
+          icon: 'pi pi-calendar',
+          routerLink: '/homePage/nutrition/createDietPlan'
+        },
+        {
+          label: 'Diet Plan Generator',
+          icon: 'fa-solid fa-brain',
+          routerLink: '/homePage/nutrition/dietPlanGenerator'
+        },
+        {
+          label: 'Browse Diets',
+          icon: 'pi pi-search',
+          routerLink: '/homePage/nutrition/browseDiets'
+        }
+      ];
+    } else {
+      this.items = [
+        {
+          label: 'All Recipes',
+          icon: 'fa-solid fa-bowl-food',
+          routerLink: '/homePage/nutrition/allRecipes'
+        },
+        {
+          label: 'My Diet Plans',
+          icon: 'pi pi-calendar',
+          routerLink: '/homePage/nutrition/createDietPlan'
+        }
+      ];
+    }
 
     this.activeItem = this.items[0];
   }

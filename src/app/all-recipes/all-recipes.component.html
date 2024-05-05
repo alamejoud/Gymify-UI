@@ -1,5 +1,6 @@
 <div class="recipePage">
   <div class="searchField">
+    <h4 class="searchBy">Search By:</h4>
     <p-selectButton [options]="searchOptions" [(ngModel)]="searchOption" optionLabel="label" optionValue="value" [allowEmpty]="false"></p-selectButton>
     <input pInputText placeholder="Search for a recipe" [(ngModel)]="searchInput" (keyup.enter)="search()"/>
     <button pButton (click)="search()">Search</button>
