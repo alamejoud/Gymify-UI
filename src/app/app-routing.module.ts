@@ -77,6 +77,12 @@ const routes: Routes = [
             component: WorkoutListComponent
           },
           {
+            path: 'workoutList/:workoutId',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'trainer', 'trainee'] },
+            component: WorkoutListComponent
+          },
+          {
             path: 'manageWorkout',
             canActivate: [authGuardGuard],
             data: { roles: ['admin', 'trainer', 'trainee'] },
@@ -164,6 +170,12 @@ const routes: Routes = [
           },
           {
             path: 'createDietPlan',
+            canActivate: [authGuardGuard],
+            data: { roles: ['admin', 'dietitian', 'trainee'] },
+            component: CreateDietPlanComponent
+          },
+          {
+            path: 'createDietPlan/:dietId',
             canActivate: [authGuardGuard],
             data: { roles: ['admin', 'dietitian', 'trainee'] },
             component: CreateDietPlanComponent

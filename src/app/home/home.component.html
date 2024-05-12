@@ -24,28 +24,99 @@
       </p>
     </div>
   </div>
-  <div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="homeSection animation-duration-1000 animation-ease-in-out">
+  <div *ngIf="isTrainer() || isTrainee() || isAdmin()" pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="homeSection animation-duration-1000 animation-ease-in-out">
     <div class="homeTitle" [routerLink]="'/homePage/workout/workoutList'">
       <h1>My Workouts</h1>
       <i class="pi pi-angle-double-right"></i>
     </div>
+    <div class="homeSectionContent">
+      <div class="homeSectionSubContent">
+        <div class="homeSectionCard" *ngIf="myWorkouts[0]" [routerLink]="['/homePage/workout/workoutList', myWorkouts[0].workoutId]">
+          <img src="https://img.freepik.com/free-photo/3d-gym-equipment_23-2151114185.jpg?t=st=1715419200~exp=1715422800~hmac=3fd3acdbb5e1df582fe9b06a28033f5f62b2e03b0150ab59d1bd981a3a6cff21&w=1380" width="100%"/>
+          <h2 [pTooltip]="myWorkouts[0].workoutName | titlecase" tooltipPosition="bottom">{{myWorkouts[0].workoutName | titlecase}}</h2>
+        </div>
+        <div class="homeSectionCard" *ngIf="myWorkouts[1]" [routerLink]="['/homePage/workout/workoutList', myWorkouts[1].workoutId]">
+          <img src="https://img.freepik.com/free-photo/3d-gym-equipment_23-2151114155.jpg?t=st=1715419247~exp=1715422847~hmac=d840bfb09c6c2db2f8db215b460934e85a480a26cb6c2f20fe9ee42da7567c5f&w=1380" width="100%"/>
+          <h2 [pTooltip]="myWorkouts[1].workoutName | titlecase" tooltipPosition="bottom">{{myWorkouts[1].workoutName | titlecase}}</h2>
+        </div>
+        <div class="homeSectionCard" *ngIf="myWorkouts[2]" [routerLink]="['/homePage/workout/workoutList', myWorkouts[2].workoutId]">
+          <img src="https://img.freepik.com/free-photo/3d-gym-equipment_23-2151114153.jpg?t=st=1715419281~exp=1715422881~hmac=60d5e6f0de0ca11b2b4111192e392d62a6f3b4952c5946373392fe05b98665df&w=1380" width="100%"/>
+          <h2 [pTooltip]="myWorkouts[2].workoutName | titlecase" tooltipPosition="bottom">{{myWorkouts[2].workoutName | titlecase}}</h2>
+        </div>
+        <div class="homeSectionCard" *ngIf="myWorkouts[3]" [routerLink]="['/homePage/workout/workoutList', myWorkouts[3].workoutId]">
+          <img src="https://img.freepik.com/free-photo/top-view-perfectly-ordered-fitness-items_23-2150321809.jpg?t=st=1715419314~exp=1715422914~hmac=69357f219c6a6a83caacca21f6635f0a95f43ef194ef4d94846577f003547e01&w=1380" width="100%"/>
+          <h2 [pTooltip]="myWorkouts[3].workoutName | titlecase" tooltipPosition="bottom">{{myWorkouts[3].workoutName | titlecase}}</h2>
+        </div>
+      </div>
+      <div class="homeSectionAddContainer" [routerLink]="'/homePage/workout/manageWorkout'">
+        <i class="pi pi-plus">
+        </i>
+      </div>
+    </div>
   </div>
-  <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="homeSection animation-duration-1000 animation-ease-in-out">
-    <div class="homeTitle">
+  <div *ngIf="isDietitian() || isTrainee() || isAdmin()" pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="homeSection animation-duration-1000 animation-ease-in-out">
+    <div class="homeTitle" [routerLink]="'/homePage/nutrition/createDietPlan'">
       <h1>My Diet Plans</h1>
       <i class="pi pi-angle-double-right"></i>
     </div>
+    <div class="homeSectionContent">
+      <div class="homeSectionSubContent">
+        <div class="homeSectionCard" *ngIf="myDiets[0]" [routerLink]="['/homePage/nutrition/createDietPlan', myDiets[0].dietId]">
+          <img src="https://img.freepik.com/free-photo/flay-lay-scale-weights_23-2148262188.jpg?t=st=1715419097~exp=1715422697~hmac=4550782dbbb1b8880513f8fe6786cdd4bf80863784ed86393a4b4f78f51fb247&w=1380" width="100%"/>
+          <h2 [pTooltip]="myDiets[0].dietName | titlecase" tooltipPosition="bottom">{{myDiets[0].dietName | titlecase}}</h2>
+        </div>
+        <div class="homeSectionCard" *ngIf="myDiets[1]" [routerLink]="['/homePage/nutrition/createDietPlan', myDiets[1].dietId]">
+          <img src="https://img.freepik.com/free-photo/top-view-hummus-with-assortment-vegetables-measuring-tape_23-2148562696.jpg?t=st=1715419988~exp=1715423588~hmac=a61b8f5a2e06d23203f47ebf520c619fe4d12df0e9561e93a458002ba85f796e&w=1380" width="100%"/>
+          <h2 [pTooltip]="myDiets[1].dietName | titlecase" tooltipPosition="bottom">{{myDiets[1].dietName | titlecase}}</h2>
+        </div>
+        <div class="homeSectionCard" *ngIf="myDiets[2]" [routerLink]="['/homePage/nutrition/createDietPlan', myDiets[2].dietId]">
+          <img src="https://img.freepik.com/free-photo/green-apple-meter-white-background-isolated_169016-26912.jpg?t=st=1715419999~exp=1715423599~hmac=e32339a966a8d99ca7707e103a7cdea1f4e240348e7b3152b5abfb4d92505320&w=1380" width="100%"/>
+          <h2 [pTooltip]="myDiets[2].dietName | titlecase" tooltipPosition="bottom">{{myDiets[2].dietName | titlecase}}</h2>
+        </div>
+        <div class="homeSectionCard" *ngIf="myDiets[3]" [routerLink]="['/homePage/nutrition/createDietPlan', myDiets[3].dietId]">
+          <img src="https://img.freepik.com/free-photo/nice-salad-near-measuring-tape_23-2147778453.jpg?t=st=1715420094~exp=1715423694~hmac=8dec2b994f17095b8faad7fada86825daeda07b0e18963558e5e15cd8e7ec217&w=1380" width="100%"/>
+          <h2 [pTooltip]="myDiets[3].dietName | titlecase" tooltipPosition="bottom">{{myDiets[3].dietName | titlecase}}</h2>
+        </div>
+      </div>
+      <div class="homeSectionAddContainer" [routerLink]="'/homePage/nutrition/createDietPlan'">
+        <i class="pi pi-plus">
+        </i>
+      </div>
+    </div>
   </div>
-  <div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="homeSection animation-duration-1000 animation-ease-in-out">
-    <div class="homeTitle">
+  <div *ngIf="isTrainee() || isAdmin()" pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="homeSection animation-duration-1000 animation-ease-in-out">
+    <div class="homeTitle noLinkTitle">
       <h1>Meet Your Trainers</h1>
-      <i class="pi pi-angle-double-right"></i>
+    </div>
+    <div class="homeSectionContent profileSection">
+      <div class="homeSectionProfile" *ngFor="let trainer of trainers" (click)="openUser(trainer)">
+        <p-avatar [image]="getCommonService().transformImage(trainer.profilePicture)" shape="circle" size="xlarge"></p-avatar>
+        <h2>{{trainer.username | titlecase}}</h2>
+      </div>
     </div>
   </div>
-  <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="homeSection animation-duration-1000 animation-ease-in-out">
-    <div class="homeTitle">
+  <div *ngIf="isTrainee() || isAdmin()" pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="homeSection  animation-duration-1000 animation-ease-in-out">
+    <div class="homeTitle noLinkTitle">
       <h1>Meet Your Dietitians</h1>
-      <i class="pi pi-angle-double-right"></i>
+    </div>
+    <div class="homeSectionContent profileSection">
+      <div class="homeSectionProfile" *ngFor="let dietitian of dietitians" (click)="openUser(dietitian)">
+        <p-avatar [image]="getCommonService().transformImage(dietitian.profilePicture)" shape="circle" size="xlarge"></p-avatar>
+        <h2>{{dietitian.username | titlecase}}</h2>
+      </div>
     </div>
   </div>
+  <div *ngIf="isDietitian() || isTrainer() || isAdmin()" pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="homeSection animation-duration-1000 animation-ease-in-out">
+    <div class="homeTitle noLinkTitle">
+      <h1>Meet Your Trainee</h1>
+    </div>
+    <div class="homeSectionContent profileSection">
+      <div class="homeSectionProfile" *ngFor="let trainee of trainees" (click)="openUser(trainee)">
+        <p-avatar [image]="getCommonService().transformImage(trainee.profilePicture)" shape="circle" size="xlarge"></p-avatar>
+        <h2>{{trainee.username | titlecase}}</h2>
+      </div>
+    </div>
+  </div>
+  <app-user-profile></app-user-profile>
 </div>
+

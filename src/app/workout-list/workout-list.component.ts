@@ -3,7 +3,7 @@ import { WorkoutVO } from '../VO/WorkoutVO';
 import { CommonServiceService } from '../Services/common-service.service';
 import { WorkoutServiceService } from '../Services/workout-service.service';
 import { ConfirmationService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseVO } from '../VO/ExerciseVO';
 import { WorkoutExerciseVO } from '../VO/WorkoutExerciseVO';
 import { firstValueFrom } from 'rxjs';
@@ -22,7 +22,7 @@ export class WorkoutListComponent {
   days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   loading: boolean = false;
 
-  constructor(private commonServiceService: CommonServiceService, private workoutServiceService: WorkoutServiceService, private confirmationService: ConfirmationService, private router: Router) {
+  constructor(private route: ActivatedRoute, private commonServiceService: CommonServiceService, private workoutServiceService: WorkoutServiceService, private confirmationService: ConfirmationService, private router: Router) {
 
   }
 
@@ -42,7 +42,11 @@ export class WorkoutListComponent {
     this.workoutServiceService.getMyWorkouts(this.exercise?.exerciseId != undefined && this.exercise?.exerciseId != 0).subscribe({
       next: (response) => {
         this.myWorkouts = response.workoutList;
-        this.selectedWorkout = this.myWorkouts[0];
+        if (this.route.snapshot.paramMap.get('workoutId')) {
+          this.selectedWorkout = this.myWorkouts.find(workout => workout.workoutId === Number(this.route.snapshot.paramMap.get('workoutId')));
+        } else {
+          this.selectedWorkout = this.myWorkouts[0];
+        }
         this.loading = false;
       },
       error: (error) => {

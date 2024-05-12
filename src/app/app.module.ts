@@ -86,6 +86,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { BrowseDietsComponent } from './browse-diets/browse-diets.component';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { AnimateOnScrollModule } from 'primeng/animateonscroll';
     AllRecipesComponent,
     CreateDietPlanComponent,
     RecipeInfoComponent,
-    BrowseDietsComponent
+    BrowseDietsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

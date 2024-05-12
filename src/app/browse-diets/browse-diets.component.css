@@ -170,6 +170,12 @@
   height: 50px;
 }
 
+.dietNameListItem span {
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
 .dietPlan h3 {
   text-align: start;
   color: #f8f8ff;

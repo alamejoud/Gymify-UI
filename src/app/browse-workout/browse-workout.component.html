@@ -3,11 +3,11 @@
     <input pInputText [(ngModel)]="search" placeholder="Search for Trainer's Workouts" (keyup.enter)="filterWorkouts(true)"/>
     <ul *ngIf="!loading && workouts?.length != 0" class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" id="list">
       <li *ngFor="let workout of workouts" class="list p-2 border-round shadow-1 exercise" [ngClass]="{'highlight' : selectedWorkout?.workoutId == workout.workoutId}" (click)="selectedWorkout = workout">
-        <div class="flex flex-column xl:flex-row pb-1 px-3 gap-4 w-full workoutItem">
+        <div class="flex flex-column xl:flex-row pb-1 px-3 gap-4 w-full workoutItem" [pTooltip]="workout.workoutName | titlecase" tooltipPosition="bottom">
           <p-avatar tooltipPosition="bottom" [image]="getCommonService().transformImage(workout.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
           <div class="flex flex-column justify-content-center align-items-center flex-1 gap-4">
             <div class="flex flex-row align-items-center gap-3 align-self-start">
-                <div class="text-xl font-bold workoutName">{{ workout.workoutName }}</div>
+                <div class="text-xl font-bold workoutName">{{ workout.workoutName | titlecase }}</div>
             </div>
             <div class="flex sm:flex-column align-items-center gap-3 align-self-end creatorUsername">
               <div class="text-s font-bold">by {{ workout.createdBy.username | titlecase }}</div>

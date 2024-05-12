@@ -5,7 +5,7 @@
           class="w-full" [maxLength]="4000" [(ngModel)]="search" (keyup.enter)="getDietPlans()"/>
       <div class="dietPlan" *ngFor="let dietPlan of dietPlans">
         <p-skeleton height="100%" *ngIf="dietPlanLoading"></p-skeleton>
-        <h3 *ngIf="!dietPlanLoading" class="flex align-items-center dietNameListItem" [ngClass]="{'highlight': selectedDietPlan == dietPlan}" (click)="selectDiet(dietPlan)">
+        <h3 [pTooltip]="dietPlan.dietName | titlecase" tooltipPosition="bottom" *ngIf="!dietPlanLoading" class="flex align-items-center dietNameListItem" [ngClass]="{'highlight': selectedDietPlan == dietPlan}" (click)="selectDiet(dietPlan)">
           <p-avatar [pTooltip]="dietPlan.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(dietPlan.createdBy.profilePicture)" shape="circle" size="normal"></p-avatar>
           <span class="w-full">{{dietPlan.dietName | titlecase}}</span>
           <i class="pi pi-plus-circle delete" pTooltip="Subscribe" (click)="subscribeToDiet(dietPlan)" *ngIf="!isSubscribed(dietPlan) && getCommonService().getRole() != 'admin'"></i>

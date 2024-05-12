@@ -1,90 +1,222 @@
+:host {
+
+  ::ng-deep .homeSectionProfile>*:first-child {
+    display: block !important;
+    width: 220px !important;
+    height: 300px !important;
+  }
+
+  ::ng-deep .p-avatar {
+    margin: auto !important;
+    border: 2px solid #D7FB00 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+}
+
 .home {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: scroll !important;
 }
 
 .homeImage {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(../../assets/images/Home-Background-Image.jpg);
-  position: relative;
-  display: flex;
-  justify-content: start;
-  align-items: start;
-  overflow: hidden;
-  height: 88vh;
-  border-bottom-right-radius: 50px;
-  border-bottom-left-radius: 50px;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-image: url(../../assets/images/Home-Background-Image.jpg) !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: start !important;
+  align-items: start !important;
+  overflow: hidden !important;
+  height: 90vh !important;
+  border-bottom-right-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
 }
 
 .homeImageContainer {
-  background-color: #151515;
-  width: 55%;
-  height: 200%;
-  transform: rotateZ(20deg);
-  position: absolute;
-  top: -400px;
-  left: -300px;
+  background-color: #1C1D1F !important;
+  width: 55% !important;
+  height: 200% !important;
+  transform: rotateZ(20deg) !important;
+  position: absolute !important;
+  top: -400px !important;
+  left: -300px !important;
 }
 
 .homeImageText {
-  z-index: 1;
-  margin: auto;
-  margin-left: 100px;
-  margin-top: 50px;
+  z-index: 1 !important;
+  margin: auto !important;
+  margin-left: 100px !important;
+  margin-top: 50px !important;
 }
 
 .homeImageText h1 {
-  color: #D7FB00;
-  font-size: 6rem;
-  letter-spacing: 0px;
-  font-weight: bold;
-  margin-bottom: 0;
+  color: #D7FB00 !important;
+  font-size: 6rem !important;
+  letter-spacing: 0px !important;
+  font-weight: bold !important;
+  margin-bottom: 0 !important;
+  line-height: normal !important;
 }
 
 .homeImageText p {
-  color: #c7c7c7;
-  font-size: 1.5rem;
-  letter-spacing: 0px;
-  font-weight: 300;
+  color: #c7c7c7 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0px !important;
+  font-weight: 300 !important;
 }
 
 .homeSection {
-  width: 100%;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  padding: 50px;
+  width: 100% !important;
+  height: 500px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: start !important;
+  padding: 50px !important;
+  margin-top: 20px !important;
 }
 
 .homeTitle {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  cursor: pointer !important;
 }
 
 .homeTitle h1 {
-  color: #D7FB00;
-  font-size: 3rem;
-  letter-spacing: 0px;
-  font-weight: bold;
-  margin-bottom: 0;
-  width: 100%;
-  cursor: pointer;
+  color: #D7FB00 !important;
+  font-size: 3rem !important;
+  letter-spacing: 0px !important;
+  font-weight: bold !important;
+  margin-bottom: 50px !important;
+  width: 100% !important;
 }
 
 .homeTitle i {
-  color: #D7FB00;
-  font-size: 3rem;
+  color: #D7FB00 !important;
+  font-size: 3rem !important;
 }
 
-.homeTitle:hover h1 {
-  text-decoration: underline;
+.homeTitle:hover h1,
+.homeTitle:hover i {
+  text-decoration: underline !important;
+}
+
+.noLinkTitle {
+  cursor: default !important;
+}
+
+.noLinkTitle:hover h1{
+  text-decoration: none !important;
+}
+
+.homeSectionContent {
+  align-self: start !important;
+  height: 100% !important;
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  gap: 50px !important;
+}
+
+.homeSectionSubContent {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 50px !important;
+}
+
+.homeSectionCard {
+  width: 300px !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: start !important;
+  padding: 20px !important;
+  background-color: #1C1D1F !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0.5em 0.5em -0.4em #D7FB00 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.homeSectionCard:hover {
+  transform: translateY(-10px) !important;
+}
+
+.homeSectionCard:hover h2 {
+  color: #D7FB00 !important;
+}
+
+.homeSectionAddContainer {
+  width: 175px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 20px !important;
+  cursor: pointer !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+  background-color: #1C1D1F !important;
+  box-shadow: 0 0 1em -0.4em  #D7FB00 !important;
+  transition: all 0.3s ease !important;
+}
+
+.homeSectionAddContainer i {
+  color: #f8f8ff !important;
+  font-size: 1.5rem !important;
+}
+
+.homeSectionAddContainer:hover {
+  transform: translateX(10px) !important;
+  box-shadow: -0.4em 0 1em -0.4em #D7FB00 !important;
+}
+
+.homeSectionAddContainer:hover i {
+  color: #D7FB00 !important;
+}
+
+.homeSectionCard img {
+  height: 60% !important;
+  border-radius: 10px !important;
+}
+
+.homeSectionCard h2 {
+  height: 40% !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  color: #f8f8ff !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.profileSection {
+  display: flex !important;
+}
+
+.homeSectionProfile {
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.homeSectionProfile:hover {
+  transform: translateY(-10px) !important;
+}
+
+.homeSectionProfile h2 {
+  width: 100% !important;
+  overflow-x: hidden !important;
+  color: #f8f8ff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }

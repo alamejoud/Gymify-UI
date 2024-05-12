@@ -39,6 +39,8 @@ export class LoginPopupComponent {
     localStorage?.setItem('token', response.token);
     this.userServiceService.displayedUser = response.user;
     this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
+    this.userServiceService.profileDialogVisible = false;
+    this.userServiceService.userProfileVisible = false;
     this.router.navigate(['/homePage']);
 
   }

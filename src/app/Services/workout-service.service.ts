@@ -34,4 +34,7 @@ export class WorkoutServiceService {
   unsubscribeFromWorkout(workoutId: number): Observable<any> {
     return this.http.get('http://localhost:9090/workout/unsubscribeFromWorkout?workoutId=' + workoutId);
   }
+  getMyWorkoutNames(): Observable<any> {
+    return this.http.get('http://localhost:9090/workout/getMyWorkoutNames');
+  }
 }

@@ -44,4 +44,8 @@ export class NutritionServiceService {
   getDietitiansDietPlans(search): Observable<any> {
     return this.http.get('http://localhost:9090/nutrition/getDietitiansDietPlans?search=' + search);
   }
+
+  getMyDietNames(): Observable<any> {
+    return this.http.get('http://localhost:9090/nutrition/getMyDietNames');
+  }
 }

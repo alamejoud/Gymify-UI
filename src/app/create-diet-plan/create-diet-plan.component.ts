@@ -6,6 +6,7 @@ import { CommonServiceService } from '../Services/common-service.service';
 import { DietVO } from '../VO/DietVO';
 import { DietRecipeVO } from '../VO/DietRecipeVO';
 import { ConfirmationService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-diet-plan',
@@ -31,7 +32,7 @@ export class CreateDietPlanComponent {
   days: string[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
   namePopup = false;
 
-  constructor(private nutritionServiceService: NutritionServiceService, private commonServiceService: CommonServiceService, private confirmationService: ConfirmationService) {
+  constructor(private route: ActivatedRoute, private nutritionServiceService: NutritionServiceService, private commonServiceService: CommonServiceService, private confirmationService: ConfirmationService) {
 
   }
 
@@ -91,8 +92,8 @@ export class CreateDietPlanComponent {
     this.nutritionServiceService.getDietPlans(this.commonServiceService.getRole() != 'trainee').subscribe({
       next: (data) => {
         this.dietPlans = data.dietPlanList;
-        if (this.dietPlans.length > 0) {
-          this.selectedDietPlan = this.dietPlans[0];
+        if (this.dietPlans.length > 0 && this.route.snapshot.paramMap.get('dietId')) {
+          this.selectedDietPlan = this.dietPlans.find(diet => diet.dietId === Number(this.route.snapshot.paramMap.get('dietId')));
           this.editedDietPlan = JSON.parse(JSON.stringify(this.selectedDietPlan));
         } else {
           this.selectedDietPlan = new DietVO();

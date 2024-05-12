@@ -13,8 +13,12 @@ export class UserServiceService {
   profileDialogVisible: boolean = false;
   isEditingProfile: boolean = false;
 
+  userProfileVisible: boolean = false;
+
   displayedUser: UserVO = new UserVO();
   editedUser: UserVO = new UserVO();
+
+  selectedUser: UserVO = new UserVO();
 
   constructor(private http: HttpClient) { }
 
@@ -51,6 +55,10 @@ export class UserServiceService {
 
   generateToken(): Observable<any> {
     return this.http.post('http://localhost:9090/user/generateToken', this.displayedUser);
+  }
+
+  getUsers(role): Observable<any> {
+    return this.http.get('http://localhost:9090/user/getUsers?role=' + role);
   }
 
 }
