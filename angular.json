@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-capstone",
+            "outputPath": "dist/Gymify-UI",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -36,6 +36,10 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/@nebular/theme/styles/prebuilt/corporate.css",
+            "node_modules/@nebular/theme/styles/prebuilt/cosmic.css",
+            "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+            "node_modules/@nebular/theme/styles/prebuilt/default.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
@@ -73,6 +77,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "Gymify-UI:build:production",
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "Gymify-UI:build:production"
@@ -104,7 +112,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/404NotFound.js"
+            ]
           }
         }
       }

@@ -1,12 +1,13 @@
 <div class="navBar w-full">
-  <div class="logoNavigation">
-    <img src="../../assets/images/Gymify.png" alt="Gymify">
+  <div class="titleNavigation">
+    <i class="pi pi-bars ml-3 menuToggle" (click) = "getCommonService().toggleMenu = !getCommonService().toggleMenu "></i>
+    <h1>{{getCommonService().updateTitle()}}</h1>
   </div>
   <div class="profileNavigation">
-    <button class="chatBtn">
+    <button class="chatBtn" (click)="openChatPage()" pBadge [value]="getChatService().unreadChats" [ngClass]="{'hideBadge': getChatService().unreadChats == undefined || getChatService().unreadChats == '0'}">
       <i class="fa-regular fa-message"></i>
     </button>
-    <p-avatar (click)="showProfileDialog()" image="assets/images/DefaultUserAvatar.png" shape="circle"
+    <p-avatar (click)="showProfileDialog()" [image]="getUserService().imageUrl" shape="circle"
       size="large"></p-avatar>
     <button (click)="confirmLogout($event)" class="Btn">
       <div class="sign"><svg viewBox="0 0 512 512">
@@ -18,7 +19,6 @@
     </button>
   </div>
   <p-confirmDialog></p-confirmDialog>
-  <p-dialog class="profilePopup" header="My Profile" [(visible)]="profileDialogVisible">
-
-  </p-dialog>
+  <app-profile-popup></app-profile-popup>
+  <app-chat-page *ngIf="getChatService().chatPage"></app-chat-page>
 </div>

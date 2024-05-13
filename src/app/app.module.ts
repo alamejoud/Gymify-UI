@@ -3,7 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, withFetch } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -38,6 +38,55 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { BadgeModule } from 'primeng/badge';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { NbButtonModule, NbChatModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule, NbToastrModule } from '@nebular/theme';
+import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
+import { tokenInterceptor } from './token.interceptor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { FocusTrapModule } from 'primeng/focustrap';
+import { HomeComponent } from './home/home.component';
+import { WorkoutComponent } from './workout/workout.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { SkeletonModule } from 'primeng/skeleton';
+import { AccordionModule } from 'primeng/accordion';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PaginatorModule } from 'primeng/paginator';
+import { TrainerExerciseComponent } from './trainer-exercise/trainer-exercise.component';
+import { AddExercisesComponent } from './add-exercises/add-exercises.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SidebarModule } from 'primeng/sidebar';
+import { DragDropModule } from 'primeng/dragdrop';
+import { WorkoutPageComponent } from './workout-page/workout-page.component';
+import { WorkoutListComponent } from './workout-list/workout-list.component';
+import { BrowseWorkoutComponent } from './browse-workout/browse-workout.component';
+import { ScrollerModule } from 'primeng/scroller';
+import { ExerciseInfoComponent } from './exercise-info/exercise-info.component';
+import { ChatPageComponent } from './chat-page/chat-page.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { ChatContactComponent } from './chat-contact/chat-contact.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { NutritionPageComponent } from './nutrition-page/nutrition-page.component';
+import { DietPlanComponent } from './diet-plan/diet-plan.component';
+import { AllRecipesComponent } from './all-recipes/all-recipes.component';
+import { CreateDietPlanComponent } from './create-diet-plan/create-diet-plan.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { CarouselModule } from 'primeng/carousel';
+import { OrderListModule } from 'primeng/orderlist';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { BrowseDietsComponent } from './browse-diets/browse-diets.component';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +97,27 @@ import { ConfirmationService } from 'primeng/api';
     PageNotFoundComponent,
     HomePageComponent,
     NavBarComponent,
+    ProfilePopupComponent,
+    HomeComponent,
+    WorkoutComponent,
+    ExerciseComponent,
+    ExerciseListComponent,
+    TrainerExerciseComponent,
+    AddExercisesComponent,
+    WorkoutPageComponent,
+    WorkoutListComponent,
+    BrowseWorkoutComponent,
+    ExerciseInfoComponent,
+    ChatPageComponent,
+    ChatContactComponent,
+    ChatMessageComponent,
+    NutritionPageComponent,
+    DietPlanComponent,
+    AllRecipesComponent,
+    CreateDietPlanComponent,
+    RecipeInfoComponent,
+    BrowseDietsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -76,14 +146,50 @@ import { ConfirmationService } from 'primeng/api';
     MenuModule,
     PanelMenuModule,
     BadgeModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    NbMenuModule.forRoot(),
+    FileUploadModule,
+    FocusTrapModule,
+    DropdownModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    AutoCompleteModule,
+    ChipModule,
+    TagModule,
+    DataViewModule,
+    RatingModule,
+    SkeletonModule,
+    AccordionModule,
+    ScrollPanelModule,
+    PaginatorModule,
+    InputTextareaModule,
+    SidebarModule,
+    DragDropModule,
+    ScrollerModule,
+    NbThemeModule.forRoot({ name: 'dark' }),
+    NbInputModule,
+    NbButtonModule,
+    NbToastrModule.forRoot(),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbIconModule,
+    NbSidebarModule.forRoot(),
+    NbChatModule,
+    CheckboxModule,
+    SelectButtonModule,
+    GalleriaModule,
+    CarouselModule,
+    OrderListModule,
+    OverlayPanelModule,
+    AnimateOnScrollModule
   ],
   providers: [
     provideClientHydration(),
     MessageService,
     UserServiceService,
     IdleServiceService,
-    ConfirmationService
+    ConfirmationService,
+    provideHttpClient(withInterceptors([tokenInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

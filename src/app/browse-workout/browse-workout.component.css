@@ -1,0 +1,234 @@
+:host {
+  ::ng-deep .p-inputtext {
+    font-size: 0.5rem;
+    width: 100%;
+    display: block;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #f8f8ff;
+    background-color: transparent;
+    font-family: DM-Sans, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-inputtext:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #D7FB00;
+  }
+
+  ::ng-deep .p-paginator {
+    padding: 0;
+  }
+
+  ::ng-deep .p-paginator-element,
+  ::ng-deep .p-paginator-element>*>* {
+    font-size: 0.8rem;
+  }
+
+
+  ::ng-deep .p-paginator {
+    background-color: #1b1b1b;
+    display: flex;
+    gap: 5px;
+  }
+
+  ::ng-deep .p-paginator-next,
+  ::ng-deep .p-paginator-prev,
+  ::ng-deep .p-paginator-last,
+  ::ng-deep .p-paginator-first,
+  ::ng-deep .p-paginator-page {
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-paginator .p-highlight,
+  ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover,
+  ::ng-deep .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-last:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
+    background-color: #D7FB00;
+    color: #151515;
+  }
+
+  ::ng-deep .p-paginator-pages {
+    display: flex;
+    gap: 5px;
+  }
+
+  ::ng-deep .p-avatar {
+    margin: auto;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-avatar img {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
+  }
+
+  ::ng-deep .p-dialog-header {
+    color: #D7FB00;
+  }
+
+  ::ng-deep .hidden {
+    display: none;
+  }
+
+}
+
+.workoutBody {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 10px;
+  height: 100%;
+}
+
+.exercisesList {
+  min-width: 370px;
+  height: calc(100vh - 200px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 20px 0 0 20px;
+  background-color: #1b1b1b;
+}
+
+.exercisesList ul {
+  height: fit-content;
+}
+
+.exercisesList>*:nth-child(3) {
+  padding-block: 30px;
+}
+
+.workoutItem > * {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.scheduleContainer {
+  position: relative;
+  height: calc(100vh - 200px);
+  border-radius: 0 20px 20px 0;
+  background-color: #1b1b1b;
+  overflow-y: scroll;
+}
+
+.scheduleSubContainer {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow-y: scroll;
+  min-height: 100%;
+}
+
+.scheduleContainer>*:last-child {
+  position: sticky;
+  bottom: 0;
+  right: 0;
+}
+
+.scheduleContainer .scheduleDay {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #2b2b2b;
+  color: #D7FB00;
+}
+
+.scheduleContainer .scheduleDay h2 {
+  font-size: 1.5em;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f8f8ff;
+}
+
+.scheduleDay ul {
+  align-self: flex-start;
+}
+
+.exercise{
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2b2b2b;
+  color: #f8f8ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.creatorUsername {
+  border-bottom: 1px solid #D7FB00;
+}
+
+.scheduleDay {
+  border-radius: var(--border-radius) !important;
+}
+
+.scheduleExercise {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+  height: fit-content;
+  color: #f8f8ff;
+}
+
+.workoutName {
+  padding: 20px;
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workoutName > * {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.highlight {
+  background-color: #131313;
+}
+
+@media screen and (max-width: 1300px) {
+  .scheduleContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .scheduleContainer {
+    grid-template-columns: 1fr;
+  }
+}

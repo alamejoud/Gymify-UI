@@ -22,6 +22,13 @@
     transform: translateY(-0.25em);
   }
 
+  ::ng-deep .profileNavigation .p-avatar img {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+  }
+
   .profileNavigation {
     ::ng-deep .p-menu {
       background-color: #93A8AC;
@@ -53,22 +60,24 @@
   ::ng-deep .p-confirm-dialog-reject {
     font-weight: bold;
     color: #D7FB00;
+    margin-right: 10px;
   }
 
-  ::ng-deep .p-dialog-header,
-  ::ng-deep .p-dialog-content,
-  ::ng-deep .p-dialog-footer {
-    background-color: #1c1c1c;
-    color: #f8f8ff;
+  ::ng-deep .hideBadge .p-badge {
+    display: none;
   }
+}
 
-  .profilePopup ::ng-deep .p-dialog {
-    width: 650px;
-    height: 1000px;
-    background-color: #1c1c1c;
-    color: #f8f8ff;
-    padding: 20px;
-  }
+.menuToggle {
+  color: #D7FB00;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.menuToggle:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em #D7FB00;
+  transform: translateY(-0.25em);
 }
 
 .chatBtn {
@@ -98,7 +107,7 @@
   align-items: center;
 }
 
-.logoNavigation {
+.titleNavigation {
   width: 100%;
   height: 100%;
   margin: auto;
@@ -109,8 +118,13 @@
   justify-content: flex-start;
 }
 
-.logoNavigation img {
-  height: 100%;
+.titleNavigation i {
+  margin-inline: 50px !important;
+}
+
+.titleNavigation h1 {
+  font-size: 2.5rem;
+  color: #f8f8ff;
 }
 
 .profileNavigation {
@@ -204,7 +218,6 @@
   width: 0%;
   opacity: 0;
   color: #f8f8ff;
-  font-size: 1.2em;
   font-weight: 600;
   transition-duration: .3s;
 }

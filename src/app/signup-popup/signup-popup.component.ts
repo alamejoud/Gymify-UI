@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { UserServiceService } from '../Services/user-service.service';
 import { Router } from '@angular/router';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-signup-popup',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class SignupPopupComponent {
   signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private messageService: MessageService, private userService: UserServiceService, private router: Router) { }
+  constructor(private fb: FormBuilder, private messageService: MessageService, private userServiceService: UserServiceService, private router: Router, private commonServiceService: CommonServiceService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -31,10 +32,10 @@ export class SignupPopupComponent {
       });
     }
     else if (this.signUpForm.valid) {
-      this.userService.addUser(this.userService.mapUser(this.signUpForm.value)).subscribe(
+      this.userServiceService.addUser(this.userServiceService.mapUser(this.signUpForm.value)).subscribe(
         {
           next: response => this.handleSignupSuccess(response.message.headerMessage, response.message.bodyMessage),
-          error: error => this.handleError(error.error.message)
+          error: error => this.commonServiceService.handleError(error)
 
         }
       )
@@ -90,15 +91,6 @@ export class SignupPopupComponent {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([`/${url}`])
     })
-  }
-
-  handleError(message: string): void {
-    console.log(message);
-    this.messageService.clear();
-    this.messageService.add({
-      severity: 'error', summary: "Error", detail: message
-    });
-
   }
 
 }

@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
+
+:host {
+  ::ng-deep {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep .p-inputtext:enabled:hover {
+    border-color: #D7FB00;
+  }
+
+  ::ng-deep .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #c5d46a;
+    border-color: #D7FB00;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+    align-self: end;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
+  }
+
+  ::ng-deep .p-selectbutton .p-button {
+    background-color: transparent;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(0px);
+  }
+
+  ::ng-deep .p-highlight {
+    background-color: #D7FB00 !important;
+    color: #1c1c1c !important;
+  }
+
+  ::ng-deep .p-paginator {
+    background-color: #151515;
+  }
+
+  ::ng-deep .p-paginator-next,
+  ::ng-deep .p-paginator-prev,
+  ::ng-deep .p-paginator-last,
+  ::ng-deep .p-paginator-first,
+  ::ng-deep .p-paginator-page {
+    color: #f8f8ff;
+    margin-inline: 5px;
+  }
+
+  ::ng-deep .p-paginator .p-highlight,
+  ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover,
+  ::ng-deep .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-last:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover,
+  ::ng-deep .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
+    background-color: #D7FB00;
+    color: #151515;
+  }
+
+  ::ng-deep .addButton {
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid #f8f8ff66;
+    padding-inline: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ::ng-deep .addButton .p-button {
+    align-self: center;
+    border-radius: 100px;
+  }
+
+  ::ng-deep .recipeInfo .p-inputtext {
+    font-size: 0.5rem;
+    width: 100%;
+    display: block;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #f8f8ff;
+    background-color: transparent;
+    font-family: DM-Sans, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep  .recipeInfo .p-inputtext:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #D7FB00;
+  }
+
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+.recipePage {
+  font-family: "Lexend", sans-serif;
+  line-height: 1.5;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  color: #f8f8ff;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.searchField {
+  width: 90%;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  margin-block: 20px;
+  gap: 10px;
+  justify-self: center;
+}
+
+.searchField>*:nth-child(2) {
+  display: flex;
+  align-items: end;
+}
+
+.searchBy {
+  margin-block: 0;
+  margin-right: 10px;
+  height: fit-content;
+  align-self: center;
+}
+
+.recipeList {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 1%;
+  overflow-y: scroll;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.card-list {
+  width: 100%;
+  max-width: 300px;
+}
+
+.cardRecipe {
+  background-color: #1b1b1b;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 20px 50px 0 rgba(0, 0, 0, .1);
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 1.25rem;
+  position: relative;
+  transition: .15s ease-in;
+  cursor: pointer;
+  height: 100%;
+  display: grid;
+  grid-auto-rows: 1fr auto auto;
+}
+
+.cardRecipe:hover, .cardRecipe:focus-within {
+  box-shadow: 0 0 0 2px #D7FB00, 0 10px 60px 0 rgba(0, 0, 0, .1);
+  transform: translatey(-5px);
+}
+
+.card-image {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header span {
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.25;
+  padding-right: 1rem;
+  text-decoration: none;
+  color: inherit;
+  will-change: transform;
+}
+
+.card-header span:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.card-footer {
+  margin-top: 1.25rem;
+  border-top: 1px solid #4e4e4e;
+  padding-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  color: #787878;
+}
+
+.card-meta--views:first-child:after {
+  display: block;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentcolor;
+  margin-left: .75rem;
+  margin-right: .75rem;
+}
+
+.card-meta svg {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: .25em;
+}
+
+.rating {
+  color: #a8a8a8;
+}

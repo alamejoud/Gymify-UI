@@ -1,0 +1,186 @@
+<div class="workoutBody">
+  <div class="exercisesList list">
+    <input pInputText [(ngModel)]="search" placeholder="Search For An Exercise" (keyup)="filterExercises(true)"/>
+    <ul *ngIf="!loading && exercises?.length != 0" class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" id="list">
+      <li *ngFor="let exercise of exercises" class="list p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+        <div class="flex flex-column xl:flex-row p-3 gap-4 w-full">
+          <img class="w-5rem xl:block hidden shadow-2 mx-auto border-round" [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" [alt]="exercise.exerciseName" />
+          <div class="flex flex-column justify-content-center align-items-center flex-1 gap-4">
+            <div class="flex flex-row align-items-center gap-3 align-self-start">
+                <div class="text-xl font-bold">{{ exercise.exerciseName }}</div>
+            </div>
+            <div class="flex sm:flex-column align-items-center gap-3 align-self-end creatorUsername">
+              <div class="text-s font-bold">by {{ exercise.createdBy.username | titlecase }}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul *ngIf="loading"  class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" >
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+    </ul>
+    <p *ngIf="!loading && exercises?.length == 0" class="text-white text-xl pt-3 pl-3">No Records Found</p>
+    <button #b class="hidden" (click)="changePaginator($event)"></button>
+    <p-paginator #paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords" [alwaysShow]="false" [showFirstLastIcon]="false"></p-paginator>
+  </div>
+  <div class="scheduleContainer">
+    <div class="scheduleSubContainer">
+    <div class="scheduleDay monday" pDroppable (onDrop)="drop($event)">
+      <h2>Monday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="monday" *ngIf="workout.mondayExercises">
+        <li *ngFor="let exercise of workout.mondayExercises" class="monday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+            <div class="scheduleExercise">
+              <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+              <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+              <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+            </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay tuesday" pDroppable (onDrop)="drop($event)">
+      <h2>Tuesday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="tuesday" *ngIf="workout.tuesdayExercises">
+        <li *ngFor="let exercise of workout.tuesdayExercises" class="tuesday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+          </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay wednesday" pDroppable (onDrop)="drop($event)">
+      <h2>Wednesday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="wednesday" *ngIf="workout.wednesdayExercises">
+        <li *ngFor="let exercise of workout.wednesdayExercises" class="wednesday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+          </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay thursday" pDroppable (onDrop)="drop($event)">
+      <h2>Thursday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="thursday" *ngIf="workout.thursdayExercises">
+        <li *ngFor="let exercise of workout.thursdayExercises" class="thursday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+          </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay friday" pDroppable (onDrop)="drop($event)">
+      <h2>Friday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="friday" *ngIf="workout.fridayExercises">
+        <li *ngFor="let exercise of workout.fridayExercises" class="friday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+          </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay saturday" pDroppable (onDrop)="drop($event)">
+      <h2>Saturday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="saturday" *ngIf="workout.saturdayExercises">
+        <li *ngFor="let exercise of workout.saturdayExercises" class="saturday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+          </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay sunday" pDroppable (onDrop)="drop($event)">
+      <h2>Sunday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="sunday" *ngIf="workout.sundayExercises">
+        <li *ngFor="let exercise of workout.sundayExercises" class="sunday p-2 border-round shadow-1 exercise" pDraggable (onDragStart)="dragStart(exercise.exercise, $event)" (onDragEnd)="dragEnd()" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            <i class="pi pi-times remove align-self-end" (click)="removeExercise(exercise, $event)"></i>
+          </div>
+        </li>
+        <li class="monday p-2 border-round shadow-1 add">
+          <div class="scheduleExercise">
+            <div></div>
+            <i class="pi pi-plus align-self-end m-auto text-xl"></i>
+            <div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex flex-row-reverse">
+    <p-button *ngIf="workoutId == undefined || workoutId == 0" [disabled]="!scheduleIsNotEmpty()" (click)="showNamePopup()"><i class="pi pi-save"></i>&nbsp;Save</p-button>
+    <p-button *ngIf="workoutId != undefined && workoutId != 0" [disabled]="!scheduleIsNotEmpty()" (click)="showNamePopup()"><i class="pi pi-file-edit"></i>&nbsp;Edit</p-button>
+  </div>
+  </div>
+  <p-dialog header="Workout Name" [(visible)]="namePopup" [modal]="true" [draggable]="false" [resizable]="false" >
+    <div class="workoutName">
+      <input type="text" placeholder="Enter Workout Name" [(ngModel)]="workout.workoutName" pInputText maxlength="100">
+      <div class="saveButton">
+        <p-button [disabled]="workout.workoutName?.trim().length == 0" (click)="saveWorkout()"><i class="pi pi-save"></i>&nbsp;Save</p-button>
+      </div>
+    </div>
+  </p-dialog>
+</div>

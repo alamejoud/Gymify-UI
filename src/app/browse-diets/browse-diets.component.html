@@ -1,0 +1,209 @@
+<div class="myDietPlans">
+  <div class="allDietPlans">
+    <div class="dietPlanList">
+      <input pInputText type="text" autocomplete="off" id="dietPlanName" placeholder="Search for Diets"
+          class="w-full" [maxLength]="4000" [(ngModel)]="search" (keyup.enter)="getDietPlans()"/>
+      <div class="dietPlan" *ngFor="let dietPlan of dietPlans">
+        <p-skeleton height="100%" *ngIf="dietPlanLoading"></p-skeleton>
+        <h3 [pTooltip]="dietPlan.dietName | titlecase" tooltipPosition="bottom" *ngIf="!dietPlanLoading" class="flex align-items-center dietNameListItem" [ngClass]="{'highlight': selectedDietPlan == dietPlan}" (click)="selectDiet(dietPlan)">
+          <p-avatar [pTooltip]="dietPlan.createdBy.username" tooltipPosition="bottom" [image]="getCommonService().transformImage(dietPlan.createdBy.profilePicture)" shape="circle" size="normal"></p-avatar>
+          <span class="w-full">{{dietPlan.dietName | titlecase}}</span>
+          <i class="pi pi-plus-circle delete" pTooltip="Subscribe" (click)="subscribeToDiet(dietPlan)" *ngIf="!isSubscribed(dietPlan) && getCommonService().getRole() != 'admin'"></i>
+          <i class="pi pi-minus-circle delete" pTooltip="Unsubscribe" (click)="unsubscribeToDiet(dietPlan)" *ngIf="isSubscribed(dietPlan) && getCommonService().getRole() != 'admin'"></i>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="dietPlanInfo">
+    <div class="monday">
+      <h2>Monday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.mondayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+    <div class="tuesday">
+      <h2>Tuesday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.tuesdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+    <div class="wednesday">
+      <h2>Wednesday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.wednesdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+    <div class="thursday">
+      <h2>Thursday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.thursdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+    <div class="friday">
+      <h2>Friday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.fridayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+    <div class="saturday">
+      <h2>Saturday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.saturdayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+    <div class="sunday">
+      <h2>Sunday</h2>
+      <div class="dayRecipes card xl:flex flex-column">
+        <p-orderList [value]="selectedDietPlan.sundayRecipes" [listStyle]="{ 'max-height': '30rem' }" [dragdrop]="false">
+          <ng-template let-recipe pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="!dietPlanLoading">
+              <img (click)="openRecipeInfo(recipe.recipe)" [src]="recipe.recipe.images[0]?.imageSrc || getCommonService().missingImage" [alt]="recipe.recipe.recipeName" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <div (click)="openRecipeInfo(recipe.recipe)" class="flex-1 flex flex-column gap-2 px-3">
+                <span class="font-bold recipeName">{{ recipe.recipe.recipeName }}</span>
+                <div class="flex align-items-center gap-2">
+                  <span class="recipeCategory">{{ recipe.recipe.recipeCategory?.recipeCategory }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap p-2 align-items-center" *ngIf="dietPlanLoading">
+              <p-skeleton size="4rem" styleClass="mr-2"></p-skeleton>
+              <div class="flex-1 flex flex-column gap-2 px-3 px-3">
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex align-items-center gap-2">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
+  </div>
+</div>
+

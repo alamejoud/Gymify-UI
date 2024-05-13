@@ -2,10 +2,19 @@
   <app-nav-bar></app-nav-bar>
   <hr />
   <div class="homeBody">
-    <div class="pageNavigation">
-      <p-panelMenu [model]="menuTab"></p-panelMenu>
-    </div>
+    <p-sidebar [(visible)]="getCommonService().toggleMenu">
+      <ng-template pTemplate="headless">
+        <div class="pageNavigation" >
+          <div class="logoNavigation">
+            <img src="../../assets/images/Gymify.png" alt="Gymify">
+            <i class="pi pi-times close" (click)="getCommonService().toggleMenu = false"></i>
+          </div>
+          <p-panelMenu [model]="menuTab"></p-panelMenu>
+        </div>
+      </ng-template>
+    </p-sidebar>
     <div class="bodyContent">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

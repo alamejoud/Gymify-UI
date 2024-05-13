@@ -90,6 +90,10 @@
   opacity: 0.2;
 }
 
+ul {
+  width: 450px;
+}
+
 li {
   list-style: none;
   font-size: 1rem;
@@ -101,9 +105,9 @@ li {
 }
 
 .notMet {
-  color: red;
+  color: #f8f8ff;
 }
 
 .met {
-  color: green;
+  color: rgb(0, 255, 0);
 }

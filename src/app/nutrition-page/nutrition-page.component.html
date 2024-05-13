@@ -1,0 +1,8 @@
+
+<div class="nutritionPage">
+  <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+  <router-outlet></router-outlet>
+  <p-dialog class="recipeInfoDialog" header="Recipe Info" [(visible)]="getNutritionService().openRecipeInfo" [modal]="true" [draggable]="false" [resizable]="false">
+    <app-recipe-info *ngIf="getNutritionService().openRecipeInfo"></app-recipe-info>
+  </p-dialog>
+</div>

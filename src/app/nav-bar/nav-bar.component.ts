@@ -1,5 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { UserServiceService } from '../Services/user-service.service';
+import { CommonServiceService } from '../Services/common-service.service';
+import { ChatServiceService } from '../Services/chat-service.service';
+import { UserVO } from '../VO/UserVO';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,19 +12,44 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 })
 export class NavBarComponent {
 
-  profileDialogVisible: any = false;
-
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private userServiceService: UserServiceService, private commonServiceService: CommonServiceService, private chatServiceService: ChatServiceService) { }
 
   ngOnInit() {
+    if (this.chatServiceService.updateUnreadChatsSubscription) {
+      this.chatServiceService.updateUnreadChatsSubscription.unsubscribe();
+    }
+    this.chatServiceService.pendingUnreadChatsResponse = false;
+    this.userServiceService.getLoggedInUser().subscribe({
+      next: response => {
+        this.userServiceService.displayedUser = response.user;
+        this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
+      },
+      error: error => {
+        console.log(error);
+
+      }
+    });
+    this.chatServiceService.getUnreadChats().subscribe({
+      next: response => {
+        this.chatServiceService.unreadChats = response.unreadChats;
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
+  }
+
+  getUserService() {
+    return this.userServiceService;
   }
 
   showProfileDialog() {
-    this.profileDialogVisible = true;
+    this.userServiceService.profileDialogVisible = true;
+    this.userServiceService.isEditingProfile = false;
   }
 
   logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     window.location.href = '/userLogin/login';
   }
 
@@ -37,6 +66,19 @@ export class NavBarComponent {
         this.logout();
       }
     });
+  }
+
+  getCommonService() {
+    return this.commonServiceService;
+  }
+
+  openChatPage() {
+    this.chatServiceService.selectedContact = new UserVO();
+    this.chatServiceService.chatPage = true;
+  }
+
+  getChatService() {
+    return this.chatServiceService;
   }
 
 }

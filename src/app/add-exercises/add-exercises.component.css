@@ -1,0 +1,223 @@
+:host {
+  ::ng-deep {
+    overflow: hidden;
+  }
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
+  }
+
+  .cancelBtn ::ng-deep.p-button {
+    background-color: transparent;
+    border: none;
+    font-weight: normal;
+    color: #D7FB00;
+    box-shadow: none;
+  }
+
+  .cancelBtn ::ng-deep.p-button:hover {
+    background: rgba(33, 150, 243, 0.04);
+    border-color: transparent;
+  }
+
+  .autocompleteField {
+    width: 100%;
+    display: block;
+  }
+  ::ng-deep .p-autocomplete,
+  ::ng-deep .p-autocomplete-input {
+    width: 100%;
+  }
+
+  ::ng-deep .p-autocomplete {
+    width: 100%;
+  }
+
+  ::ng-deep .p-autocomplete-input {
+    width: 100%;
+  }
+
+  ::ng-deep .p-inputwrapper-focus {
+    box-shadow: none;
+  }
+
+  ::ng-deep .p-overlay {
+    height: fit-content;
+  }
+
+  ::ng-deep .p-overlay-content {
+    height: fit-content;
+  }
+
+  ::ng-deep .p-autocomplete-panel {
+    height: fit-content;
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::ng-deep .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item:not(.p-highlight):not(.p-disabled):hover {
+    backdrop-filter: blur(100px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::ng-deep .p-autocomplete-items .p-focus {
+    backdrop-filter: blur(30px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::ng-deep .p-autocomplete-item {
+    color: #f8f8ff;
+    border-bottom: 1px solid #f8f8ff;
+  }
+
+  ::ng-deep .p-autocomplete-item:last-child {
+    border-bottom: none;
+  }
+
+  ::ng-deep .p-autocomplete-input-token,
+  ::ng-deep .p-autocomplete-input-token input{
+    width: 100%;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-inputtext {
+    font-size: 0.5rem;
+    width: 100%;
+    display: block;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #f8f8ff;
+    background-color: transparent;
+    font-family: DM-Sans, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-inputtext:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #D7FB00;
+  }
+
+  ::ng-deep .p-float-label label {
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-scroller {
+    height: 400px !important;
+  }
+
+  ::ng-deep .p-inputtextarea {
+    border: 1px solid #f8f8ff;
+    border-radius: 10px;
+  }
+
+  ::ng-deep .p-inputtextarea:focus {
+    border: 1px solid #D7FB00;
+  }
+
+  ::ng-deep .p-autocomplete-token {
+    justify-self: center;
+    background-color: #333333;
+    color: #f8f8ff;
+    border-radius: 16px;
+    font-size: 1rem;
+  }
+
+  ::ng-deep .p-autocomplete-multiple-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  ::ng-deep .p-autocomplete-multiple-container>* {
+    flex: 0 0 auto;
+    max-width: fit-content;
+  }
+
+  ::ng-deep .p-autocomplete-multiple-container>*:last-child {
+    flex: 1 1 auto;
+  }
+
+ }
+
+.addExerciseContainer {
+  background-color: #1b1b1b;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 5% 85% 5%;
+  border-radius: 20px;
+}
+
+.addExerciseHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.addExerciseBody {
+  margin: 50px;
+  border: 1px solid #222222;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.addExerciseMainInfo,
+.addExerciseSecondaryInfo,
+.addExerciseAdditionalInfo {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-bottom: 1px solid #222222;
+}
+
+.autocompleteElementInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.autocompleteHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.addExerciseFooter {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-block: 20px;
+}
+
+.addExerciseFooter>* {
+  margin-right: 20px;
+}
+
+h1 {
+  color: #f8f8ff;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+h2 {
+  color: #D7FB00;
+}
+
+.fields>*:first-child {
+  align-self: flex-end;
+}
+

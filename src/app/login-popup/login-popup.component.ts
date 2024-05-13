@@ -4,6 +4,7 @@ import { UserServiceService } from '../Services/user-service.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { IdleServiceService } from '../Services/idle-service.service';
+import { CommonServiceService } from '../Services/common-service.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -13,7 +14,7 @@ import { IdleServiceService } from '../Services/idle-service.service';
 export class LoginPopupComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService, private messageService: MessageService, private router: Router, private idleService: IdleServiceService) { }
+  constructor(private fb: FormBuilder, private userServiceService: UserServiceService, private messageService: MessageService, private router: Router, private idleService: IdleServiceService, private commonServiceService: CommonServiceService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -23,27 +24,25 @@ export class LoginPopupComponent {
   }
 
   onSubmit(): void {
+    this.userServiceService.profileDialogVisible = false;
     if (this.loginForm.valid) {
-      this.userService.loginUser(this.userService.mapUser(this.loginForm.value)).subscribe(
+      this.userServiceService.loginUser(this.userServiceService.mapUser(this.loginForm.value)).subscribe(
         {
-          next: response => this.handleLoginSuccess(response.message),
-          error: error => this.handleError(error.error.message)
+          next: response => this.handleLoginSuccess(response),
+          error: error => this.commonServiceService.handleError(error)
         }
       )
     }
   }
 
-  handleLoginSuccess(message: string): void {
-    sessionStorage?.setItem('username', this.loginForm.get('username').value);
-    this.router.navigate(['/home']);
-  }
-
-  handleError(message: string): void {
-    console.log(message);
-    this.messageService.clear();
-    this.messageService.add({
-      severity: 'error', summary: "Error", detail: message
-    });
+  handleLoginSuccess(response: any): void {
+    localStorage?.setItem('token', response.token);
+    this.userServiceService.displayedUser = response.user;
+    this.userServiceService.imageUrl = this.commonServiceService.transformImage(this.userServiceService.displayedUser.profilePicture);
+    this.userServiceService.profileDialogVisible = false;
+    this.userServiceService.userProfileVisible = false;
+    this.router.navigate(['/homePage']);
 
   }
+
 }

@@ -15,7 +15,7 @@ export class IdleServiceService {
   title = 'You are idle!';
   visible: boolean = false;
 
-  constructor(private router: Router, private idle: Idle, private keepalive: Keepalive) { }
+  constructor(private router: Router, private idle: Idle, private keepalive: Keepalive, private userServiceService: UserServiceService) { }
 
   startIdleTimer(): void {
     this.idle.setIdle(600);
@@ -29,7 +29,7 @@ export class IdleServiceService {
     this.idle.onTimeout.subscribe(() => {
       this.idleState = 'Timed out!';
       this.timedOut = true;
-      sessionStorage?.clear();
+      localStorage?.clear();
       this.visible = false;
       this.router.navigate(['/userLogin/login']);
     });

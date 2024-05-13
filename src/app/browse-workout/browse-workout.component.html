@@ -1,0 +1,199 @@
+<div class="workoutBody">
+  <div class="exercisesList list">
+    <input pInputText [(ngModel)]="search" placeholder="Search for Trainer's Workouts" (keyup.enter)="filterWorkouts(true)"/>
+    <ul *ngIf="!loading && workouts?.length != 0" class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" id="list">
+      <li *ngFor="let workout of workouts" class="list p-2 border-round shadow-1 exercise" [ngClass]="{'highlight' : selectedWorkout?.workoutId == workout.workoutId}" (click)="selectedWorkout = workout">
+        <div class="flex flex-column xl:flex-row pb-1 px-3 gap-4 w-full workoutItem" [pTooltip]="workout.workoutName | titlecase" tooltipPosition="bottom">
+          <p-avatar tooltipPosition="bottom" [image]="getCommonService().transformImage(workout.createdBy.profilePicture)" shape="circle" size="large"></p-avatar>
+          <div class="flex flex-column justify-content-center align-items-center flex-1 gap-4">
+            <div class="flex flex-row align-items-center gap-3 align-self-start">
+                <div class="text-xl font-bold workoutName">{{ workout.workoutName | titlecase }}</div>
+            </div>
+            <div class="flex sm:flex-column align-items-center gap-3 align-self-end creatorUsername">
+              <div class="text-s font-bold">by {{ workout.createdBy.username | titlecase }}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul *ngIf="loading"  class="list-none flex flex-column align-item-center gap-2 p-0 m-0 mt-4" >
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+      <li>
+        <p-skeleton width="100%" height="100px"></p-skeleton>
+      </li>
+    </ul>
+    <p *ngIf="!loading && workouts?.length == 0" class="text-white text-xl pt-3 pl-3">No Records Found</p>
+    <button #b class="hidden" (click)="changePaginator($event)"></button>
+    <p-paginator #paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"></p-paginator>
+  </div>
+  <div class="scheduleContainer">
+    <div class="scheduleSubContainer">
+    <div class="scheduleDay monday">
+      <h2>Monday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="monday" *ngIf="!loading && selectedWorkout?.mondayExercises">
+        <li *ngFor="let exercise of selectedWorkout.mondayExercises" class="monday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+            <div class="scheduleExercise">
+              <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+              <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay tuesday">
+      <h2>Tuesday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="tuesday" *ngIf="!loading && selectedWorkout?.tuesdayExercises">
+        <li *ngFor="let exercise of selectedWorkout.tuesdayExercises" class="tuesday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay wednesday">
+      <h2>Wednesday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="wednesday" *ngIf="!loading && selectedWorkout?.wednesdayExercises">
+        <li *ngFor="let exercise of selectedWorkout.wednesdayExercises" class="wednesday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay thursday">
+      <h2>Thursday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="thursday" *ngIf="!loading && selectedWorkout?.thursdayExercises">
+        <li *ngFor="let exercise of selectedWorkout.thursdayExercises" class="thursday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay friday">
+      <h2>Friday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="friday" *ngIf="!loading && selectedWorkout?.fridayExercises">
+        <li *ngFor="let exercise of selectedWorkout.fridayExercises" class="friday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay saturday">
+      <h2>Saturday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="saturday" *ngIf="!loading && selectedWorkout?.saturdayExercises">
+        <li *ngFor="let exercise of selectedWorkout.saturdayExercises" class="saturday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay sunday">
+      <h2>Sunday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="sunday" *ngIf="!loading && selectedWorkout?.sundayExercises">
+        <li *ngFor="let exercise of selectedWorkout.sundayExercises" class="sunday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="w-full flex flex-row-reverse pb-5 pr-5">
+    <p-button (click)="subscribeToWorkout()" *ngIf="!isSubscribed() && getCommonService().getRole() != 'admin'"><i class="pi pi-plus-circle"></i>&nbsp;Subscribe</p-button>
+    <p-button (click)="unsubscribeFromWorkout()" *ngIf="isSubscribed() && getCommonService().getRole() != 'admin'"><i class="pi pi-minus-circle"></i>&nbsp;Unsubscribe</p-button>
+  </div>
+  </div>
+</div>

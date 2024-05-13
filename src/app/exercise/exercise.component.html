@@ -1,0 +1,30 @@
+
+<div class="exerciseContainer">
+  <div class="exerciseHeader">
+    <p-dropdown class="mr-2" [options]="exerciseGroups" [(ngModel)]="selectedGroup" optionLabel="lookupName" placeholder="Group By" (onChange)="getExerciseCategories(selectedGroup.lookupCode)"></p-dropdown>
+    <p-autoComplete class="mr-2" [(ngModel)]="selectedExercise" [suggestions]="filteredExercises"
+      (completeMethod)="filterExercises($event)" field="exerciseName" placeholder="Search for an exercise" (keyup.enter)="searchForExercises(search)" [delay]="0">
+      <ng-template let-exercise pTemplate="item">
+          <div class="flex align-items-center gap-2 w-full autocompleteElement" (click)="getExerciseService().autoCompleteSelectedExerciseId = exercise.exerciseId" [routerLink]="[route, 'search', search]">
+            <p-image [src]="getCommonService().transformImage(exercise.majorMuscle.musclePicture)" width="50px"></p-image>
+            <div class="autocompleteElementInfo">
+              <div class="autocompleteHeader">
+                <h3 class="exerciseName" [innerHTML]="exercise.exerciseSafeHtml"></h3>
+              </div>
+            </div>
+          </div>
+      </ng-template>
+    </p-autoComplete>
+    <button class="mr-2" type="button" pButton label="Search" (click)="searchForExercises(search)"></button>
+  </div>
+  <p-card>
+    <div class="card" *ngFor="let category of exerciseCategories" [routerLink]="[route, selectedGroup.lookupCode , getObject().entries(category)[0][1]]">
+      <img [src]="getCommonService().transformImage(getObject().entries(category)[2][1])"/>
+      <div class="card__content">
+        <p class="card__title">{{getObject().entries(category)[1][1]}}</p>
+      </div>
+    </div>
+  </p-card>
+</div>
+
+

@@ -1,0 +1,188 @@
+<div class="workoutList">
+  <div class="workoutScroller">
+    <div class="text-white text-xl" *ngIf="!loading && (!this.myWorkouts || this.myWorkouts.length == 0)">
+      No Workouts Yet
+    </div>
+    <div class="workoutScrollerItem" *ngFor="let workout of myWorkouts" [pTooltip]="workout.workoutName" [ngClass]="{'selected': selectedWorkout?.workoutId == workout.workoutId}" tooltipPosition="bottom" (click)="selectedWorkout = workout; selectedDays = []">
+      <div class="workoutScrollerItemText">
+        {{workout.workoutName}}
+      </div>
+      <div class="workoutScrollerItemButton">
+        <i *ngIf="workout.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined)" class="pi pi-pencil" (click)="editWorkout(workout.workoutId)"></i>
+        <i *ngIf="workout.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined)" class="pi pi-trash" (click)="confirmDelete($event)"></i>
+        <i *ngIf="!(workout.createdBy.username.toLowerCase() == getCommonService().getUsername().toLowerCase() && (exercise?.exerciseId == 0 || exercise?.exerciseId == undefined))" class="pi pi-minus-circle" (click)="unsubscribeFromWorkout(workout.workoutId)"></i>
+      </div>
+    </div>
+    <div *ngIf="loading">
+      <p-skeleton width="200px" height="50px" borderRadius="20px"></p-skeleton>
+    </div>
+    <div *ngIf="loading">
+      <p-skeleton width="200px" height="50px" borderRadius="20px"></p-skeleton>
+    </div>
+    <div *ngIf="loading">
+      <p-skeleton width="200px" height="50px" borderRadius="20px"></p-skeleton>
+    </div>
+    <div *ngIf="loading">
+      <p-skeleton width="200px" height="50px" borderRadius="20px"></p-skeleton>
+    </div>
+  </div>
+  <div class="scheduleContainer">
+    <div class="scheduleDay monday" (click)="toggleDay(monday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(monday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(monday.innerText)}" >
+      <h2 #monday>Monday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="monday" *ngIf="!loading && selectedWorkout?.mondayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.mondayExercises" class="monday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+            <div class="scheduleExercise">
+              <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+              <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+            </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay tuesday" (click)="toggleDay(tuesday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(tuesday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(tuesday.innerText)}" >
+      <h2 #tuesday>Tuesday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="tuesday" *ngIf="!loading && selectedWorkout?.tuesdayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.tuesdayExercises" class="tuesday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay wednesday" (click)="toggleDay(wednesday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(wednesday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(wednesday.innerText)}" >
+      <h2 #wednesday>Wednesday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="wednesday" *ngIf="!loading && selectedWorkout?.wednesdayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.wednesdayExercises" class="wednesday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay thursday" (click)="toggleDay(thursday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(thursday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(thursday.innerText)}" >
+      <h2 #thursday>Thursday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="thursday" *ngIf="!loading && selectedWorkout?.thursdayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.thursdayExercises" class="thursday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay friday" (click)="toggleDay(friday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(friday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(friday.innerText)}" >
+      <h2 #friday>Friday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="friday" *ngIf="!loading && selectedWorkout?.fridayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.fridayExercises" class="friday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay saturday" (click)="toggleDay(saturday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(saturday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(saturday.innerText)}" >
+      <h2 #saturday>Saturday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="saturday" *ngIf="!loading && selectedWorkout?.saturdayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.saturdayExercises" class="saturday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+    <div class="scheduleDay sunday" (click)="toggleDay(sunday)" [ngClass]="{'selectable': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && !selectedDays.includes(sunday.innerText), 'selected': exercise?.exerciseId != undefined && exercise?.exerciseId != 0 && selectedDays.includes(sunday.innerText)}" >
+      <h2 #sunday>Sunday</h2>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" id="sunday" *ngIf="!loading && selectedWorkout?.sundayExercises">
+        <li *ngFor="let exercise of selectedWorkout?.sundayExercises" class="sunday p-2 border-round shadow-1 exercise" (click)="openExerciseInfo(exercise.exerciseId)">
+          <div class="scheduleExercise">
+            <img class="w-3rem shadow-2 block border-round mr-5" [src]="getCommonService().transformImage(exercise.exercise.majorMuscle.musclePicture)" [alt]="exercise.exercise.exerciseName" />
+            <div class="text-2xl font-bold flex align-items-center">{{ exercise.exercise.exerciseName }}</div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="loading">
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+        <li>
+          <p-skeleton width="100%" height="50px"></p-skeleton>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="saveBtn" *ngIf="exercise?.exerciseId != undefined && exercise?.exerciseId != 0">
+    <p-button (click)="saveWorkout()"><i class="pi pi-save"></i>&nbsp;Save</p-button>
+  </div>
+</div>

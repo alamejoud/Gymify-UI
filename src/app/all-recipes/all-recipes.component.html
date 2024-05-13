@@ -1,0 +1,62 @@
+<div class="recipePage">
+  <div class="searchField">
+    <h4 class="searchBy">Search By:</h4>
+    <p-selectButton [options]="searchOptions" [(ngModel)]="searchOption" optionLabel="label" optionValue="value" [allowEmpty]="false"></p-selectButton>
+    <input pInputText placeholder="Search for a recipe" [(ngModel)]="searchInput" (keyup.enter)="search()"/>
+    <button pButton (click)="search()">Search</button>
+  </div>
+  <div class="recipeList">
+    <div class="card-list" *ngFor="let recipe of recipeList" (click)="openRecipeInfo(recipe)">
+      <article class="cardRecipe" *ngIf="!loading">
+        <figure class="card-image">
+          <img [src]="recipe.images[0]?.imageSrc || getCommonService().missingImage" />
+        </figure>
+        <div class="card-header">
+          <span>{{recipe.recipeName}}</span>
+          <div class="rating">
+            <i class="pi pi-star"></i>
+            {{recipe.aggregatedRating}}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta card-meta--views">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
+              <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            {{recipe.reviewCount}}
+          </div>
+          <div class="card-meta card-meta--date">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+              <rect x="2" y="4" width="20" height="18" rx="4" />
+              <path d="M8 2v4" />
+              <path d="M16 2v4" />
+              <path d="M2 10h20" />
+            </svg>
+            {{recipe.publishedDate | date:'MMM dd, yyyy'}}
+          </div>
+        </div>
+      </article>
+      <article class="cardRecipe" *ngIf="loading">
+        <figure class="card-image">
+          <p-skeleton width="20rem" height="10rem" borderRadius="16px"></p-skeleton>
+        </figure>
+        <div class="card-header">
+          <p-skeleton width="10rem" height="2rem" borderRadius="16px"></p-skeleton>
+          <div class="rating">
+            <p-skeleton width="2rem" height="2rem" borderRadius="16px"></p-skeleton>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta card-meta--views">
+            <p-skeleton width="4rem" height="1.5rem" borderRadius="16px"></p-skeleton>
+          </div>
+          <div class="card-meta card-meta--date">
+            <p-skeleton width="5rem" height="1.5rem" borderRadius="16px"></p-skeleton>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"></p-paginator>
+</div>

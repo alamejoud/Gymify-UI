@@ -1,0 +1,260 @@
+:host {
+  ::ng-deep {
+    overflow: hidden;
+  }
+
+  ::ng-deep .p-card {
+    background-color: transparent;
+    overflow-y: scroll;
+    height: 100%;
+    padding-inline: 50px;
+    border-radius: 20px;
+  }
+
+  :ng-deep .p-card>*{
+    background-color: red;
+  }
+
+  ::ng-deep .p-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 50px;
+  }
+
+  ::ng-deep .p-dropdown {
+    background-color: transparent;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-dropdown>*{
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dropdown-items-wrapper {
+    background-color: #222222;
+    border: 2px solid #D7FB00;
+  }
+
+  ::ng-deep .p-dropdown-items-wrapper * {
+    color: #f8f8ff;
+  }
+
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    background-color: #D7FB00;
+  }
+
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover span {
+    color: #222222;
+    font-weight: bold;
+  }
+
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+    background-color: #151515;
+  }
+
+  .exerciseHeader>*:nth-child(2) {
+    width: 50%;
+  }
+
+  ::ng-deep .p-autocomplete {
+    width: 100%;
+  }
+
+  ::ng-deep .p-autocomplete-input {
+    width: 100%;
+  }
+
+  ::ng-deep .p-inputwrapper-focus {
+    box-shadow: none;
+  }
+
+  ::ng-deep .p-inputtext:enabled:hover {
+    border-color: #D7FB00;
+  }
+
+  ::ng-deep .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #c5d46a;
+    border-color: #D7FB00;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    color: #222222;
+    border: 2px solid #D7FB00;
+    font-weight: bold;
+  }
+
+  ::ng-deep .p-overlay {
+    height: fit-content;
+  }
+
+  ::ng-deep .p-overlay-content {
+    height: fit-content;
+  }
+
+  ::ng-deep .p-autocomplete-panel {
+    height: fit-content;
+    max-height: 750px !important;
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::ng-deep .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item:not(.p-highlight):not(.p-disabled):hover {
+    backdrop-filter: blur(100px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::ng-deep .p-autocomplete-items .p-focus {
+    backdrop-filter: blur(30px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::ng-deep .p-autocomplete-item {
+    color: #f8f8ff;
+    border-bottom: 1px solid #f8f8ff;
+  }
+
+  ::ng-deep .p-autocomplete-item:last-child {
+    border-bottom: none;
+  }
+
+  ::ng-deep .p-button {
+    background-color: #D7FB00;
+    font-weight: bold;
+    color: #1c1c1c;
+    border-color: #bdce5c;
+    box-shadow: 0 0.5em 0.5em -0.4em #151515;
+    transition: all .1s ease;
+  }
+
+  ::ng-deep .p-button:active {
+    transform: translate(2px, 2px);
+  }
+
+}
+
+.autocompleteElementInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.autocompleteHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.exerciseName {
+  width: 100%;
+  margin: 10px;
+}
+
+.muscleChips {
+  margin: 10px;
+}
+
+.muscleChips * {
+  margin-right: 5px;
+}
+
+
+
+.exerciseContainer {
+  background-color: #1b1b1b;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  border-radius: 20px;
+}
+
+.exerciseContainer>* {
+  height: 100%;
+}
+
+.exerciseHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 50px;
+}
+
+.card {
+  position: relative;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0 0 0 5px #D7FB0080;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card img {
+  width: 50%;
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(34, 34, 34, 0.2);
+  cursor: pointer;
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #222222;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 24px;
+  color: #f8f8ff;
+  font-weight: 700;
+}
+
+.card:hover img {
+  scale: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  :host {
+    ::ng-deep .p-card-content {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  :host {
+    ::ng-deep .p-card-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
